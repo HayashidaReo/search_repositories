@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
+import 'package:search_repositories/feature/model/api_response.dart';
 import 'package:search_repositories/feature/view/repository_detail_page.dart';
 import 'package:search_repositories/feature/view/repository_list_page.dart';
 
@@ -27,8 +28,7 @@ GoRouter appRouter(ref) {
             path: AppRoute.repositoryDetail.path,
             name: AppRoute.repositoryDetail.name,
             pageBuilder: (context, state) {
-              final Map<String, dynamic> repository =
-                  state.extra as Map<String, dynamic>;
+              final ApiResponse repository = state.extra as ApiResponse;
               return MaterialPage(
                 child: RepositoryDetailPage(repository: repository),
               );

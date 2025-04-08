@@ -1,8 +1,7 @@
+import 'package:search_repositories/feature/model/api_response.dart';
 import 'package:search_repositories/feature/repo/search_github_repo.dart';
 
-Future<List<Map<String, dynamic>>> searchGitHubController(
-  String keyword,
-) async {
+Future<List<ApiResponse>> searchGitHubController(String keyword) async {
   final String defaultQuery = 'stars:>10000';
   final String query = keyword.trim().isEmpty ? defaultQuery : keyword;
   final Uri url = Uri.parse(

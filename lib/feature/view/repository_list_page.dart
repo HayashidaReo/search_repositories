@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
 import 'package:search_repositories/config/key/map_key.dart';
 import 'package:search_repositories/feature/controller/github_controller.dart';
+import 'package:search_repositories/feature/model/api_response.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
@@ -39,16 +40,15 @@ class RepositoryListPage extends HookConsumerWidget {
               return const Center(child: Text('No data found'));
             }
 
-            final List<Map<String, dynamic>> repositories =
-                snapshot.data as List<Map<String, dynamic>>;
+            final List<ApiResponse> repositories = snapshot.data!;
             return ListView.builder(
               itemCount: repositories.length,
               itemBuilder: (context, index) {
                 final repo = repositories[index];
                 return ListTile(
-                  title: Text(repo[MapKey.name]),
-                  subtitle: Text(repo[MapKey.description] ?? 'No description'),
-                  trailing: Text('⭐${repo[MapKey.stars]}'),
+                  title: Text(repo.name),
+                  subtitle: Text(repo.description ?? 'No description'),
+                  trailing: Text('⭐${repo.stars}'),
                   onTap: () {
                     context.pushNamed(
                       AppRoute.repositoryDetail.name,
