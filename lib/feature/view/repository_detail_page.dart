@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:search_repositories/feature/repo/search_github_repo.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
-  const RepositoryDetailPage({super.key});
+  const RepositoryDetailPage({super.key, required this.repository});
+  final Map<String, dynamic> repository;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,7 +19,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                 print('${repo['name']} ⭐${repo['stars']}');
               }
             },
-            child: const Text('APIを叩く'),
+            child: Text(repository['name'] ?? 'No name'),
           ),
         ),
       ),

@@ -27,7 +27,11 @@ GoRouter appRouter(ref) {
             path: AppRoute.repositoryDetail.path,
             name: AppRoute.repositoryDetail.name,
             pageBuilder: (context, state) {
-              return const MaterialPage(child: RepositoryDetailPage());
+              final Map<String, dynamic> repository =
+                  state.extra as Map<String, dynamic>;
+              return MaterialPage(
+                child: RepositoryDetailPage(repository: repository),
+              );
             },
           ),
         ],
