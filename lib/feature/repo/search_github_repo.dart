@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:search_repositories/config/key/map_key.dart';
 
 Future<List<Map<String, dynamic>>> searchGitHubRepo(String keyword) async {
   final url = Uri.parse(
@@ -14,16 +15,20 @@ Future<List<Map<String, dynamic>>> searchGitHubRepo(String keyword) async {
     final data = json.decode(response.body);
     final items = data['items'] as List;
 
-    return items
-        .map(
-          (repo) => {
-            'name': repo['full_name'],
-            'description': repo['description'],
-            'stars': repo['stargazers_count'],
-            'url': repo['html_url'],
-          },
-        )
-        .toList();
+    return items.map((repo) {
+      return {
+        MapKey.name: repo['full_name'],
+        MapKey.description: repo['description'],
+        MapKey.language: repo['language'],
+        MapKey.stars: repo['stargazers_count'],
+        MapKey.watchers: repo['watchers_count'],
+        MapKey.forks: repo['forks_count'],
+        MapKey.issues: repo['open_issues_count'],
+        MapKey.ownerAvatarUrl: repo['owner']['avatar_url'],
+        MapKey.ownerLogin: repo['owner']['login'],
+        MapKey.url: repo['html_url'],
+      };
+    }).toList();
   } else {
     throw Exception('GitHub API error: ${response.statusCode}');
   }
