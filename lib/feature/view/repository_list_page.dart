@@ -12,11 +12,23 @@ class RepositoryListPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final TextEditingController searchTextController =
         useTextEditingController();
+    final ValueNotifier<String> keyword = useState('flutter');
     return Scaffold(
-      appBar: AppBar(title: const Text('Title')),
+      appBar: AppBar(
+        title: TextField(
+          controller: searchTextController,
+          decoration: const InputDecoration(
+            hintText: 'Search GitHub Repositories',
+            border: OutlineInputBorder(),
+          ),
+          onSubmitted: (value) {
+            keyword.value = value;
+          },
+        ),
+      ),
       body: SafeArea(
         child: FutureBuilder(
-          future: searchGitHubRepo('flutter'),
+          future: searchGitHubRepo(keyword.value),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
