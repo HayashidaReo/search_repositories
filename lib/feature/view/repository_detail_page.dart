@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:search_repositories/config/key/map_key.dart';
+import 'package:search_repositories/feature/model/api_response.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
   const RepositoryDetailPage({super.key, required this.repository});
 
-  final Map<String, dynamic> repository;
+  final ApiResponse repository;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text(repository[MapKey.name])),
+      appBar: AppBar(title: Text(repository.name)),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -21,14 +21,12 @@ class RepositoryDetailPage extends ConsumerWidget {
               Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      repository[MapKey.ownerAvatarUrl],
-                    ),
+                    backgroundImage: NetworkImage(repository.owner.avatarUrl),
                     radius: 24,
                   ),
                   const SizedBox(width: 12),
                   Text(
-                    repository[MapKey.ownerLogin],
+                    repository.owner.login,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -41,16 +39,16 @@ class RepositoryDetailPage extends ConsumerWidget {
 
               // 説明文
               Text(
-                repository[MapKey.description] ?? 'No description provided.',
+                repository.description ?? 'No description provided.',
                 style: const TextStyle(fontSize: 16),
               ),
 
               const SizedBox(height: 20),
 
               // プロジェクト言語
-              if (repository[MapKey.language] != null)
+              if (repository.language != null)
                 Text(
-                  '🛠 Language: ${repository[MapKey.language]}',
+                  '🛠 Language: ${repository.language}',
                   style: const TextStyle(fontSize: 16),
                 ),
 
@@ -61,13 +59,10 @@ class RepositoryDetailPage extends ConsumerWidget {
                 spacing: 16,
                 runSpacing: 10,
                 children: [
-                  _infoChip('⭐ Stars', repository[MapKey.stars].toString()),
-                  _infoChip(
-                    '👁 Watchers',
-                    repository[MapKey.watchers].toString(),
-                  ),
-                  _infoChip('🍴 Forks', repository[MapKey.forks].toString()),
-                  _infoChip('🐞 Issues', repository[MapKey.issues].toString()),
+                  _infoChip('⭐ Stars', repository.stars.toString()),
+                  _infoChip('👁 Watchers', repository.watchers.toString()),
+                  _infoChip('🍴 Forks', repository.forks.toString()),
+                  _infoChip('🐞 Issues', repository.issues.toString()),
                 ],
               ),
             ],

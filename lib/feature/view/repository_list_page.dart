@@ -3,7 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
-import 'package:search_repositories/feature/repo/search_github_repo.dart';
+import 'package:search_repositories/feature/controller/github_controller.dart';
+import 'package:search_repositories/feature/model/api_response.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
@@ -12,7 +13,7 @@ class RepositoryListPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final TextEditingController searchTextController =
         useTextEditingController();
-    final ValueNotifier<String> keyword = useState('flutter');
+    final ValueNotifier<String> keyword = useState('');
     return Scaffold(
       appBar: AppBar(
         title: TextField(
@@ -28,7 +29,7 @@ class RepositoryListPage extends HookConsumerWidget {
       ),
       body: SafeArea(
         child: FutureBuilder(
-          future: searchGitHubRepo(keyword.value),
+          future: searchGitHubController(keyword.value),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
@@ -38,16 +39,15 @@ class RepositoryListPage extends HookConsumerWidget {
               return const Center(child: Text('No data found'));
             }
 
-            final List<Map<String, dynamic>> repositories =
-                snapshot.data as List<Map<String, dynamic>>;
+            final List<ApiResponse> repositories = snapshot.data!;
             return ListView.builder(
               itemCount: repositories.length,
               itemBuilder: (context, index) {
                 final repo = repositories[index];
                 return ListTile(
-                  title: Text(repo['name']),
-                  subtitle: Text(repo['description'] ?? 'No description'),
-                  trailing: Text('⭐${repo['stars']}'),
+                  title: Text(repo.name),
+                  subtitle: Text(repo.description ?? 'No description'),
+                  trailing: Text('⭐${repo.stars}'),
                   onTap: () {
                     context.pushNamed(
                       AppRoute.repositoryDetail.name,

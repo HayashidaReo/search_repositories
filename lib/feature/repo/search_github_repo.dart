@@ -1,34 +1,20 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:search_repositories/config/key/map_key.dart';
+import 'package:search_repositories/feature/model/api_response.dart';
 
-Future<List<Map<String, dynamic>>> searchGitHubRepo(String keyword) async {
-  final url = Uri.parse(
-    'https://api.github.com/search/repositories?q=$keyword&sort=stars&order=desc',
-  );
-
-  final headers = {'Accept': 'application/vnd.github.v3+json'};
-
+Future<List<ApiResponse>> searchGitHubRepo(
+  String keyword,
+  Uri url,
+  Map<String, String> headers,
+) async {
   final response = await http.get(url, headers: headers);
-
   if (response.statusCode == 200) {
-    final data = json.decode(response.body);
-    final items = data['items'] as List;
+    final data = json.decode(response.body) as Map<String, dynamic>;
+    final items = data['items'] as List<dynamic>;
 
-    return items.map((repo) {
-      return {
-        MapKey.name: repo['full_name'],
-        MapKey.description: repo['description'],
-        MapKey.language: repo['language'],
-        MapKey.stars: repo['stargazers_count'],
-        MapKey.watchers: repo['watchers_count'],
-        MapKey.forks: repo['forks_count'],
-        MapKey.issues: repo['open_issues_count'],
-        MapKey.ownerAvatarUrl: repo['owner']['avatar_url'],
-        MapKey.ownerLogin: repo['owner']['login'],
-        MapKey.url: repo['html_url'],
-      };
-    }).toList();
+    return items
+        .map((item) => ApiResponse.fromJson(item as Map<String, dynamic>))
+        .toList();
   } else {
     throw Exception('GitHub API error: ${response.statusCode}');
   }
