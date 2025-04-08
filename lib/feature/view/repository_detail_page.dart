@@ -6,6 +6,9 @@ class RepositoryDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: const Text('Title')),
+      body: SafeArea(child: Center(child: Text('詳細ページ'))),
+    );
   }
 }
