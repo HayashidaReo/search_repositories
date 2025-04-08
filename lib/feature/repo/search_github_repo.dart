@@ -2,15 +2,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:search_repositories/config/key/map_key.dart';
 
-Future<List<Map<String, dynamic>>> searchGitHubRepo(String keyword) async {
-  final url = Uri.parse(
-    'https://api.github.com/search/repositories?q=$keyword&sort=stars&order=desc',
-  );
-
-  final headers = {'Accept': 'application/vnd.github.v3+json'};
-
+Future<List<Map<String, dynamic>>> searchGitHubRepo(
+  String keyword,
+  Uri url,
+  Map<String, String> headers,
+) async {
   final response = await http.get(url, headers: headers);
-
   if (response.statusCode == 200) {
     final data = json.decode(response.body);
     final items = data['items'] as List;
