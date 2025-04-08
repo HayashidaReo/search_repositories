@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:search_repositories/config/key/map_key.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
