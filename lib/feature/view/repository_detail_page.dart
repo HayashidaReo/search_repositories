@@ -25,7 +25,7 @@ class RepositoryDetailPage extends ConsumerWidget {
       appBar: AppBar(),
       body: SafeArea(
         child: Padding(
-          padding: CustomPadding.normal,
+          padding: EdgeInsets.symmetric(horizontal: CustomPadding.normal),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
