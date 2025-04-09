@@ -12,9 +12,20 @@ class AuthRepo extends _$AuthRepo {
   }
 
   // githubの認証
-  Future<UserCredential> signInWithGitHub() async {
-    GithubAuthProvider githubProvider = GithubAuthProvider();
+  // GitHub認証（キャンセル/エラー処理対応）
+  Future<UserCredential?> signInWithGitHub() async {
+    try {
+      GithubAuthProvider githubProvider = GithubAuthProvider();
 
-    return await FirebaseAuth.instance.signInWithProvider(githubProvider);
+      final result = await FirebaseAuth.instance.signInWithProvider(
+        githubProvider,
+      );
+      return result;
+    } on FirebaseAuthException {
+      return null;
+    } catch (e) {
+      // その他の予期しないエラー
+      return null;
+    }
   }
 }
