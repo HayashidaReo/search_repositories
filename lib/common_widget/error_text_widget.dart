@@ -7,6 +7,6 @@ class ErrorTextWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Center(child: Text('エラー内容\n $text'));
+    return Center(child: Text(text));
   }
 }
