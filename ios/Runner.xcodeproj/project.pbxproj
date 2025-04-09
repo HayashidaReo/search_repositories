@@ -107,7 +107,6 @@
 				CDCD941468D7C220015D4642 /* Pods-RunnerTests.release.xcconfig */,
 				D0895EA666E528D5B261E9BB /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

@@ -11,11 +11,11 @@ import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/none_border_text_field_decoration.dart';
-import 'package:search_repositories/feature/controller/github_controller.dart';
-import 'package:search_repositories/feature/model/api_response.dart';
+import 'package:search_repositories/feature/github/controller/github_controller.dart';
+import 'package:search_repositories/feature/github/model/api_response.dart';
 import 'package:search_repositories/common_widget/icon_info_widget.dart';
 
-part './part/repository_list_tile.dart';
+part 'part/repository_list_tile.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
@@ -28,6 +28,12 @@ class RepositoryListPage extends HookConsumerWidget {
     return UnFocusKeyBoardWidget(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              context.pop();
+            },
+            icon: const Icon(Icons.arrow_back),
+          ),
           title: TextField(
             controller: searchTextController,
             decoration: noneBorderTextFieldDecoration(

@@ -1,5 +1,5 @@
-import 'package:search_repositories/feature/model/api_response.dart';
-import 'package:search_repositories/feature/repo/search_github_repo.dart';
+import 'package:search_repositories/feature/github/model/api_response.dart';
+import 'package:search_repositories/feature/github/repo/search_github_repo.dart';
 
 Future<List<ApiResponse>> searchGitHubController(String keyword) async {
   final String defaultQuery = 'stars:>10000';

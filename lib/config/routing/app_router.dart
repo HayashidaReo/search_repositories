@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
-import 'package:search_repositories/feature/model/api_response.dart';
-import 'package:search_repositories/feature/view/repository_detail_page.dart';
-import 'package:search_repositories/feature/view/repository_list_page.dart';
+import 'package:search_repositories/feature/github/model/api_response.dart';
+import 'package:search_repositories/feature/github/view/repository_detail_page.dart';
+import 'package:search_repositories/feature/github/view/repository_list_page.dart';
 
 part 'app_router.g.dart';
 
