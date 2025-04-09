@@ -10,6 +10,7 @@ import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
 import 'package:search_repositories/common_widget/icon_info_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:search_repositories/function/launch_url.dart';
 
 part 'part/icon_image.dart';
 
@@ -22,7 +23,17 @@ class RepositoryDetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final double iconSize = 36;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              // レポジトリへ遷移
+              launchInExternalBrowser(repository.url);
+            },
+            icon: Icon(Icons.open_in_new),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: CustomPadding.normal),
