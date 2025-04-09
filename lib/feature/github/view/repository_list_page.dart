@@ -28,12 +28,6 @@ class RepositoryListPage extends HookConsumerWidget {
     return UnFocusKeyBoardWidget(
       child: Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              context.pop();
-            },
-            icon: const Icon(Icons.arrow_back),
-          ),
           title: TextField(
             controller: searchTextController,
             decoration: noneBorderTextFieldDecoration(
@@ -61,7 +55,7 @@ class RepositoryListPage extends HookConsumerWidget {
         ),
         body: SafeArea(
           child: FutureBuilder(
-            future: searchGitHubController(keyword.value),
+            future: searchGitHubController(keyword.value, ref),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return LoadingWidget();
