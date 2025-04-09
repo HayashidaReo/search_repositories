@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:search_repositories/config/util/custom_font_size.dart';
+import 'package:search_repositories/config/util/custom_padding.dart';
+import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
@@ -13,22 +16,22 @@ class RepositoryDetailPage extends ConsumerWidget {
       appBar: AppBar(title: Text(repository.name)),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: CustomPadding.normal,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // オーナーのアイコンと名前
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CircleAvatar(
                     backgroundImage: NetworkImage(repository.owner.avatarUrl),
-                    radius: 24,
+                    radius: 36,
                   ),
-                  const SizedBox(width: 12),
+                  WidthMargin.normal,
                   Text(
                     repository.owner.login,
                     style: const TextStyle(
-                      fontSize: 18,
+                      fontSize: CustomFontSize.large,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
