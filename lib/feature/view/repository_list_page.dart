@@ -2,9 +2,21 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:search_repositories/common_widget/error_text_widget.dart';
+import 'package:search_repositories/common_widget/loading_widget.dart';
+import 'package:search_repositories/common_widget/un_focus_keyboard_widget.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
+import 'package:search_repositories/config/util/color_style.dart';
+import 'package:search_repositories/config/util/custom_font_size.dart';
+import 'package:search_repositories/config/util/height_margin.dart';
+import 'package:search_repositories/config/util/none_border_text_field_decoration.dart';
+import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/controller/github_controller.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
+import 'package:search_repositories/function/format_stars.dart';
+
+part './part/repository_list_tile.dart';
+part './part/icon_info_widget.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
@@ -13,51 +25,62 @@ class RepositoryListPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final TextEditingController searchTextController =
         useTextEditingController();
-    final ValueNotifier<String> keyword = useState('');
-    return Scaffold(
-      appBar: AppBar(
-        title: TextField(
-          controller: searchTextController,
-          decoration: const InputDecoration(
-            hintText: 'Search GitHub Repositories',
-            border: OutlineInputBorder(),
-          ),
-          onSubmitted: (value) {
-            keyword.value = value;
-          },
-        ),
-      ),
-      body: SafeArea(
-        child: FutureBuilder(
-          future: searchGitHubController(keyword.value),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
-            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(child: Text('No data found'));
-            }
+    final ValueNotifier<String> keyword = useState<String>('');
+    return UnFocusKeyBoardWidget(
+      child: Scaffold(
+        appBar: AppBar(
+          title: TextField(
+            controller: searchTextController,
+            decoration: noneBorderTextFieldDecoration(
+              label: 'レポジトリを検索',
+              prefixIconOnPressed: null,
+              prefixIcon: SizedBox.shrink(),
+              suffixIconOnPressed:
+                  (keyword.value.isNotEmpty)
+                      ? () {
+                        keyword.value = '';
+                        searchTextController.clear();
+                      }
+                      : null,
 
-            final List<ApiResponse> repositories = snapshot.data!;
-            return ListView.builder(
-              itemCount: repositories.length,
-              itemBuilder: (context, index) {
-                final repo = repositories[index];
-                return ListTile(
-                  title: Text(repo.name),
-                  subtitle: Text(repo.description ?? 'No description'),
-                  trailing: Text('⭐${repo.stars}'),
-                  onTap: () {
-                    context.pushNamed(
-                      AppRoute.repositoryDetail.name,
-                      extra: repo,
-                    );
-                  },
-                );
-              },
-            );
-          },
+              suffixIcon: Icon(
+                (keyword.value.isEmpty)
+                    ? Icons.search
+                    : Icons.keyboard_backspace,
+              ),
+            ),
+            onChanged: (text) {
+              keyword.value = text;
+            },
+          ),
+        ),
+        body: SafeArea(
+          child: FutureBuilder(
+            future: searchGitHubController(keyword.value),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return LoadingWidget();
+              } else if (snapshot.hasError) {
+                return ErrorTextWidget(text: snapshot.error.toString());
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return ErrorTextWidget(text: 'データが見つかりませんでした');
+              }
+
+              final List<ApiResponse> repositories = snapshot.data!;
+              return ListView.separated(
+                separatorBuilder:
+                    (context, index) => Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: const Divider(),
+                    ),
+                itemCount: repositories.length,
+                itemBuilder: (context, index) {
+                  final repo = repositories[index];
+                  return RepositoryListTile(repo: repo);
+                },
+              );
+            },
+          ),
         ),
       ),
     );
