@@ -14,4 +14,8 @@ class AuthController extends _$AuthController {
   Future<UserCredential?> signInWithGitHub() async {
     return await ref.read(authRepoProvider.notifier).signInWithGitHub();
   }
+
+  Future<void> signOut() async {
+    await ref.read(authRepoProvider.notifier).signOut();
+  }
 }

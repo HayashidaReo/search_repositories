@@ -28,6 +28,12 @@ class AuthRepo extends _$AuthRepo {
     }
   }
 
+  //ログアウト処理
+  Future<void> signOut() async {
+    await ref.read(firebaseAuthInstanceProvider).signOut();
+    state = ref.read(firebaseAuthInstanceProvider).currentUser;
+  }
+
   // Authの状態を監視する
   Stream<User?> authStateChange() {
     return ref.watch(firebaseAuthInstanceProvider).authStateChanges().map((

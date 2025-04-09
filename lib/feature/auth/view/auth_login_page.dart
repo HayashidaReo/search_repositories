@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:search_repositories/config/key/secure_storage_key.dart';
 import 'package:search_repositories/feature/auth/controller/auth_controller.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:search_repositories/feature/auth/controller/secure_storage_controller.dart';
 
 class AuthLoginPage extends ConsumerWidget {
