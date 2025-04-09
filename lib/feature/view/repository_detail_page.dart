@@ -47,6 +47,51 @@ class RepositoryDetailPage extends ConsumerWidget {
                   ),
                 ],
               ),
+              HeightMargin.small,
+              Row(
+                children: [
+                  SizedBox(
+                    width: 70,
+                    child: Text(
+                      '開発者',
+                      style: const TextStyle(
+                        fontSize: CustomFontSize.small,
+                        color: ColorStyle.darkGrey,
+                      ),
+                    ),
+                  ),
+                  WidthMargin.small,
+                  Text(
+                    repository.owner.login,
+                    style: const TextStyle(
+                      fontSize: CustomFontSize.small,
+                      color: ColorStyle.black,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 70,
+                    child: Text(
+                      '開発言語',
+                      style: const TextStyle(
+                        fontSize: CustomFontSize.small,
+                        color: ColorStyle.darkGrey,
+                      ),
+                    ),
+                  ),
+                  WidthMargin.small,
+                  Text(
+                    repository.language ?? '不明',
+                    style: const TextStyle(
+                      fontSize: CustomFontSize.small,
+                      color: ColorStyle.black,
+                    ),
+                  ),
+                ],
+              ),
               HeightMargin.normal,
               // 説明文
               ReadMoreText(
@@ -57,7 +102,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                 trimCollapsedText: ' さらに表示',
                 trimExpandedText: ' 折りたたむ',
                 style: TextStyle(
-                  fontSize: CustomFontSize.medium,
+                  fontSize: CustomFontSize.normal,
                   color: ColorStyle.black,
                 ),
                 moreStyle: TextStyle(
@@ -72,14 +117,6 @@ class RepositoryDetailPage extends ConsumerWidget {
 
               HeightMargin.small,
 
-              // // プロジェクト言語
-              // if (repository.language != null)
-              //   Text(
-              //     '🛠 Language: ${repository.language}',
-              //     style: const TextStyle(fontSize: 16),
-              //   ),
-
-              // const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
