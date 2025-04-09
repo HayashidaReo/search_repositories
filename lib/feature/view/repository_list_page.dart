@@ -7,8 +7,10 @@ import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
 import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
+import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/controller/github_controller.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
+import 'package:search_repositories/function/format_stars.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
@@ -72,7 +74,20 @@ class RepositoryListPage extends HookConsumerWidget {
                       fontSize: CustomFontSize.small,
                     ),
                   ),
-                  trailing: Text('⭐${repo.stars}'),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.star, color: ColorStyle.yellow),
+                      WidthMargin.mini,
+                      SizedBox(
+                        width: 40,
+                        child: Text(
+                          formatStars(repo.stars),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
                   onTap: () {
                     context.pushNamed(
                       AppRoute.repositoryDetail.name,
