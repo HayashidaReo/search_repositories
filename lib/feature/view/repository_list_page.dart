@@ -7,6 +7,7 @@ import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
 import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
+import 'package:search_repositories/config/util/none_border_text_field_decoration.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/controller/github_controller.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
@@ -21,17 +22,31 @@ class RepositoryListPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final TextEditingController searchTextController =
         useTextEditingController();
-    final ValueNotifier<String> keyword = useState('');
+    final ValueNotifier<String> keyword = useState<String>('');
     return Scaffold(
       appBar: AppBar(
         title: TextField(
           controller: searchTextController,
-          decoration: const InputDecoration(
-            hintText: 'Search GitHub Repositories',
-            border: OutlineInputBorder(),
+          decoration: noneBorderTextFieldDecoration(
+            label: 'レポジトリを検索',
+            prefixIconOnPressed: () {
+              null;
+            },
+            prefixIcon: SizedBox.shrink(),
+            suffixIconOnPressed:
+                (keyword.value.isNotEmpty)
+                    ? () {
+                      keyword.value = '';
+                      searchTextController.clear();
+                    }
+                    : null,
+
+            suffixIcon: Icon(
+              (keyword.value.isEmpty) ? Icons.search : Icons.keyboard_backspace,
+            ),
           ),
-          onSubmitted: (value) {
-            keyword.value = value;
+          onChanged: (text) {
+            keyword.value = text;
           },
         ),
       ),
