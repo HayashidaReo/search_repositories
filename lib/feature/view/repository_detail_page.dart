@@ -4,6 +4,7 @@ import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
+import 'package:search_repositories/common_widget/icon_info_widget.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
   const RepositoryDetailPage({super.key, required this.repository});
@@ -48,24 +49,30 @@ class RepositoryDetailPage extends ConsumerWidget {
 
               const SizedBox(height: 20),
 
-              // プロジェクト言語
-              if (repository.language != null)
-                Text(
-                  '🛠 Language: ${repository.language}',
-                  style: const TextStyle(fontSize: 16),
-                ),
+              // // プロジェクト言語
+              // if (repository.language != null)
+              //   Text(
+              //     '🛠 Language: ${repository.language}',
+              //     style: const TextStyle(fontSize: 16),
+              //   ),
 
-              const SizedBox(height: 20),
-
-              // スター・ウォッチャー・フォーク・イシュー
-              Wrap(
-                spacing: 16,
-                runSpacing: 10,
+              // const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _infoChip('⭐ Stars', repository.stars.toString()),
-                  _infoChip('👁 Watchers', repository.watchers.toString()),
-                  _infoChip('🍴 Forks', repository.forks.toString()),
-                  _infoChip('🐞 Issues', repository.issues.toString()),
+                  IconInfoWidget(icon: Icons.star, value: repository.stars),
+                  IconInfoWidget(
+                    icon: Icons.remove_red_eye,
+                    value: repository.watchers,
+                  ),
+                  IconInfoWidget(
+                    icon: Icons.call_split,
+                    value: repository.forks,
+                  ),
+                  IconInfoWidget(
+                    icon: Icons.bug_report,
+                    value: repository.issues,
+                  ),
                 ],
               ),
             ],

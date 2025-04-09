@@ -10,13 +10,11 @@ import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/none_border_text_field_decoration.dart';
-import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/controller/github_controller.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
-import 'package:search_repositories/function/format_stars.dart';
+import 'package:search_repositories/common_widget/icon_info_widget.dart';
 
 part './part/repository_list_tile.dart';
-part './part/icon_info_widget.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
