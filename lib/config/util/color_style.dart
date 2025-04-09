@@ -15,7 +15,7 @@ class ColorStyle {
   static const lightGrey = Color.fromARGB(255, 244, 244, 244); // F4F4F4
   static const extraLightGrey = Color.fromARGB(255, 251, 251, 251); //FBFBFB
 
-  // ピンク系ColosをColoStyleに統一
+  // ピンク系
   static const pink = Color.fromARGB(255, 242, 149, 178); // F295B2
   static const lightPink = Color.fromARGB(255, 253, 226, 234); // FFF2F6
   static const palePink = Color.fromARGB(255, 252, 239, 241); // FFFBFC
@@ -31,6 +31,7 @@ class ColorStyle {
   static const yellow = Colors.yellow; // E6B422
   // 水色
   static const lightBlue = Color.fromARGB(255, 152, 216, 255); // 98D8FF
+  static const blueAccent = Colors.blueAccent; // #FF4081
   // レッド系
   static const red = Color.fromARGB(255, 223, 52, 52); // DF3434
   static const lightRed = Color.fromRGBO(252, 77, 77, 1); // FC4D4D
