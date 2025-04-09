@@ -16,6 +16,7 @@ import 'package:search_repositories/feature/model/api_response.dart';
 import 'package:search_repositories/function/format_stars.dart';
 
 part './part/repository_list_tile.dart';
+part './part/icon_info_widget.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});

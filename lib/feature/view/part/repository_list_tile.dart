@@ -41,31 +41,14 @@ class RepositoryListTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _iconInfo(Icons.star, repo.stars),
-              _iconInfo(Icons.remove_red_eye, repo.watchers),
-              _iconInfo(Icons.call_split, repo.forks),
-              _iconInfo(Icons.bug_report, repo.issues),
+              IconInfoWidget(icon: Icons.star, value: repo.stars),
+              IconInfoWidget(icon: Icons.remove_red_eye, value: repo.watchers),
+              IconInfoWidget(icon: Icons.call_split, value: repo.forks),
+              IconInfoWidget(icon: Icons.bug_report, value: repo.issues),
             ],
           ),
         ],
       ),
-    );
-  }
-
-  Widget _iconInfo(IconData icon, int value) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, size: 16, color: ColorStyle.darkGrey),
-        WidthMargin.mini,
-        Text(
-          formatStars(value),
-          style: TextStyle(
-            fontSize: CustomFontSize.small,
-            color: ColorStyle.darkGrey,
-          ),
-        ),
-      ],
     );
   }
 }
