@@ -20,21 +20,23 @@ class AuthLoginPage extends ConsumerWidget {
                   await ref
                       .read(authControllerProvider.notifier)
                       .signInWithGitHub();
-              if (credentail != null &&
-                  ((credentail.credential as OAuthCredential?) != null)) {
+              if (credentail != null) {
                 // 認証成功
                 ScaffoldMessenger.of(
                   context,
                 ).showSnackBar(const SnackBar(content: Text('Login Success')));
-                await ref
-                    .read(secureStorageControllerProvider.notifier)
-                    .setValue(
-                      key: SecureStorageKey.githubAccessToken,
-                      value:
-                          (credentail.credential as OAuthCredential)
-                              .accessToken ??
-                          '',
-                    );
+                if (((credentail.credential?.accessToken) != null)) {
+                  await ref
+                      .read(secureStorageControllerProvider.notifier)
+                      .setValue(
+                        key: SecureStorageKey.githubAccessToken,
+                        value: credentail.credential?.accessToken ?? '',
+                      );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('accessToken is null')),
+                  );
+                }
               } else {
                 // 認証失敗
                 ScaffoldMessenger.of(
