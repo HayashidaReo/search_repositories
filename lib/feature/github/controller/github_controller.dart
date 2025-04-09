@@ -14,11 +14,11 @@ Future<List<ApiResponse>> searchGitHubController(
     'https://api.github.com/search/repositories?q=$query&sort=stars&order=desc',
   );
 
-  // 後から再利用
   final String? accessToken = await ref
       .read(secureStorageControllerProvider.notifier)
       .getValue(key: SecureStorageKey.githubAccessToken);
 
+  print(accessToken);
   final Map<String, String> headers = {
     'Accept': 'application/vnd.github.v3+json',
     'Authorization': 'Bearer ${accessToken ?? ''}',

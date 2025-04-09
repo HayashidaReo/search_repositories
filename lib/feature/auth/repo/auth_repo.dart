@@ -34,6 +34,11 @@ class AuthRepo extends _$AuthRepo {
     state = ref.read(firebaseAuthInstanceProvider).currentUser;
   }
 
+  // アカウント削除処理
+  Future<void> delete() async {
+    await ref.read(authRepoProvider.notifier).delete();
+  }
+
   // Authの状態を監視する
   Stream<User?> authStateChange() {
     return ref.watch(firebaseAuthInstanceProvider).authStateChanges().map((

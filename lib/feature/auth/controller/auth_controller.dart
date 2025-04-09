@@ -18,4 +18,8 @@ class AuthController extends _$AuthController {
   Future<void> signOut() async {
     await ref.read(authRepoProvider.notifier).signOut();
   }
+
+  Future<void> delete() async {
+    await ref.read(authRepoProvider.notifier).delete();
+  }
 }
