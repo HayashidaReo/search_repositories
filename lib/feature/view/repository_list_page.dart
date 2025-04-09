@@ -2,6 +2,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:search_repositories/common_widget/error_text_widget.dart';
+import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
 import 'package:search_repositories/feature/controller/github_controller.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
@@ -32,11 +34,11 @@ class RepositoryListPage extends HookConsumerWidget {
           future: searchGitHubController(keyword.value),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator());
+              return LoadingWidget();
             } else if (snapshot.hasError) {
-              return Center(child: Text('Error: ${snapshot.error}'));
+              return ErrorTextWidget(text: snapshot.error.toString());
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return const Center(child: Text('No data found'));
+              return ErrorTextWidget(text: 'データが見つかりませんでした');
             }
 
             final List<ApiResponse> repositories = snapshot.data!;
