@@ -7,7 +7,7 @@ part of 'api_response.dart';
 // **************************************************************************
 
 _ApiResponse _$ApiResponseFromJson(Map<String, dynamic> json) => _ApiResponse(
-  name: json['full_name'] as String,
+  name: json['name'] as String,
   description: json['description'] as String?,
   language: json['language'] as String?,
   stars: (json['stargazers_count'] as num).toInt(),
@@ -20,7 +20,7 @@ _ApiResponse _$ApiResponseFromJson(Map<String, dynamic> json) => _ApiResponse(
 
 Map<String, dynamic> _$ApiResponseToJson(_ApiResponse instance) =>
     <String, dynamic>{
-      'full_name': instance.name,
+      'name': instance.name,
       'description': instance.description,
       'language': instance.language,
       'stargazers_count': instance.stars,

@@ -1,4 +1,8 @@
-part of '../repository_list_page.dart';
+import 'package:flutter/material.dart';
+import 'package:search_repositories/config/util/color_style.dart';
+import 'package:search_repositories/config/util/custom_font_size.dart';
+import 'package:search_repositories/config/util/width_margin.dart';
+import 'package:search_repositories/function/format_stars.dart';
 
 class IconInfoWidget extends StatelessWidget {
   const IconInfoWidget({super.key, required this.icon, required this.value});
