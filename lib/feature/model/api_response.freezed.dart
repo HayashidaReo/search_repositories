@@ -15,12 +15,11 @@ T _$identity<T>(T value) => value;
 
 /// @nodoc
 mixin _$ApiResponse {
-
 final _privateConstructorUsedError = UnsupportedError(
   'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+); 
 
-@JsonKey(name: 'full_name') String get name => throw _privateConstructorUsedError; String? get description => throw _privateConstructorUsedError; String? get language => throw _privateConstructorUsedError;@JsonKey(name: 'stargazers_count') int get stars => throw _privateConstructorUsedError;@JsonKey(name: 'watchers_count') int get watchers => throw _privateConstructorUsedError;@JsonKey(name: 'forks_count') int get forks => throw _privateConstructorUsedError;@JsonKey(name: 'open_issues_count') int get issues => throw _privateConstructorUsedError;@JsonKey(name: 'html_url') String get url => throw _privateConstructorUsedError;@JsonKey(name: 'owner') ApiOwnerResponse get owner => throw _privateConstructorUsedError;
+String get name => throw _privateConstructorUsedError; String? get description => throw _privateConstructorUsedError; String? get language => throw _privateConstructorUsedError;@JsonKey(name: 'stargazers_count') int get stars => throw _privateConstructorUsedError;@JsonKey(name: 'watchers_count') int get watchers => throw _privateConstructorUsedError;@JsonKey(name: 'forks_count') int get forks => throw _privateConstructorUsedError;@JsonKey(name: 'open_issues_count') int get issues => throw _privateConstructorUsedError;@JsonKey(name: 'html_url') String get url => throw _privateConstructorUsedError;@JsonKey(name: 'owner') ApiOwnerResponse get owner => throw _privateConstructorUsedError;
 /// Create a copy of ApiResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -53,7 +52,7 @@ abstract mixin class $ApiResponseCopyWith<$Res>  {
   factory $ApiResponseCopyWith(ApiResponse value, $Res Function(ApiResponse) _then) = _$ApiResponseCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'full_name') String name, String? description, String? language,@JsonKey(name: 'stargazers_count') int stars,@JsonKey(name: 'watchers_count') int watchers,@JsonKey(name: 'forks_count') int forks,@JsonKey(name: 'open_issues_count') int issues,@JsonKey(name: 'html_url') String url,@JsonKey(name: 'owner') ApiOwnerResponse owner
+ String name, String? description, String? language,@JsonKey(name: 'stargazers_count') int stars,@JsonKey(name: 'watchers_count') int watchers,@JsonKey(name: 'forks_count') int forks,@JsonKey(name: 'open_issues_count') int issues,@JsonKey(name: 'html_url') String url,@JsonKey(name: 'owner') ApiOwnerResponse owner
 });
 
 
@@ -101,10 +100,10 @@ $ApiOwnerResponseCopyWith<$Res> get owner {
 @JsonSerializable()
 
 class _ApiResponse implements ApiResponse {
-   _ApiResponse({@JsonKey(name: 'full_name') required this.name, this.description, this.language, @JsonKey(name: 'stargazers_count') required this.stars, @JsonKey(name: 'watchers_count') required this.watchers, @JsonKey(name: 'forks_count') required this.forks, @JsonKey(name: 'open_issues_count') required this.issues, @JsonKey(name: 'html_url') required this.url, @JsonKey(name: 'owner') required this.owner});
+   _ApiResponse({required this.name, this.description, this.language, @JsonKey(name: 'stargazers_count') required this.stars, @JsonKey(name: 'watchers_count') required this.watchers, @JsonKey(name: 'forks_count') required this.forks, @JsonKey(name: 'open_issues_count') required this.issues, @JsonKey(name: 'html_url') required this.url, @JsonKey(name: 'owner') required this.owner});
   factory _ApiResponse.fromJson(Map<String, dynamic> json) => _$ApiResponseFromJson(json);
 
-@override@JsonKey(name: 'full_name') final  String name;
+@override final  String name;
 @override final  String? description;
 @override final  String? language;
 @override@JsonKey(name: 'stargazers_count') final  int stars;
@@ -140,7 +139,7 @@ String toString() {
 }
 
   @override
-  UnsupportedError get _privateConstructorUsedError => throw _privateConstructorUsedError;
+  UnsupportedError get _privateConstructorUsedError => throw UnimplementedError();
 
 
 }
@@ -150,7 +149,7 @@ abstract mixin class _$ApiResponseCopyWith<$Res> implements $ApiResponseCopyWith
   factory _$ApiResponseCopyWith(_ApiResponse value, $Res Function(_ApiResponse) _then) = __$ApiResponseCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'full_name') String name, String? description, String? language,@JsonKey(name: 'stargazers_count') int stars,@JsonKey(name: 'watchers_count') int watchers,@JsonKey(name: 'forks_count') int forks,@JsonKey(name: 'open_issues_count') int issues,@JsonKey(name: 'html_url') String url,@JsonKey(name: 'owner') ApiOwnerResponse owner
+ String name, String? description, String? language,@JsonKey(name: 'stargazers_count') int stars,@JsonKey(name: 'watchers_count') int watchers,@JsonKey(name: 'forks_count') int forks,@JsonKey(name: 'open_issues_count') int issues,@JsonKey(name: 'html_url') String url,@JsonKey(name: 'owner') ApiOwnerResponse owner
 });
 
 

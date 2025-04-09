@@ -7,7 +7,7 @@ part 'api_response.g.dart';
 @freezed
 class ApiResponse with _$ApiResponse {
   factory ApiResponse({
-    @JsonKey(name: 'full_name') required String name,
+    required String name,
     String? description,
     String? language,
     @JsonKey(name: 'stargazers_count') required int stars,
