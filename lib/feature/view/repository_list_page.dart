@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:search_repositories/common_widget/error_text_widget.dart';
 import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
+import 'package:search_repositories/config/util/color_style.dart';
+import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/feature/controller/github_controller.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
 
@@ -42,13 +44,34 @@ class RepositoryListPage extends HookConsumerWidget {
             }
 
             final List<ApiResponse> repositories = snapshot.data!;
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder:
+                  (context, index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: const Divider(),
+                  ),
               itemCount: repositories.length,
               itemBuilder: (context, index) {
                 final repo = repositories[index];
                 return ListTile(
-                  title: Text(repo.name),
-                  subtitle: Text(repo.description ?? 'No description'),
+                  title: Text(
+                    repo.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: ColorStyle.black,
+                      fontSize: CustomFontSize.medium,
+                    ),
+                  ),
+                  subtitle: Text(
+                    repo.description ?? '詳細がありません',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: ColorStyle.darkGrey,
+                      fontSize: CustomFontSize.small,
+                    ),
+                  ),
                   trailing: Text('⭐${repo.stars}'),
                   onTap: () {
                     context.pushNamed(
