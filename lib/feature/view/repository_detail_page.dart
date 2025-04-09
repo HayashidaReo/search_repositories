@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readmore/readmore.dart';
+import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
@@ -8,6 +9,9 @@ import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
 import 'package:search_repositories/common_widget/icon_info_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+part 'part/icon_image.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
   const RepositoryDetailPage({super.key, required this.repository});
@@ -16,6 +20,7 @@ class RepositoryDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final double iconSize = 36;
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
@@ -28,9 +33,9 @@ class RepositoryDetailPage extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // アイコン
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(repository.owner.avatarUrl),
-                    radius: 36,
+                  IconImage(
+                    imageUrl: repository.owner.avatarUrl,
+                    iconSize: iconSize,
                   ),
                   WidthMargin.normal,
                   // リポジトリ名

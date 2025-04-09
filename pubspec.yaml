@@ -20,6 +20,7 @@ dependencies:
   freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
   readmore: ^3.0.0
+  cached_network_image: ^3.4.1
   
 
 dev_dependencies:
