@@ -12,7 +12,6 @@ class AuthRepo extends _$AuthRepo {
   }
 
   // githubの認証
-  // GitHub認証（キャンセル/エラー処理対応）
   Future<UserCredential?> signInWithGitHub() async {
     try {
       GithubAuthProvider githubProvider = GithubAuthProvider();
@@ -27,5 +26,15 @@ class AuthRepo extends _$AuthRepo {
       // その他の予期しないエラー
       return null;
     }
+  }
+
+  // Authの状態を監視する
+  Stream<User?> authStateChange() {
+    return ref.watch(firebaseAuthInstanceProvider).authStateChanges().map((
+      User? currentUser,
+    ) {
+      state = currentUser;
+      return state;
+    });
   }
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:search_repositories/feature/github/model/api_response.dart';
 import 'package:search_repositories/feature/github/repo/search_github_repo.dart';
 
@@ -10,6 +11,8 @@ Future<List<ApiResponse>> searchGitHubController(String keyword) async {
 
   final Map<String, String> headers = {
     'Accept': 'application/vnd.github.v3+json',
+    'Authorization':
+        'Bearer ${FirebaseAuth.instance.currentUser?.getIdToken()}',
   };
 
   return searchGitHubRepo(keyword, url, headers);
