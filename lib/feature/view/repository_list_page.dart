@@ -12,6 +12,8 @@ import 'package:search_repositories/feature/controller/github_controller.dart';
 import 'package:search_repositories/feature/model/api_response.dart';
 import 'package:search_repositories/function/format_stars.dart';
 
+part './part/repository_list_tile.dart';
+
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
 
@@ -55,46 +57,7 @@ class RepositoryListPage extends HookConsumerWidget {
               itemCount: repositories.length,
               itemBuilder: (context, index) {
                 final repo = repositories[index];
-                return ListTile(
-                  title: Text(
-                    repo.name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: ColorStyle.black,
-                      fontSize: CustomFontSize.medium,
-                    ),
-                  ),
-                  subtitle: Text(
-                    repo.description ?? '詳細がありません',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: ColorStyle.darkGrey,
-                      fontSize: CustomFontSize.small,
-                    ),
-                  ),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.star, color: ColorStyle.yellow),
-                      WidthMargin.mini,
-                      SizedBox(
-                        width: 40,
-                        child: Text(
-                          formatStars(repo.stars),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  onTap: () {
-                    context.pushNamed(
-                      AppRoute.repositoryDetail.name,
-                      extra: repo,
-                    );
-                  },
-                );
+                return RepositoryListTile(repo: repo);
               },
             );
           },
