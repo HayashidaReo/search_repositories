@@ -2,6 +2,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:search_repositories/common_widget/dialog/confirm_dialog.dart';
 import 'package:search_repositories/common_widget/dialog/loading_dialog.dart';
 import 'package:search_repositories/common_widget/error_text_widget.dart';
 import 'package:search_repositories/common_widget/loading_widget.dart';
@@ -43,21 +44,16 @@ class RepositoryListPage extends HookConsumerWidget {
                   ),
                 ),
               ),
-              //TODO: 確認ダイアログ表示
               ListTile(
                 title: const Text('ログアウト'),
                 onTap: () async {
-                  showLoadingDialog('ログアウト中...');
-                  await ref.read(authControllerProvider.notifier).signOut();
-                  showToast('ログアウトしました');
+                  _logout(context, ref);
                 },
               ),
               ListTile(
                 title: const Text('削除'),
                 onTap: () async {
-                  showLoadingDialog('削除中...');
-                  await ref.read(authControllerProvider.notifier).delete();
-                  showToast('アカウントを削除しました');
+                  _deleteAccount(context, ref);
                 },
               ),
             ],
@@ -120,6 +116,32 @@ class RepositoryListPage extends HookConsumerWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _logout(BuildContext context, WidgetRef ref) {
+    return showConfirmDialog(
+      context: context,
+      text: 'ログアウトしますか？',
+      onPressed: () async {
+        showLoadingDialog('ログアウト中...');
+        await ref.read(authControllerProvider.notifier).signOut();
+        hideLoadingDialog();
+        showToast('ログアウトしました');
+      },
+    );
+  }
+
+  void _deleteAccount(BuildContext context, WidgetRef ref) {
+    return showConfirmDialog(
+      context: context,
+      text: '本当にアカウントを削除しますか？',
+      onPressed: () async {
+        showLoadingDialog('削除中...');
+        await ref.read(authControllerProvider.notifier).delete();
+        hideLoadingDialog();
+        showToast('アカウントを削除しました');
+      },
     );
   }
 }
