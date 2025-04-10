@@ -7,7 +7,7 @@ import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
-import 'package:search_repositories/feature/model/api_response.dart';
+import 'package:search_repositories/feature/github/model/api_response.dart';
 import 'package:search_repositories/common_widget/icon_info_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:search_repositories/function/launch_url.dart';

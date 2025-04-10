@@ -1,26 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'app_router.dart';
+part of 'firebase_instance_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appRouterHash() => r'a1f23e1aea530159f8220c30922bfd45a12cb20f';
+String _$firebaseAuthInstanceHash() =>
+    r'368fea28d4bd90146aeae1d57972336967a56caf';
 
-/// See also [appRouter].
-@ProviderFor(appRouter)
-final appRouterProvider = AutoDisposeProvider<GoRouter>.internal(
-  appRouter,
-  name: r'appRouterProvider',
+/// See also [firebaseAuthInstance].
+@ProviderFor(firebaseAuthInstance)
+final firebaseAuthInstanceProvider = AutoDisposeProvider<FirebaseAuth>.internal(
+  firebaseAuthInstance,
+  name: r'firebaseAuthInstanceProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$appRouterHash,
+      const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$firebaseAuthInstanceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef AppRouterRef = AutoDisposeProviderRef<GoRouter>;
+typedef FirebaseAuthInstanceRef = AutoDisposeProviderRef<FirebaseAuth>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -11,11 +11,12 @@ import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/none_border_text_field_decoration.dart';
-import 'package:search_repositories/feature/controller/github_controller.dart';
-import 'package:search_repositories/feature/model/api_response.dart';
+import 'package:search_repositories/feature/auth/controller/auth_controller.dart';
+import 'package:search_repositories/feature/github/controller/github_controller.dart';
+import 'package:search_repositories/feature/github/model/api_response.dart';
 import 'package:search_repositories/common_widget/icon_info_widget.dart';
 
-part './part/repository_list_tile.dart';
+part 'part/repository_list_tile.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
@@ -27,6 +28,34 @@ class RepositoryListPage extends HookConsumerWidget {
     final ValueNotifier<String> keyword = useState<String>('');
     return UnFocusKeyBoardWidget(
       child: Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                child: Text(
+                  'GitHubリポジトリ検索',
+                  style: TextStyle(
+                    fontSize: CustomFontSize.large,
+                    color: ColorStyle.white,
+                  ),
+                ),
+              ),
+              ListTile(
+                title: const Text('ログアウト'),
+                onTap: () {
+                  ref.read(authControllerProvider.notifier).signOut();
+                },
+              ),
+              ListTile(
+                title: const Text('削除'),
+                onTap: () {
+                  ref.read(authControllerProvider.notifier).delete();
+                },
+              ),
+            ],
+          ),
+        ),
         appBar: AppBar(
           title: TextField(
             controller: searchTextController,
@@ -55,7 +84,7 @@ class RepositoryListPage extends HookConsumerWidget {
         ),
         body: SafeArea(
           child: FutureBuilder(
-            future: searchGitHubController(keyword.value),
+            future: searchGitHubController(keyword.value, ref),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return LoadingWidget();

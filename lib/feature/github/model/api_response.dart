@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:search_repositories/feature/model/api_owner_response.dart';
+import 'package:search_repositories/feature/github/model/api_owner_response.dart';
 
 part 'api_response.freezed.dart';
 part 'api_response.g.dart';
