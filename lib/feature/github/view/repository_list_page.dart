@@ -2,6 +2,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:search_repositories/common_widget/dialog/loading_dialog.dart';
 import 'package:search_repositories/common_widget/error_text_widget.dart';
 import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/common_widget/toast/show_toast.dart';
@@ -42,9 +43,11 @@ class RepositoryListPage extends HookConsumerWidget {
                   ),
                 ),
               ),
+              //TODO: 確認ダイアログ表示
               ListTile(
                 title: const Text('ログアウト'),
                 onTap: () async {
+                  showLoadingDialog('ログアウト中...');
                   await ref.read(authControllerProvider.notifier).signOut();
                   showToast('ログアウトしました');
                 },
@@ -52,6 +55,7 @@ class RepositoryListPage extends HookConsumerWidget {
               ListTile(
                 title: const Text('削除'),
                 onTap: () async {
+                  showLoadingDialog('削除中...');
                   await ref.read(authControllerProvider.notifier).delete();
                   showToast('アカウントを削除しました');
                 },
