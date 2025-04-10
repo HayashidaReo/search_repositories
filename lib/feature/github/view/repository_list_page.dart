@@ -124,6 +124,7 @@ class RepositoryListPage extends HookConsumerWidget {
       context: context,
       text: 'ログアウトしますか？',
       onPressed: () async {
+        context.pop();
         showLoadingDialog('ログアウト中...');
         await ref.read(authControllerProvider.notifier).signOut();
         hideLoadingDialog();
@@ -137,6 +138,7 @@ class RepositoryListPage extends HookConsumerWidget {
       context: context,
       text: '本当にアカウントを削除しますか？',
       onPressed: () async {
+        context.pop();
         showLoadingDialog('削除中...');
         await ref.read(authControllerProvider.notifier).delete();
         hideLoadingDialog();
