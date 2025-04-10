@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:search_repositories/common_widget/error_text_widget.dart';
 import 'package:search_repositories/common_widget/loading_widget.dart';
+import 'package:search_repositories/common_widget/toast/show_toast.dart';
 import 'package:search_repositories/common_widget/un_focus_keyboard_widget.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
 import 'package:search_repositories/config/util/color_style.dart';
@@ -43,14 +44,16 @@ class RepositoryListPage extends HookConsumerWidget {
               ),
               ListTile(
                 title: const Text('ログアウト'),
-                onTap: () {
-                  ref.read(authControllerProvider.notifier).signOut();
+                onTap: () async {
+                  await ref.read(authControllerProvider.notifier).signOut();
+                  showToast('ログアウトしました');
                 },
               ),
               ListTile(
                 title: const Text('削除'),
-                onTap: () {
-                  ref.read(authControllerProvider.notifier).delete();
+                onTap: () async {
+                  await ref.read(authControllerProvider.notifier).delete();
+                  showToast('アカウントを削除しました');
                 },
               ),
             ],
