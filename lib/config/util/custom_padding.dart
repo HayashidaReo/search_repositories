@@ -1,6 +1,6 @@
 class CustomPadding {
-  static const double smallest = 10;
-  static const double mini = 12;
+  static const double smallest = 3;
+  static const double mini = 8;
   static const double small = 14;
   static const double normal = 16; // 通常
   static const double large = 22;
