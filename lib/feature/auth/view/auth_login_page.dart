@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:search_repositories/common_widget/toast/show_toast.dart';
 import 'package:search_repositories/config/key/secure_storage_key.dart';
 import 'package:search_repositories/feature/auth/controller/auth_controller.dart';
 import 'package:search_repositories/feature/auth/controller/secure_storage_controller.dart';
@@ -22,9 +23,7 @@ class AuthLoginPage extends ConsumerWidget {
                       .signInWithGitHub();
               if (credentail != null) {
                 // 認証成功
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(const SnackBar(content: Text('Login Success')));
+                showToast('接続成功');
                 if (((credentail.credential?.accessToken) != null)) {
                   await ref
                       .read(secureStorageControllerProvider.notifier)
@@ -33,15 +32,11 @@ class AuthLoginPage extends ConsumerWidget {
                         value: credentail.credential?.accessToken ?? '',
                       );
                 } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('accessToken is null')),
-                  );
+                  showToast('トークン取得に失敗');
                 }
               } else {
                 // 認証失敗
-                ScaffoldMessenger.of(
-                  context,
-                ).showSnackBar(const SnackBar(content: Text('Login Failed')));
+                showToast('接続に失敗');
               }
             },
             child: const Text('Login with GitHub'),
