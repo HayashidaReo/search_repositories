@@ -28,7 +28,7 @@ class AuthLoginPage extends ConsumerWidget {
                   Text(
                     'ようこそ！',
                     style: const TextStyle(
-                      fontSize: CustomFontSize.large,
+                      fontSize: CustomFontSize.largest,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -48,7 +48,8 @@ class AuthLoginPage extends ConsumerWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    elevation: 3,
+                    elevation: 1,
+                    shadowColor: Theme.of(context).colorScheme.tertiary,
                   ),
                   onPressed: () async {
                     await _signInWithGitHub(ref);
@@ -60,6 +61,7 @@ class AuthLoginPage extends ConsumerWidget {
                         'assets/github_icon/github-mark.png',
                         width: 34,
                         height: 34,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                       WidthMargin.normal,
                       const Text(
