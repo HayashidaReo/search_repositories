@@ -12,10 +12,7 @@ class DrawerWidget extends ConsumerWidget {
           const DrawerHeader(
             child: Text(
               'GitHubリポジトリ検索',
-              style: TextStyle(
-                fontSize: CustomFontSize.large,
-                // color: ColorStyle.white,
-              ),
+              style: TextStyle(fontSize: CustomFontSize.large),
             ),
           ),
           ListTile(

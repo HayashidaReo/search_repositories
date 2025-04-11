@@ -8,6 +8,7 @@ void showToast(String msg) {
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.TOP,
     timeInSecForIosWeb: 1,
+    //todo: 変更
     backgroundColor: ColorStyle.darkBlack,
     textColor: ColorStyle.white,
     fontSize: CustomFontSize.normal,

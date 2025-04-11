@@ -71,19 +71,14 @@ class RepositoryDetailPage extends ConsumerWidget {
                     width: 70,
                     child: Text(
                       '開発者',
-                      style: const TextStyle(
-                        fontSize: CustomFontSize.small,
-                        // color: ColorStyle.darkGrey,
-                      ),
+                      //todo: 色薄くする
+                      style: const TextStyle(fontSize: CustomFontSize.small),
                     ),
                   ),
                   WidthMargin.small,
                   Text(
                     repository.owner.login,
-                    style: const TextStyle(
-                      fontSize: CustomFontSize.small,
-                      // color: ColorStyle.black,
-                    ),
+                    style: const TextStyle(fontSize: CustomFontSize.small),
                   ),
                 ],
               ),
@@ -93,19 +88,13 @@ class RepositoryDetailPage extends ConsumerWidget {
                     width: 70,
                     child: Text(
                       '開発言語',
-                      style: const TextStyle(
-                        fontSize: CustomFontSize.small,
-                        // color: ColorStyle.darkGrey,
-                      ),
+                      style: const TextStyle(fontSize: CustomFontSize.small),
                     ),
                   ),
                   WidthMargin.small,
                   Text(
                     repository.language ?? '不明',
-                    style: const TextStyle(
-                      fontSize: CustomFontSize.small,
-                      // color: ColorStyle.black,
-                    ),
+                    style: const TextStyle(fontSize: CustomFontSize.small),
                   ),
                 ],
               ),
@@ -118,10 +107,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                 trimMode: TrimMode.Line,
                 trimCollapsedText: ' さらに表示',
                 trimExpandedText: ' 折りたたむ',
-                style: TextStyle(
-                  fontSize: CustomFontSize.normal,
-                  // color: ColorStyle.black,
-                ),
+                style: TextStyle(fontSize: CustomFontSize.normal),
                 moreStyle: TextStyle(
                   fontSize: CustomFontSize.medium,
                   color: ColorStyle.blueAccent,
