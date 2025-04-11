@@ -21,13 +21,12 @@ class AuthLoginPage extends ConsumerWidget {
           padding: const EdgeInsets.all(CustomPadding.large),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Column(
+              const Column(
                 children: [
                   Text(
                     'ようこそ！',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: CustomFontSize.largest,
                       fontWeight: FontWeight.bold,
                     ),
@@ -72,7 +71,7 @@ class AuthLoginPage extends ConsumerWidget {
                   ),
                 ),
               ),
-              SizedBox.shrink(),
+              const SizedBox.shrink(),
             ],
           ),
         ),
