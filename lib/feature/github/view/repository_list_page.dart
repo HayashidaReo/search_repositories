@@ -32,14 +32,14 @@ class RepositoryListPage extends HookConsumerWidget {
     final ValueNotifier<String> keyword = useState<String>('');
     return UnFocusKeyBoardWidget(
       child: Scaffold(
-        drawer: DrawerWidget(),
+        drawer: const DrawerWidget(),
         appBar: AppBar(
           title: TextField(
             controller: searchTextController,
             decoration: noneBorderTextFieldDecoration(
               label: 'レポジトリを検索',
               prefixIconOnPressed: null,
-              prefixIcon: SizedBox.shrink(),
+              prefixIcon: const SizedBox.shrink(),
               suffixIconOnPressed:
                   (keyword.value.isNotEmpty)
                       ? () {
@@ -65,21 +65,21 @@ class RepositoryListPage extends HookConsumerWidget {
             future: searchGitHubController(keyword.value, ref),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return LoadingWidget();
+                return const LoadingWidget();
               } else if (snapshot.hasError) {
                 return ErrorTextWidget(text: snapshot.error.toString());
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return ErrorTextWidget(text: 'データが見つかりませんでした');
+                return const ErrorTextWidget(text: 'データが見つかりませんでした');
               }
 
               final List<ApiResponse> repositories = snapshot.data!;
               return ListView.separated(
                 separatorBuilder:
-                    (context, index) => Padding(
-                      padding: const EdgeInsets.symmetric(
+                    (context, index) => const Padding(
+                      padding: EdgeInsets.symmetric(
                         horizontal: CustomPadding.normal,
                       ),
-                      child: const Divider(),
+                      child: Divider(),
                     ),
                 itemCount: repositories.length,
                 itemBuilder: (context, index) {
