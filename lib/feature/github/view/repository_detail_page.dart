@@ -21,7 +21,7 @@ class RepositoryDetailPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final double iconSize = 36;
+    const double iconSize = 36;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -30,14 +30,14 @@ class RepositoryDetailPage extends ConsumerWidget {
               // レポジトリへ遷移
               launchInExternalBrowser(repository.url);
             },
-            icon: Icon(Icons.open_in_new),
+            icon: const Icon(Icons.open_in_new),
           ),
           WidthMargin.small,
         ],
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: CustomPadding.normal),
+          padding: const EdgeInsets.symmetric(horizontal: CustomPadding.normal),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -112,12 +112,12 @@ class RepositoryDetailPage extends ConsumerWidget {
                 trimMode: TrimMode.Line,
                 trimCollapsedText: ' さらに表示',
                 trimExpandedText: ' 折りたたむ',
-                style: TextStyle(fontSize: CustomFontSize.normal),
-                moreStyle: TextStyle(
+                style: const TextStyle(fontSize: CustomFontSize.normal),
+                moreStyle: const TextStyle(
                   fontSize: CustomFontSize.small,
                   color: ColorStyle.blueAccent,
                 ),
-                lessStyle: TextStyle(
+                lessStyle: const TextStyle(
                   fontSize: CustomFontSize.small,
                   color: ColorStyle.blueAccent,
                 ),

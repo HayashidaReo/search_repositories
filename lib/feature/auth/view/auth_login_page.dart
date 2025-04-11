@@ -21,13 +21,12 @@ class AuthLoginPage extends ConsumerWidget {
           padding: const EdgeInsets.all(CustomPadding.large),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Column(
+              const Column(
                 children: [
                   Text(
                     'ようこそ！',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: CustomFontSize.largest,
                       fontWeight: FontWeight.bold,
                     ),
@@ -52,12 +51,14 @@ class AuthLoginPage extends ConsumerWidget {
                     shadowColor: Theme.of(context).colorScheme.tertiary,
                   ),
                   onPressed: () async {
+                    //TODO: ローディングダイアログの表示
                     await _signInWithGitHub(ref);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
+                        // TODO: クラスで管理
                         'assets/github_icon/github-mark.png',
                         width: 34,
                         height: 34,
@@ -72,7 +73,7 @@ class AuthLoginPage extends ConsumerWidget {
                   ),
                 ),
               ),
-              SizedBox.shrink(),
+              const SizedBox.shrink(),
             ],
           ),
         ),

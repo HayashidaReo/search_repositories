@@ -1,31 +1,42 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
-#
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
-
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
 analyzer:
   errors:
     invalid_annotation_target: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at https://dart.dev/lints.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
-
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+    # コード形式に関するルール
+    prefer_single_quotes: true  # シングルクォートを優先する
+    avoid_print: true  # print文の使用を避ける（本番環境では不適切）
+    prefer_const_constructors: true  # 可能な場合はconstコンストラクタを使用
+    prefer_const_declarations: true  # 可能な場合はconstを使用
+    sort_child_properties_last: true  # child/childrenプロパティを最後に配置
+    
+    # 命名規則
+    camel_case_types: true  # クラス名はキャメルケース
+    file_names: true  # ファイル名はスネークケース
+    
+    # コードの最適化
+    avoid_unnecessary_containers: true  # 不要なContainerウィジェットを避ける
+    avoid_redundant_argument_values: true  # デフォルト値と同じ引数は省略
+    avoid_empty_else: true  # 空のelse文を避ける
+    
+    # エラー防止
+    always_declare_return_types: true  # 常に戻り値の型を宣言
+    avoid_void_async: true  # voidを返すasync関数を避ける
+    avoid_web_libraries_in_flutter: true  # Flutterでのweb固有ライブラリの使用を避ける
+    
+    # パフォーマンス
+    prefer_final_locals: true  # 再代入しない変数はfinalにする
+    prefer_final_fields: true  # 再代入しないフィールドはfinalにする
+    
+    # コード構造と可読性
+    lines_longer_than_80_chars: true  # 80文字を超える行を警告
+    require_trailing_commas: true  # 複数行の引数リストで末尾カンマを必須に
+    
+    # Nullセーフティ
+    avoid_null_checks_in_equality_operators: true  # 等価演算子では不要なnullチェックを避ける
+    
+    # ベストプラクティス
+    sized_box_for_whitespace: true  # スペース用にはSizedBoxを使用
+    use_build_context_synchronously: true  # 非同期後のBuildContextの使用に注意

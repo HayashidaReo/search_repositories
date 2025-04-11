@@ -7,20 +7,21 @@ class AppTheme {
   /// ライトモード用のテーマ
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
-    colorScheme: ColorScheme.light(
-      brightness: Brightness.light,
+    colorScheme: const ColorScheme.light(
       primary: ColorStyle.black,
       secondary: ColorStyle.white,
+      // 色を一目でわかりやすいようにするためlintsを無視
+      // ignore: avoid_redundant_argument_values
       onPrimary: ColorStyle.white,
       onSecondary: ColorStyle.darkBlack,
       primaryContainer: ColorStyle.lightGrey,
       tertiary: ColorStyle.darkGrey,
     ),
     scaffoldBackgroundColor: ColorStyle.white,
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: ColorStyle.white,
       foregroundColor: ColorStyle.black,
-      titleTextStyle: const TextStyle(
+      titleTextStyle: TextStyle(
         fontSize: CustomFontSize.large,
         fontWeight: FontWeight.bold,
         color: ColorStyle.black,
@@ -40,8 +41,7 @@ class AppTheme {
   /// ダークモード用のテーマ
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    colorScheme: ColorScheme.dark(
-      brightness: Brightness.dark,
+    colorScheme: const ColorScheme.dark(
       primary: ColorStyle.lightGrey,
       secondary: ColorStyle.black,
       onPrimary: ColorStyle.darkBlack,
@@ -50,10 +50,10 @@ class AppTheme {
       tertiary: ColorStyle.darkGrey,
     ),
     scaffoldBackgroundColor: ColorStyle.darkBlack,
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: ColorStyle.darkBlack,
       foregroundColor: ColorStyle.white,
-      titleTextStyle: const TextStyle(
+      titleTextStyle: TextStyle(
         fontSize: CustomFontSize.large,
         fontWeight: FontWeight.bold,
         color: ColorStyle.white,

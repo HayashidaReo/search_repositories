@@ -14,7 +14,7 @@ class AuthRepo extends _$AuthRepo {
   // githubの認証
   Future<UserCredential?> signInWithGitHub() async {
     try {
-      GithubAuthProvider githubProvider = GithubAuthProvider();
+      final GithubAuthProvider githubProvider = GithubAuthProvider();
 
       final result = await FirebaseAuth.instance.signInWithProvider(
         githubProvider,
