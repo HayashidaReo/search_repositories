@@ -33,7 +33,6 @@ class CustomButton extends StatelessWidget {
                   !isColorReversed
                       ? Theme.of(context).colorScheme.onPrimary
                       : Theme.of(context).colorScheme.onSecondary,
-              width: 1,
             ),
             borderRadius: BorderRadius.circular(30),
           ),
@@ -52,7 +51,7 @@ class CustomButton extends StatelessWidget {
                             ? Theme.of(context).colorScheme.onPrimary
                             : Theme.of(context).colorScheme.onSecondary,
                   )
-                  : SizedBox.shrink(),
+                  : const SizedBox.shrink(),
               Padding(
                 padding: const EdgeInsets.all(CustomPadding.smallest),
                 child: Text(
