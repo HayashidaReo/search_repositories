@@ -29,7 +29,7 @@ class ThemeController extends _$ThemeController {
     }
   }
 
-  void setThemeMode(ThemeMode mode) async {
+  Future<void> setThemeMode(ThemeMode mode) async {
     state = mode;
 
     final prefs = await SharedPreferences.getInstance();

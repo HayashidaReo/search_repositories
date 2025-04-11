@@ -7,7 +7,7 @@ part 'secure_storage_controller.g.dart';
 class SecureStorageController extends _$SecureStorageController {
   @override
   FlutterSecureStorage build() {
-    return FlutterSecureStorage();
+    return const FlutterSecureStorage();
   }
 
   Future<void> setValue({required String key, required String value}) async {

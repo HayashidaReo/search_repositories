@@ -8,7 +8,7 @@ Future<List<ApiResponse>> searchGitHubController(
   String keyword,
   WidgetRef ref,
 ) async {
-  final String defaultQuery = 'stars:>10000';
+  const String defaultQuery = 'stars:>10000';
   final String query = keyword.trim().isEmpty ? defaultQuery : keyword;
   final Uri url = Uri.parse(
     'https://api.github.com/search/repositories?q=$query&sort=stars&order=desc',
