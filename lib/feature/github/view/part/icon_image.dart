@@ -23,13 +23,13 @@ class IconImage extends StatelessWidget {
           (context, url, downloadProgress) => SizedBox(
             width: iconSize * 2,
             height: iconSize * 2,
-            child: LoadingWidget(),
+            child: const LoadingWidget(),
           ),
       errorWidget:
           (context, url, error) => SizedBox(
             width: iconSize * 2,
             height: iconSize * 2,
-            child: Icon(Icons.image_not_supported_rounded),
+            child: const Icon(Icons.image_not_supported_rounded),
           ),
     );
   }
