@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:search_repositories/common_widget/custom_button.dart';
-import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
@@ -28,14 +27,12 @@ class ConfirmDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: ColorStyle.white,
       title: Text(
         '確認',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: CustomFontSize.large,
           fontWeight: FontWeight.bold,
-          color: ColorStyle.black,
         ),
       ),
       content: Column(
@@ -44,10 +41,7 @@ class ConfirmDialog extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: CustomFontSize.normal,
-              color: ColorStyle.darkBlack,
-            ),
+            style: TextStyle(fontSize: CustomFontSize.normal),
           ),
           HeightMargin.small,
         ],
@@ -72,7 +66,7 @@ class ConfirmDialog extends StatelessWidget {
                 onPressed: () {
                   onPressed();
                 },
-                text: 'OK',
+                text: 'はい',
               ),
             ),
           ],

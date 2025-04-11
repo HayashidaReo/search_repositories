@@ -9,7 +9,7 @@ import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/common_widget/toast/show_toast.dart';
 import 'package:search_repositories/common_widget/un_focus_keyboard_widget.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
-import 'package:search_repositories/config/util/color_style.dart';
+import 'package:search_repositories/config/theme/theme_controller.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
@@ -20,6 +20,7 @@ import 'package:search_repositories/feature/github/model/api_response.dart';
 import 'package:search_repositories/common_widget/icon_info_widget.dart';
 
 part 'part/repository_list_tile.dart';
+part 'part/drawer_widget.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
@@ -31,34 +32,7 @@ class RepositoryListPage extends HookConsumerWidget {
     final ValueNotifier<String> keyword = useState<String>('');
     return UnFocusKeyBoardWidget(
       child: Scaffold(
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
-                child: Text(
-                  'GitHubリポジトリ検索',
-                  style: TextStyle(
-                    fontSize: CustomFontSize.large,
-                    color: ColorStyle.white,
-                  ),
-                ),
-              ),
-              ListTile(
-                title: const Text('ログアウト'),
-                onTap: () async {
-                  _logout(context, ref);
-                },
-              ),
-              ListTile(
-                title: const Text('削除'),
-                onTap: () async {
-                  _deleteAccount(context, ref);
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: DrawerWidget(),
         appBar: AppBar(
           title: TextField(
             controller: searchTextController,
@@ -79,6 +53,7 @@ class RepositoryListPage extends HookConsumerWidget {
                     ? Icons.search
                     : Icons.keyboard_backspace,
               ),
+              context: context,
             ),
             onChanged: (text) {
               keyword.value = text;
@@ -116,34 +91,6 @@ class RepositoryListPage extends HookConsumerWidget {
           ),
         ),
       ),
-    );
-  }
-
-  void _logout(BuildContext context, WidgetRef ref) {
-    return showConfirmDialog(
-      context: context,
-      text: 'ログアウトしますか？',
-      onPressed: () async {
-        context.pop();
-        showLoadingDialog('ログアウト中...');
-        await ref.read(authControllerProvider.notifier).signOut();
-        hideLoadingDialog();
-        showToast('ログアウトしました');
-      },
-    );
-  }
-
-  void _deleteAccount(BuildContext context, WidgetRef ref) {
-    return showConfirmDialog(
-      context: context,
-      text: '本当にアカウントを削除しますか？',
-      onPressed: () async {
-        context.pop();
-        showLoadingDialog('削除中...');
-        await ref.read(authControllerProvider.notifier).delete();
-        hideLoadingDialog();
-        showToast('アカウントを削除しました');
-      },
     );
   }
 }

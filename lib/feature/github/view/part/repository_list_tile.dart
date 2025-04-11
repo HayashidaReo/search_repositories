@@ -20,7 +20,6 @@ class RepositoryListTile extends StatelessWidget {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: ColorStyle.black,
                 fontSize: CustomFontSize.medium,
                 fontWeight: FontWeight.bold,
               ),
@@ -29,10 +28,7 @@ class RepositoryListTile extends StatelessWidget {
               repo.description ?? '詳細がありません',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: ColorStyle.darkGrey,
-                fontSize: CustomFontSize.small,
-              ),
+              style: TextStyle(fontSize: CustomFontSize.small),
             ),
           ),
 

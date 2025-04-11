@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/function/format_stars.dart';
@@ -15,13 +14,13 @@ class IconInfoWidget extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 16, color: ColorStyle.darkGrey),
+        Icon(icon, size: 16, color: Theme.of(context).colorScheme.tertiary),
         WidthMargin.mini,
         Text(
           formatStars(value),
           style: TextStyle(
             fontSize: CustomFontSize.small,
-            color: ColorStyle.darkGrey,
+            color: Theme.of(context).colorScheme.tertiary,
           ),
         ),
       ],

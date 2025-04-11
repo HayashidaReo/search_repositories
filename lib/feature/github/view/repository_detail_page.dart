@@ -32,6 +32,7 @@ class RepositoryDetailPage extends ConsumerWidget {
             },
             icon: Icon(Icons.open_in_new),
           ),
+          WidthMargin.small,
         ],
       ),
       body: SafeArea(
@@ -70,19 +71,16 @@ class RepositoryDetailPage extends ConsumerWidget {
                     width: 70,
                     child: Text(
                       '開発者',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: CustomFontSize.small,
-                        color: ColorStyle.darkGrey,
+                        color: Theme.of(context).colorScheme.tertiary,
                       ),
                     ),
                   ),
                   WidthMargin.small,
                   Text(
                     repository.owner.login,
-                    style: const TextStyle(
-                      fontSize: CustomFontSize.small,
-                      color: ColorStyle.black,
-                    ),
+                    style: const TextStyle(fontSize: CustomFontSize.small),
                   ),
                 ],
               ),
@@ -92,19 +90,16 @@ class RepositoryDetailPage extends ConsumerWidget {
                     width: 70,
                     child: Text(
                       '開発言語',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: CustomFontSize.small,
-                        color: ColorStyle.darkGrey,
+                        color: Theme.of(context).colorScheme.tertiary,
                       ),
                     ),
                   ),
                   WidthMargin.small,
                   Text(
                     repository.language ?? '不明',
-                    style: const TextStyle(
-                      fontSize: CustomFontSize.small,
-                      color: ColorStyle.black,
-                    ),
+                    style: const TextStyle(fontSize: CustomFontSize.small),
                   ),
                 ],
               ),
@@ -113,20 +108,17 @@ class RepositoryDetailPage extends ConsumerWidget {
               ReadMoreText(
                 repository.description ?? '詳細がありません',
                 textAlign: TextAlign.start,
-                trimLines: 3,
+                trimLines: 1,
                 trimMode: TrimMode.Line,
                 trimCollapsedText: ' さらに表示',
                 trimExpandedText: ' 折りたたむ',
-                style: TextStyle(
-                  fontSize: CustomFontSize.normal,
-                  color: ColorStyle.black,
-                ),
+                style: TextStyle(fontSize: CustomFontSize.normal),
                 moreStyle: TextStyle(
-                  fontSize: CustomFontSize.medium,
+                  fontSize: CustomFontSize.small,
                   color: ColorStyle.blueAccent,
                 ),
                 lessStyle: TextStyle(
-                  fontSize: CustomFontSize.medium,
+                  fontSize: CustomFontSize.small,
                   color: ColorStyle.blueAccent,
                 ),
               ),

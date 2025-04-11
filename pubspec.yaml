@@ -1,5 +1,5 @@
 name: search_repositories
-description: "A new Flutter project."
+description: "github search repositories"
 
 publish_to: 'none'
 version: 1.0.0+1
@@ -26,6 +26,7 @@ dependencies:
   firebase_auth: ^5.5.2
   flutter_secure_storage: ^9.2.4
   fluttertoast: ^8.2.12
+  shared_preferences: ^2.5.3
   
 
 dev_dependencies:
@@ -39,3 +40,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/github_icon/github-mark.png
