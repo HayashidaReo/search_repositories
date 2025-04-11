@@ -29,11 +29,11 @@ String formatStars(int stars) {
   /// 例:
   /// 1.xxxなら3 - 1 = 2桁
   /// 11.xxxなら3 - 2 = 1桁
-  int integerDigits = value.floor().toString().length;
-  int decimals = integerDigits >= 3 ? 0 : 3 - integerDigits;
+  final int integerDigits = value.floor().toString().length;
+  final int decimals = integerDigits >= 3 ? 0 : 3 - integerDigits;
 
   // 指定した小数点以下の桁数で四捨五入して文字列に変換
-  String formatted = value.toStringAsFixed(decimals);
+  final String formatted = value.toStringAsFixed(decimals);
 
   return '$formatted$suffix';
 }
