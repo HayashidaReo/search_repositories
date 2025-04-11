@@ -32,6 +32,7 @@ class RepositoryDetailPage extends ConsumerWidget {
             },
             icon: Icon(Icons.open_in_new),
           ),
+          WidthMargin.small,
         ],
       ),
       body: SafeArea(
