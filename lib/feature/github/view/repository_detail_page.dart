@@ -73,7 +73,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                       '開発者',
                       style: const TextStyle(
                         fontSize: CustomFontSize.small,
-                        color: ColorStyle.darkGrey,
+                        // color: ColorStyle.darkGrey,
                       ),
                     ),
                   ),
@@ -82,7 +82,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                     repository.owner.login,
                     style: const TextStyle(
                       fontSize: CustomFontSize.small,
-                      color: ColorStyle.black,
+                      // color: ColorStyle.black,
                     ),
                   ),
                 ],
@@ -95,7 +95,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                       '開発言語',
                       style: const TextStyle(
                         fontSize: CustomFontSize.small,
-                        color: ColorStyle.darkGrey,
+                        // color: ColorStyle.darkGrey,
                       ),
                     ),
                   ),
@@ -104,7 +104,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                     repository.language ?? '不明',
                     style: const TextStyle(
                       fontSize: CustomFontSize.small,
-                      color: ColorStyle.black,
+                      // color: ColorStyle.black,
                     ),
                   ),
                 ],
@@ -114,13 +114,13 @@ class RepositoryDetailPage extends ConsumerWidget {
               ReadMoreText(
                 repository.description ?? '詳細がありません',
                 textAlign: TextAlign.start,
-                trimLines: 3,
+                trimLines: 1,
                 trimMode: TrimMode.Line,
                 trimCollapsedText: ' さらに表示',
                 trimExpandedText: ' 折りたたむ',
                 style: TextStyle(
                   fontSize: CustomFontSize.normal,
-                  color: ColorStyle.black,
+                  // color: ColorStyle.black,
                 ),
                 moreStyle: TextStyle(
                   fontSize: CustomFontSize.medium,

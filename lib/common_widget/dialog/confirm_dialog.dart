@@ -28,14 +28,14 @@ class ConfirmDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: ColorStyle.white,
+      // backgroundColor: ColorStyle.white,
       title: Text(
         '確認',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: CustomFontSize.large,
           fontWeight: FontWeight.bold,
-          color: ColorStyle.black,
+          // color: ColorStyle.black,
         ),
       ),
       content: Column(
@@ -46,7 +46,7 @@ class ConfirmDialog extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: CustomFontSize.normal,
-              color: ColorStyle.darkBlack,
+              // color: ColorStyle.darkBlack,
             ),
           ),
           HeightMargin.small,
@@ -72,7 +72,7 @@ class ConfirmDialog extends StatelessWidget {
                 onPressed: () {
                   onPressed();
                 },
-                text: 'OK',
+                text: 'はい',
               ),
             ),
           ],

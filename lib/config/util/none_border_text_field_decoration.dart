@@ -13,7 +13,7 @@ InputDecoration noneBorderTextFieldDecoration({
     prefixIcon: IconButton(onPressed: prefixIconOnPressed, icon: prefixIcon),
     suffixIcon: IconButton(onPressed: suffixIconOnPressed, icon: suffixIcon),
     filled: true,
-    fillColor: ColorStyle.grey,
+    // fillColor: ColorStyle.grey,
     border: OutlineInputBorder(
       borderSide: BorderSide.none,
       borderRadius: BorderRadius.circular(20),

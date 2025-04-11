@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class ColorStyle {
   // モノトーン系
   static const white = Color.fromARGB(255, 255, 255, 255);
-  static const darkBlack = Color.fromARGB(255, 0, 0, 0);
+  static const darkBlack = Color.fromARGB(255, 16, 16, 16);
 
   static const transparent = Colors.transparent;
   static const lightBlack = Color.fromARGB(255, 206, 206, 206); //CECECE
-  static const black = Color.fromARGB(255, 62, 62, 62); // 3E3E3E
+  static const black = Color.fromARGB(255, 31, 31, 31); // 3E3E3E
   static const mildBlack = Color.fromARGB(255, 88, 88, 88); // 3E3E3E
   static const darkGrey = Color.fromARGB(255, 164, 163, 163); // C5C5C5
   static const grey = Color.fromARGB(255, 217, 217, 217); // D9D9D9

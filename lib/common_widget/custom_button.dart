@@ -25,9 +25,17 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor:
-              !isColorReversed ? ColorStyle.darkBlack : ColorStyle.white,
+              !isColorReversed
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.secondary,
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: ColorStyle.darkBlack, width: 1),
+            side: BorderSide(
+              color:
+                  !isColorReversed
+                      ? Theme.of(context).colorScheme.onPrimary
+                      : Theme.of(context).colorScheme.onSecondary,
+              width: 1,
+            ),
             borderRadius: BorderRadius.circular(30),
           ),
         ),
@@ -41,7 +49,9 @@ class CustomButton extends StatelessWidget {
                   ? Icon(
                     leftIcon,
                     color:
-                        !isColorReversed ? ColorStyle.white : ColorStyle.black,
+                        !isColorReversed
+                            ? Theme.of(context).colorScheme.onPrimary
+                            : Theme.of(context).colorScheme.onSecondary,
                   )
                   : SizedBox.shrink(),
               Padding(
@@ -50,7 +60,9 @@ class CustomButton extends StatelessWidget {
                   text,
                   style: TextStyle(
                     color:
-                        !isColorReversed ? ColorStyle.white : ColorStyle.black,
+                        !isColorReversed
+                            ? Theme.of(context).colorScheme.onPrimary
+                            : Theme.of(context).colorScheme.onSecondary,
                     fontWeight: (!isColorReversed) ? FontWeight.bold : null,
                     fontSize: CustomFontSize.normal,
                   ),

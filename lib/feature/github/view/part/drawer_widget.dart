@@ -14,7 +14,7 @@ class DrawerWidget extends ConsumerWidget {
               'GitHubリポジトリ検索',
               style: TextStyle(
                 fontSize: CustomFontSize.large,
-                color: ColorStyle.white,
+                // color: ColorStyle.white,
               ),
             ),
           ),
