@@ -71,8 +71,10 @@ class RepositoryDetailPage extends ConsumerWidget {
                     width: 70,
                     child: Text(
                       '開発者',
-                      //todo: 色薄くする
-                      style: const TextStyle(fontSize: CustomFontSize.small),
+                      style: TextStyle(
+                        fontSize: CustomFontSize.small,
+                        color: Theme.of(context).colorScheme.tertiary,
+                      ),
                     ),
                   ),
                   WidthMargin.small,
@@ -88,7 +90,10 @@ class RepositoryDetailPage extends ConsumerWidget {
                     width: 70,
                     child: Text(
                       '開発言語',
-                      style: const TextStyle(fontSize: CustomFontSize.small),
+                      style: TextStyle(
+                        fontSize: CustomFontSize.small,
+                        color: Theme.of(context).colorScheme.tertiary,
+                      ),
                     ),
                   ),
                   WidthMargin.small,

@@ -14,6 +14,7 @@ class AppTheme {
       onPrimary: ColorStyle.white,
       onSecondary: ColorStyle.darkBlack,
       primaryContainer: ColorStyle.lightGrey,
+      tertiary: ColorStyle.darkGrey,
     ),
     scaffoldBackgroundColor: ColorStyle.white,
     appBarTheme: AppBarTheme(
