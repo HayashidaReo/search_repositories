@@ -114,11 +114,11 @@ class RepositoryDetailPage extends ConsumerWidget {
                 trimExpandedText: ' 折りたたむ',
                 style: TextStyle(fontSize: CustomFontSize.normal),
                 moreStyle: TextStyle(
-                  fontSize: CustomFontSize.medium,
+                  fontSize: CustomFontSize.small,
                   color: ColorStyle.blueAccent,
                 ),
                 lessStyle: TextStyle(
-                  fontSize: CustomFontSize.medium,
+                  fontSize: CustomFontSize.small,
                   color: ColorStyle.blueAccent,
                 ),
               ),
