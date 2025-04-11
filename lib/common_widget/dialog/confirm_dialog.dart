@@ -27,7 +27,7 @@ class ConfirmDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
+      title: const Text(
         '確認',
         textAlign: TextAlign.center,
         style: TextStyle(
@@ -41,7 +41,7 @@ class ConfirmDialog extends StatelessWidget {
           Text(
             text,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: CustomFontSize.normal),
+            style: const TextStyle(fontSize: CustomFontSize.normal),
           ),
           HeightMargin.small,
         ],
@@ -49,7 +49,6 @@ class ConfirmDialog extends StatelessWidget {
       actions: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(
               child: CustomButton(

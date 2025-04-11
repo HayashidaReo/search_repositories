@@ -23,7 +23,7 @@ void showLoadingDialog(String message) {
               HeightMargin.normal,
               Text(
                 message,
-                style: TextStyle(fontSize: CustomFontSize.normal),
+                style: const TextStyle(fontSize: CustomFontSize.normal),
                 textAlign: TextAlign.center,
               ),
             ],
