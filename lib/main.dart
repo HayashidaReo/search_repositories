@@ -5,8 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories/config/firebase/firebase_options.dart';
 import 'package:search_repositories/config/routing/app_router.dart';
 import 'package:search_repositories/config/theme/app_theme.dart';
-import 'package:search_repositories/config/util/color_style.dart';
-import 'package:search_repositories/config/util/custom_font_size.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +21,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
     );

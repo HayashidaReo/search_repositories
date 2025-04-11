@@ -13,6 +13,7 @@ class AppTheme {
       secondary: ColorStyle.white,
       onPrimary: ColorStyle.white,
       onSecondary: ColorStyle.darkBlack,
+      primaryContainer: ColorStyle.lightGrey,
     ),
     scaffoldBackgroundColor: ColorStyle.white,
     appBarTheme: AppBarTheme(
@@ -23,6 +24,10 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         color: ColorStyle.black,
       ),
+    ),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: ColorStyle.white,
+      elevation: 3,
     ),
   );
 
@@ -35,6 +40,7 @@ class AppTheme {
       secondary: ColorStyle.black,
       onPrimary: ColorStyle.darkBlack,
       onSecondary: ColorStyle.grey,
+      primaryContainer: ColorStyle.black,
     ),
     scaffoldBackgroundColor: ColorStyle.darkBlack,
     appBarTheme: AppBarTheme(
@@ -45,6 +51,10 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         color: ColorStyle.white,
       ),
+    ),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: ColorStyle.black,
+      elevation: 3,
     ),
   );
 }

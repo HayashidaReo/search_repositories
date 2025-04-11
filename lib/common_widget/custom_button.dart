@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 

@@ -53,6 +53,7 @@ class RepositoryListPage extends HookConsumerWidget {
                     ? Icons.search
                     : Icons.keyboard_backspace,
               ),
+              context: context,
             ),
             onChanged: (text) {
               keyword.value = text;
