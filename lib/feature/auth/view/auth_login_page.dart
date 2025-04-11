@@ -51,12 +51,14 @@ class AuthLoginPage extends ConsumerWidget {
                     shadowColor: Theme.of(context).colorScheme.tertiary,
                   ),
                   onPressed: () async {
+                    //TODO: ローディングダイアログの表示
                     await _signInWithGitHub(ref);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
+                        // TODO: クラスで管理
                         'assets/github_icon/github-mark.png',
                         width: 34,
                         height: 34,
