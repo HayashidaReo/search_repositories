@@ -21,7 +21,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
     );
