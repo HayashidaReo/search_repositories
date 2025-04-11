@@ -15,6 +15,22 @@ class DrawerWidget extends ConsumerWidget {
               style: TextStyle(fontSize: CustomFontSize.large),
             ),
           ),
+          // ダークモードの切り替え
+          ListTile(
+            title: Text(
+              (ref.watch(themeControllerProvider) == ThemeMode.dark)
+                  ? 'ダークモード'
+                  : 'ライトモード',
+            ),
+            trailing: Switch(
+              value: ref.watch(themeControllerProvider) == ThemeMode.dark,
+              onChanged: (value) {
+                ref
+                    .read(themeControllerProvider.notifier)
+                    .setThemeMode(value ? ThemeMode.dark : ThemeMode.light);
+              },
+            ),
+          ),
           ListTile(
             title: const Text('ログアウト'),
             onTap: () async {

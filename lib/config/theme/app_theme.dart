@@ -30,6 +30,11 @@ class AppTheme {
       backgroundColor: ColorStyle.white,
       elevation: 3,
     ),
+    switchTheme: SwitchThemeData(
+      thumbColor: WidgetStateProperty.all(ColorStyle.darkBlack),
+      trackColor: WidgetStateProperty.all(ColorStyle.white),
+      trackOutlineColor: WidgetStateProperty.all(ColorStyle.darkBlack),
+    ),
   );
 
   /// ダークモード用のテーマ
@@ -57,6 +62,11 @@ class AppTheme {
     drawerTheme: const DrawerThemeData(
       backgroundColor: ColorStyle.black,
       elevation: 3,
+    ),
+    switchTheme: SwitchThemeData(
+      thumbColor: WidgetStateProperty.all(ColorStyle.darkBlack),
+      trackColor: WidgetStateProperty.all(ColorStyle.mildBlack),
+      trackOutlineColor: WidgetStateProperty.all(ColorStyle.grey),
     ),
   );
 }
