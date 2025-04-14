@@ -37,17 +37,17 @@ class MyApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: LanguageConfig.supportedLocales,
-      locale: ref.watch(localeNotifierProvider), //初期言語
+      locale: ref.watch(localeNotifierProvider), // 初期言語
       localeResolutionCallback: (locale, supportedLocales) {
         if (locale == null) {
-          return const Locale('en'); // デフォルトを英語に設定
+          return const Locale('ja'); // デフォルトを日本語に設定
         }
         for (final supportedLocale in supportedLocales) {
           if (supportedLocale.languageCode == locale.languageCode) {
             return supportedLocale;
           }
         }
-        return const Locale('en'); // どの言語もマッチしない場合、英語を適用
+        return const Locale('ja'); // どの言語もマッチしない場合、日本語を適用
       },
     );
   }
