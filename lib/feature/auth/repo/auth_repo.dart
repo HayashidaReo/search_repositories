@@ -23,7 +23,6 @@ class AuthRepo extends _$AuthRepo {
 
       final UserCredential credentail = await FirebaseAuth.instance
           .signInWithProvider(githubProvider);
-
       // 認証成功
       if (((credentail.credential?.accessToken) != null)) {
         await ref

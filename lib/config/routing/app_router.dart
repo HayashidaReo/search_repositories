@@ -47,7 +47,6 @@ GoRouter appRouter(ref) {
     // 認証状態に応じてリダイレクト処理を実装
     // アカウントにログインした後にあるトークンの保存処理まで完了してからリダイレクトする必要があるため、複雑なリダイレクト処理になっている
     redirect: (BuildContext context, GoRouterState state) {
-      print('リダイレクト');
       final bool loggedIn = ref.read(authRepoProvider) != null;
       final bool onAuthPage = state.uri.toString().startsWith(
         AppRoute.auth.path,
