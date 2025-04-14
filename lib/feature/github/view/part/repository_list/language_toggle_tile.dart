@@ -16,22 +16,20 @@ class LanguageToggleTile extends ConsumerWidget {
     return ExpansionTile(
       title: Text(localizations.languageSettings),
       children:
+          // 言語設定のラジオボタンをmapで作成
           LanguageConfig.supportedLocales.map((locale) {
             return RadioListTile<Locale>(
               title: Text(LanguageConfig.getLanguageName(locale.languageCode)),
               value: locale,
               groupValue: currentLocale,
               onChanged: (Locale? value) {
-                _setLocale(value, ref);
+                // 言語変更を保存
+                if (value != null) {
+                  ref.read(localeNotifierProvider.notifier).setLocale(value);
+                }
               },
             );
           }).toList(),
     );
-  }
-
-  void _setLocale(Locale? value, WidgetRef ref) {
-    if (value != null) {
-      ref.read(localeNotifierProvider.notifier).setLocale(value);
-    }
   }
 }
