@@ -13,6 +13,7 @@
   "loggedOut": "Logged out",
   "deleting": "Deleting...",
   "accountDeleted": "Account deleted",
+  "noSearchResults": "No search results found",
   
   "developer": "Developer",
   "language": "Language",
