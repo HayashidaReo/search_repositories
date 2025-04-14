@@ -12,5 +12,12 @@
   "loggingOut": "로그아웃 중...",
   "loggedOut": "로그아웃 되었습니다",
   "deleting": "삭제 중...",
-  "accountDeleted": "계정이 삭제되었습니다"
+  "accountDeleted": "계정이 삭제되었습니다",
+  
+  "developer": "개발자",
+  "language": "개발 언어",
+  "unknown": "알 수 없음",
+  "noDescription": "설명이 없습니다",
+  "showMore": " 더 보기",
+  "showLess": " 접기"
 }

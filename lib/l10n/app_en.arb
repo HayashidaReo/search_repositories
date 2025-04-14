@@ -12,5 +12,12 @@
   "loggingOut": "Logging out...",
   "loggedOut": "Logged out",
   "deleting": "Deleting...",
-  "accountDeleted": "Account deleted"
+  "accountDeleted": "Account deleted",
+  
+  "developer": "Developer",
+  "language": "Language",
+  "unknown": "Unknown",
+  "noDescription": "No description available",
+  "showMore": " Show more",
+  "showLess": " Show less"
 }

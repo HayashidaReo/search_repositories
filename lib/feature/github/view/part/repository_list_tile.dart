@@ -7,6 +7,11 @@ class RepositoryListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context);
+
+    // localizationsがnullの場合は代替テキストを使用
+    final noDescriptionText = localizations?.noDescription ?? '詳細がありません';
+
     return InkWell(
       onTap: () {
         context.pushNamed(AppRoute.repositoryDetail.name, extra: repo);
@@ -25,7 +30,7 @@ class RepositoryListTile extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              repo.description ?? '詳細がありません',
+              repo.description ?? noDescriptionText,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(fontSize: CustomFontSize.small),

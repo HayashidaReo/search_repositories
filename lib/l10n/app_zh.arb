@@ -12,5 +12,12 @@
   "loggingOut": "正在登出...",
   "loggedOut": "已登出",
   "deleting": "正在删除...",
-  "accountDeleted": "账户已删除"
+  "accountDeleted": "账户已删除",
+  
+  "developer": "开发者",
+  "language": "开发语言",
+  "unknown": "未知",
+  "noDescription": "没有描述",
+  "showMore": " 显示更多",
+  "showLess": " 收起"
 }

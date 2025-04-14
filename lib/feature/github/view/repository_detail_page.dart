@@ -82,7 +82,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                   SizedBox(
                     width: 70,
                     child: Text(
-                      '開発者',
+                      localizations.developer,
                       style: TextStyle(
                         fontSize: CustomFontSize.small,
                         color: Theme.of(context).colorScheme.tertiary,
@@ -101,7 +101,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                   SizedBox(
                     width: 70,
                     child: Text(
-                      '開発言語',
+                      localizations.language,
                       style: TextStyle(
                         fontSize: CustomFontSize.small,
                         color: Theme.of(context).colorScheme.tertiary,
@@ -110,7 +110,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                   ),
                   WidthMargin.small,
                   Text(
-                    repository.language ?? '不明',
+                    repository.language ?? localizations.unknown,
                     style: const TextStyle(fontSize: CustomFontSize.small),
                   ),
                 ],
@@ -118,12 +118,12 @@ class RepositoryDetailPage extends ConsumerWidget {
               HeightMargin.normal,
               // 説明文
               ReadMoreText(
-                repository.description ?? '詳細がありません',
+                repository.description ?? localizations.noDescription,
                 textAlign: TextAlign.start,
                 trimLines: 1,
                 trimMode: TrimMode.Line,
-                trimCollapsedText: ' さらに表示',
-                trimExpandedText: ' 折りたたむ',
+                trimCollapsedText: localizations.showMore,
+                trimExpandedText: localizations.showLess,
                 style: const TextStyle(fontSize: CustomFontSize.normal),
                 moreStyle: const TextStyle(
                   fontSize: CustomFontSize.small,

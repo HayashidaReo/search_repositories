@@ -12,5 +12,12 @@
   "loggingOut": "ログアウト中...",
   "loggedOut": "ログアウトしました",
   "deleting": "削除中...",
-  "accountDeleted": "アカウントを削除しました"
+  "accountDeleted": "アカウントを削除しました",
+  
+  "developer": "開発者",
+  "language": "開発言語",
+  "unknown": "不明",
+  "noDescription": "詳細がありません",
+  "showMore": " さらに表示",
+  "showLess": " 折りたたむ"
 }
