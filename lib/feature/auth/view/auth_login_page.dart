@@ -2,12 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:search_repositories/common_widget/dialog/loading_dialog.dart';
 import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/common_widget/toast/show_toast.dart';
 import 'package:search_repositories/config/key/secure_storage_key.dart';
 import 'package:search_repositories/config/locale/controller/locale_provider.dart';
 import 'package:search_repositories/config/locale/language_config.dart';
+import 'package:search_repositories/config/routing/router_enum.dart';
 import 'package:search_repositories/config/util/app_assets.dart';
 import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
@@ -81,6 +83,10 @@ class AuthLoginPage extends ConsumerWidget {
                   onPressed: () async {
                     // GitHubでアカウント作成 or サインイン
                     await _signInWithGitHub(ref, localizations);
+                    if (context.mounted) {
+                      // リポジトリ一覧ページに遷移
+                      context.pushNamed(AppRoute.repositoryDetail.name);
+                    }
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
