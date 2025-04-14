@@ -25,11 +25,23 @@ Flutter を使用して開発した GitHub リポジトリ検索アプリケー�
 
 ## 開発環境
 
-- Flutter: 3.13.0以上
+- Flutter: 3.29.2
 - Dart: 3.7.2以上
 - 対応OS:
   - iOS: 13.0以上 (iOS 9.0以上が課題要件ですが、一部の使用パッケージの対応状況に合わせて13.0以上としています)
   - Android: 4.1以上
+
+### 検証済み環境
+```bash
+[✓] Flutter (Channel stable, 3.29.2, on macOS 15.3.1 24D70 darwin-arm64, locale ja-JP)
+[✓] Android toolchain - develop for Android devices (Android SDK version 35.0.0)
+[✓] Xcode - develop for iOS and macOS (Xcode 16.2)
+[✓] Chrome - develop for the web
+[✓] Android Studio (version 2024.2)
+[✓] VS Code (version 1.98.0)
+[✓] Connected device (6 available)
+[✓] Network resources
+```
 
 ## アーキテクチャ
 
