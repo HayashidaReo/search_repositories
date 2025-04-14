@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:search_repositories/config/enum/router_enum.dart';
 import 'package:search_repositories/config/routing/go_router_refresh_stream.dart';
+import 'package:search_repositories/config/routing/router_enum.dart';
 import 'package:search_repositories/feature/auth/repo/auth_repo.dart';
 import 'package:search_repositories/feature/auth/view/auth_login_page.dart';
 import 'package:search_repositories/feature/github/model/api_response.dart';
