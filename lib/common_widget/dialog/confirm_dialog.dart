@@ -36,54 +36,55 @@ class ConfirmDialog extends StatelessWidget {
     final String yesText = localizations?.yes ?? 'はい';
     final String noText = localizations?.no ?? 'いいえ';
 
-    return Padding(
-      padding: const EdgeInsets.all(CustomPadding.normal),
-      child: AlertDialog(
-        title: Text(
-          confirmTitle,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: CustomFontSize.large,
-            fontWeight: FontWeight.bold,
-          ),
+    return AlertDialog(
+      actionsPadding: const EdgeInsets.symmetric(
+        horizontal: CustomPadding.large,
+        vertical: CustomPadding.small,
+      ),
+      title: Text(
+        confirmTitle,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: CustomFontSize.large,
+          fontWeight: FontWeight.bold,
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              text,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: CustomFontSize.normal),
-            ),
-            HeightMargin.small,
-          ],
-        ),
-        actions: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                child: CustomButton(
-                  onPressed: () {
-                    context.pop();
-                  },
-                  text: noText,
-                  isColorReversed: true,
-                ),
-              ),
-              WidthMargin.normal,
-              Expanded(
-                child: CustomButton(
-                  onPressed: () {
-                    onPressed();
-                  },
-                  text: yesText,
-                ),
-              ),
-            ],
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            text,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: CustomFontSize.normal),
           ),
+          HeightMargin.small,
         ],
       ),
+      actions: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              child: CustomButton(
+                onPressed: () {
+                  context.pop();
+                },
+                text: noText,
+                isColorReversed: true,
+              ),
+            ),
+            WidthMargin.normal,
+            Expanded(
+              child: CustomButton(
+                onPressed: () {
+                  onPressed();
+                },
+                text: yesText,
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

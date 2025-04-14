@@ -83,10 +83,6 @@ class AuthLoginPage extends ConsumerWidget {
                   onPressed: () async {
                     // GitHubでアカウント作成 or サインイン
                     await _signInWithGitHub(ref, localizations);
-                    if (context.mounted) {
-                      // リポジトリ一覧ページに遷移
-                      context.pushNamed(AppRoute.repositoryDetail.name);
-                    }
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

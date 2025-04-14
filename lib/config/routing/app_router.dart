@@ -34,11 +34,10 @@ GoRouter appRouter(ref) {
       if (!loggedIn) {
         return onAuthPage ? null : AppRoute.auth.path;
       }
-      // 認証が完了してリダイレクトをすると、トークン保存の処理が完了しないことがあるので廃止
-      // // ログイン済みで認証ページにいる場合はホームページへリダイレクト
-      // if (loggedIn && onAuthPage) {
-      //   return AppRoute.repositoryList.path;
-      // }
+      // ログイン済みで認証ページにいる場合はホームページへリダイレクト
+      if (loggedIn && onAuthPage) {
+        return AppRoute.repositoryList.path;
+      }
       return null;
     },
     routes: [
