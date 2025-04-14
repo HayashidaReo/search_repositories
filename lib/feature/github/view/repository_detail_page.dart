@@ -17,7 +17,6 @@ part 'part/repository_detail/icon_image.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
   const RepositoryDetailPage({super.key, required this.repository});
-
   final ApiResponse repository;
 
   @override
@@ -76,6 +75,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                 ],
               ),
               HeightMargin.small,
+              // 開発者名
               Row(
                 children: [
                   SizedBox(
@@ -95,6 +95,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                   ),
                 ],
               ),
+              // 開発言語
               Row(
                 children: [
                   SizedBox(
@@ -119,7 +120,7 @@ class RepositoryDetailPage extends ConsumerWidget {
               ReadMoreText(
                 repository.description ?? localizations.noDescription,
                 textAlign: TextAlign.start,
-                trimLines: 1,
+                trimLines: 3,
                 trimMode: TrimMode.Line,
                 trimCollapsedText: localizations.showMore,
                 trimExpandedText: localizations.showLess,
@@ -133,9 +134,8 @@ class RepositoryDetailPage extends ConsumerWidget {
                   color: ColorStyle.blueAccent,
                 ),
               ),
-
               HeightMargin.small,
-
+              // アイコン情報
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
