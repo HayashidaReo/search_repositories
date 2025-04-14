@@ -7,7 +7,7 @@ class LanguageConfig {
     'ja': '日本語',
     'en': 'English',
     'ko': '한국어',
-    'zh': '中文',
+    'zh': '简体中文',
   };
 
   /// アプリで対応している言語のロケールリスト
