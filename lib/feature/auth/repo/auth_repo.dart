@@ -11,7 +11,7 @@ class AuthRepo extends _$AuthRepo {
     return ref.read(firebaseAuthInstanceProvider).currentUser;
   }
 
-  // githubの認証
+  /// githubの認証
   Future<UserCredential?> signInWithGitHub() async {
     try {
       final GithubAuthProvider githubProvider = GithubAuthProvider();
@@ -28,18 +28,18 @@ class AuthRepo extends _$AuthRepo {
     }
   }
 
-  //ログアウト処理
+  /// ログアウト処理
   Future<void> signOut() async {
     await ref.read(firebaseAuthInstanceProvider).signOut();
     state = ref.read(firebaseAuthInstanceProvider).currentUser;
   }
 
-  // アカウント削除処理
+  /// アカウント削除処理
   Future<void> delete() async {
     await ref.read(authRepoProvider.notifier).delete();
   }
 
-  // Authの状態を監視する
+  /// Authの状態を監視する
   Stream<User?> authStateChange() {
     return ref.watch(firebaseAuthInstanceProvider).authStateChanges().map((
       User? currentUser,
