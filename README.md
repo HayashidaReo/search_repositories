@@ -1,20 +1,223 @@
-# search_repositories
+# GitHub リポジトリ検索アプリ
 
-A new Flutter project.
+Flutter を使用して開発した GitHub リポジトリ検索アプリケーションです。GitHub API を活用して、キーワードによるリポジトリ検索と、詳細情報の表示を行います。
 
-## Getting Started
+## 機能一覧
 
-This project is a starting point for a Flutter application.
+- キーワードによる GitHub リポジトリの検索
+- 検索結果の一覧表示 (リポジトリ名など)
+- リポジトリ詳細表示 (リポジトリ名、リポジトリ説明文、開発者アイコン、使用言語、Star数、Watcher数、Fork数、Issue数)
+- ダークモード対応
+- 多言語対応（日本語、英語、中国語、韓国語）
+- GitHub認証機能
 
-A few resources to get you started if this is your first Flutter project:
+## スクリーンショット
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<!-- アプリのスクリーンショットを追加 -->
+<p align="left">
+   <img src="screenshot/auth.png" alt="認証" width="250" style="margin-right: 20px;">
+   <img src="screenshot/list_page.png" alt="一覧画面" width="250" style="margin-right: 20px;">
+   <img src="screenshot/detail_page.png" alt="詳細画面" width="250" style="margin-right: 20px;">
+   <img src="screenshot/hamburger.png" alt="ハンバーガーメニュー" width="250" style="margin-right: 20px;">
+   <img src="screenshot/dark_mode.png" alt="ダークモード" width="250" style="margin-right: 20px;">
+   <img src="screenshot/language.png" alt="言語設定" width="250" style="margin-right: 20px;">
+</p>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 開発環境
 
-メモ
-ios 13.0にしている理由
-それぞれのパッケージの説明
+- Flutter: 3.29.2
+- Dart: 3.7.2以上
+- 対応OS:
+  - iOS: 13.0以上 (iOS 9.0以上が課題要件ですが、一部の使用パッケージの対応状況に合わせて13.0以上としています)
+  - Android: 4.1以上
+
+### 検証済み環境
+```bash
+[✓] Flutter (Channel stable, 3.29.2, on macOS 15.3.1 24D70 darwin-arm64, locale ja-JP)
+[✓] Android toolchain - develop for Android devices (Android SDK version 35.0.0)
+[✓] Xcode - develop for iOS and macOS (Xcode 16.2)
+[✓] Chrome - develop for the web
+[✓] Android Studio (version 2024.2)
+[✓] VS Code (version 1.98.0)
+[✓] Connected device (6 available)
+[✓] Network resources
+```
+
+## アーキテクチャ
+
+本アプリケーションは、保守性と拡張性を考慮して以下のアーキテクチャを採用しています：
+
+- **レイヤードアーキテクチャ**: View、Controller、Model、Repository の明確な分離
+- **状態管理**: Riverpod を使用したReactive Programmingの実現
+
+### プロジェクト構成
+
+```
+lib/
+  ├── common_widget/     # 共通ウィジェット
+  │    ├── dialog/       # ダイアログ関連
+  │    ├── toast/        # トースト通知
+  │    └── ...           # その他の共通コンポーネント
+  ├── config/            # アプリ設定
+  │    ├── locale/       # 多言語設定
+  │    ├── routing/      # ルーティング設定
+  │    ├── theme/        # テーマ設定
+  │    └── util/         # ユーティリティクラス
+  ├── feature/           # 機能別モジュール
+  │    ├── github/       # GitHub 関連機能
+  │    │    ├── controller/  # 状態・ロジック管理
+  │    │    ├── model/       # データモデル
+  │    │    ├── repo/        # リポジトリ層（API通信など）
+  │    │    └── view/        # UI
+  │    │         └── part/   # UI要素
+  │    └── auth/         # 認証関連機能
+  ├── function/          # ユーティリティ関数
+  ├── l10n/              # 多言語対応リソース
+  │    ├── app_en.arb    # 英語リソース
+  │    ├── app_ja.arb    # 日本語リソース
+  │    ├── app_ko.arb    # 韓国語リソース
+  │    └── app_zh.arb    # 中国語リソース
+  └── main.dart          # エントリーポイント
+```
+
+## 実装詳細
+
+### GitHub API通信
+
+GitHub APIの`search/repositories`エンドポイントを使用して、リポジトリの検索を行っています。APIクライアントは自作しており、パッケージに依存せずに実装しています。
+
+```dart
+// GitHub API呼び出し
+Future<List<ApiResponse>> searchGitHubRepo(
+  String keyword,
+  Uri url,
+  Map<String, String> headers,
+  BuildContext context,
+) async {
+  final response = await http.get(url, headers: headers);
+  // レスポンス処理...
+}
+```
+
+### 状態管理
+
+Riverpodを使用して、アプリケーションの状態を管理しています。検索キーワードやAPIレスポンスなどの状態を効率的に扱い、UIとデータの連携を行っています。
+
+### エラーハンドリング
+
+ネットワークエラーや認証エラーなど、様々なシナリオに対応したエラーハンドリングを実装しています。エラーメッセージは多言語対応しており、ユーザーにとって分かりやすい形で表示されます。
+
+### UI/UXの工夫
+
+- データ読み込み中の状態表示
+- 処理終了時のステータス表示
+- エラー発生時の適切なフィードバック
+- 長いテキストは「続きを読む」機能で表示
+- ダークモード対応による使いやすさの向上
+- シンプルでわかりやすいUI
+
+## 使用技術・パッケージ
+
+- **状態管理**: 
+  - **hooks_riverpod/flutter_riverpod**
+  - **riverpod_annotation**
+  - **flutter_hooks**
+- **ルーティング**: 
+  - **go_router**
+- **API通信**: 
+  - **http**
+- **データクラス生成**: 
+  - **freezed**
+  - **json_serializable**
+- **UI関連**:
+  - **cached_network_image**
+  - **readmore**
+- **認証・セキュリティ**:
+  - **firebase_auth**
+  - **flutter_secure_storage**
+- **その他**:
+  - **shared_preferences**
+  - **intl/flutter_localizations**
+  - **fluttertoast**
+
+## セットアップと実行方法
+
+1. リポジトリをクローン
+```
+git clone https://github.com/hayashidareo/search_repositories.git
+```
+
+2. 依存関係のインストール
+```
+flutter pub get
+```
+
+3. アプリケーションの実行
+```
+flutter run
+```
+
+## テスト
+
+本プロジェクトでは以下のテストを実装しています：
+
+- 単体テスト : ロジックのテスト
+- ウィジェットテスト : UIコンポーネントのテスト
+
+テストの実行:
+```
+flutter test
+```
+
+## アピールポイント
+
+#### 本アプリケーションでは、以下のような技術的な工夫を行っています。
+
+アーキテクチャ面では、MVCパターンに近い構造を採用し、ビュー・ロジック・データの責務を明確に分離しました。これにより、コードの可読性が向上し、機能追加や修正が容易になっています。また、ハードコーディングを避け、定数やスタイルをクラスとして管理することで、一貫性のあるUIと保守性の高いコードベースを実現しています。
+
+ナビゲーション実装にはgo_routerを採用し、宣言的なルーティング定義により画面遷移の管理を簡潔に行っています。これにより、ディープリンクへの対応や履歴管理が容易になり、ユーザー体験の向上につながっています。
+
+UIデザインでは、マテリアルデザインに準拠したダークモード対応を実装しました。自動/手動の切り替え機能を備え、適切な色設定により視認性を確保しています。また、様々な画面サイズや向きに対応するレスポンシブデザインを採用し、フォントサイズやマージンを適切に調整することで、デバイスに依存しない快適な操作性を実現しています。
+
+多言語対応として、日本語、英語、中国語、韓国語の4言語をサポートし、デバイス設定に基づいて自動的にデフォルト言語を選択する機能を実装しました。これにより、ユーザーの母国語でアプリを利用できる快適さを提供しています。
+
+エラーハンドリングにも注力し、API通信エラーを詳細に分類して適切に対応することで、ユーザーに分かりやすいフィードバックを提供しています。また、GitHub認証を統合し、安全性の高い通信を実現することで、ユーザーデータの保護にも配慮しています。
+
+## チャレンジした点と学び
+
+#### 本プロジェクトを通じて、いくつかの技術的なチャレンジに取り組み、多くの知見を得ることができました。
+
+API連携とMVCモデルの実装は大きな挑戦でした。普段のプロジェクトではFirebaseを主に使用していたため、RESTful APIを叩く実装には不慣れな部分がありました。特にGitHub APIとの連携をMVCパターンに沿って設計することは手探りの部分もありましたが、この経験を通じて外部APIとの連携方法やデータフローの設計について深く学ぶことができました。
+
+GitHub認証の実装も大きなチャレンジでした。GitHub APIはトークンなしでも利用可能ですが、実際のユースケースを想定すると、レート制限の緩和やユーザー固有の機能のためにトークン認証が必要になると判断しました。そこでFirebase Authenticationを活用したGitHub認証を実装しましたが、参考資料が少なく試行錯誤の連続でした。認証フローでのリダイレクト処理やエラーハンドリングなど、多くの技術的な課題に直面しましたが、これらを解決できたことは大きな自信になりました。
+
+また、以下の技術を初めて本格的に導入しました：
+
+- **flutter_secure_storage**: 認証トークンを安全に保存するために導入し、セキュアストレージの使い方を学びました
+- **多言語対応（flutter_localizations）**: 多言語化の仕組みや言語リソースの管理方法について理解を深めました
+- **ダークモード**: テーマ管理や色彩設計の重要性を実感しました
+- **テスト実装**: ユニットテストとウィジェットテストを通じて、テスト駆動開発の基礎を学びました
+
+これらの新しい技術を取り入れる過程で、ドキュメントの読み方や問題解決のアプローチについても多くを学ぶことができました。特に認証周りのエラーハンドリングは難しく、デバッグに多くの時間を費やしましたが、エラー原因の特定と対策の方法について貴重な経験となりました。
+
+## AIサービスの利用について
+
+#### 本プロジェクトの開発過程では、効率化と品質向上のためにAIツールを活用しました。
+
+初期段階では基本的なコードを手作業で記述し、アプリケーションの基盤となる設計や構造を確立しました。ある程度の土台ができた後は、Cursorを活用してUIコンポーネントの雛形を生成し、それを手作業で細部まで調整するワークフローを採用しました。この方法により、単調な作業時間を削減しつつも、品質と一貫性を保つことができました。
+
+また、日常的なコーディングではGitHub Copilotの自動補完機能を活用し、定型的なコードの入力を効率化しました。これにより、１週間という限られた時間を問題解決や設計に充てることができました。
+
+一方で、AIツールの活用には課題も見つかりました。特に、`HeightMargin.normal`や`Theme.of(context).colorScheme.tertiary`といった独自に定義したユーティリティクラスをAIが適切に認識せず、代わりに`SizedBox`や`Colors`を使用するコードを提案するケースがありました。これらの不整合を見逃したことで、別ブランチでの修正が必要になるなど、一部で非効率が生じました。
+
+この経験から、AIツールを効果的に活用するためには、プロジェクト固有の規約やユーティリティに関する情報をAIに適切に伝える方法を工夫する必要があることを学びました。今後は、より明確なプロンプト設計や、AIにプロジェクト構造を理解させるための戦略を模索していきたいと考えています。
+
+## 今後の改善点
+
+- CI/CDパイプラインの導入
+  - 自動テスト、ビルド、デプロイの仕組み構築
+- 検索履歴機能の追加
+  - 過去の検索キーワードの保存と再利用
+- お気に入りリポジトリ機能の追加
+  - ユーザーが興味を持ったリポジトリを保存
+- UI/UXの向上
