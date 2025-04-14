@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:search_repositories/common_widget/custom_button.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
@@ -33,19 +32,6 @@ class ErrorTextWidget extends ConsumerWidget {
             ),
             HeightMargin.normal,
 
-            // ステータスコードがある場合に表示
-            if (statusCode != null) ...[
-              Text(
-                'エラーコード: $statusCode',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: CustomFontSize.normal,
-                  color: Theme.of(context).colorScheme.error,
-                ),
-              ),
-              HeightMargin.small,
-            ],
-
             // エラーメッセージ
             Text(
               text,
@@ -56,14 +42,6 @@ class ErrorTextWidget extends ConsumerWidget {
               ),
             ),
             HeightMargin.normal,
-
-            // 再試行ボタン（オプション）
-            if (onRetry != null)
-              CustomButton(
-                text: '再試行',
-                onPressed: onRetry,
-                leftIcon: Icons.refresh,
-              ),
           ],
         ),
       ),
