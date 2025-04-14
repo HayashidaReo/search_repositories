@@ -63,8 +63,10 @@ class RepositoryListPage extends HookConsumerWidget {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const LoadingWidget();
               } else if (snapshot.hasError) {
+                // エラーが発生した場合
                 return ErrorTextWidget(text: snapshot.error.toString());
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                // データがない０件の場合
                 return ErrorTextWidget(text: localizations.noSearchResults);
               }
 
