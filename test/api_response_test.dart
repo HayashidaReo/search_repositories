@@ -1,6 +1,8 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter_test/flutter_test.dart';
-import 'package:search_repositories/feature/github/model/api_response.dart';
 import 'package:search_repositories/feature/github/model/api_owner_response.dart';
+import 'package:search_repositories/feature/github/model/api_response.dart';
 
 void main() {
   group('ApiResponse', () {

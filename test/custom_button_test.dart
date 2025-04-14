@@ -46,13 +46,7 @@ void main() {
       // 通常の色（反転なし）のボタンを作成
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: CustomButton(
-              text: '通常ボタン',
-              onPressed: () {},
-              isColorReversed: false,
-            ),
-          ),
+          home: Scaffold(body: CustomButton(text: '通常ボタン', onPressed: () {})),
         ),
       );
 
@@ -112,7 +106,7 @@ void main() {
     testWidgets('無効状態のボタンが正しく表示される', (WidgetTester tester) async {
       // 無効状態のボタンを作成
       await tester.pumpWidget(
-        MaterialApp(
+        const MaterialApp(
           home: Scaffold(
             body: CustomButton(
               text: '無効ボタン',
