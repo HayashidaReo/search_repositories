@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readmore/readmore.dart';
+import 'package:search_repositories/common_widget/icon_info_widget.dart';
 import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
@@ -8,17 +11,12 @@ import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/github/model/api_response.dart';
-import 'package:search_repositories/common_widget/icon_info_widget.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:search_repositories/function/launch_url.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'part/repository_detail/icon_image.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
   const RepositoryDetailPage({super.key, required this.repository});
-
   final ApiResponse repository;
 
   @override
@@ -77,6 +75,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                 ],
               ),
               HeightMargin.small,
+              // 開発者名
               Row(
                 children: [
                   SizedBox(
@@ -96,6 +95,7 @@ class RepositoryDetailPage extends ConsumerWidget {
                   ),
                 ],
               ),
+              // 開発言語
               Row(
                 children: [
                   SizedBox(
@@ -120,7 +120,7 @@ class RepositoryDetailPage extends ConsumerWidget {
               ReadMoreText(
                 repository.description ?? localizations.noDescription,
                 textAlign: TextAlign.start,
-                trimLines: 1,
+                trimLines: 3,
                 trimMode: TrimMode.Line,
                 trimCollapsedText: localizations.showMore,
                 trimExpandedText: localizations.showLess,
@@ -134,9 +134,8 @@ class RepositoryDetailPage extends ConsumerWidget {
                   color: ColorStyle.blueAccent,
                 ),
               ),
-
               HeightMargin.small,
-
+              // アイコン情報
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
