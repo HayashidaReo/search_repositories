@@ -65,7 +65,7 @@ class RepositoryListPage extends HookConsumerWidget {
               } else if (snapshot.hasError) {
                 return ErrorTextWidget(text: snapshot.error.toString());
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return const ErrorTextWidget(text: '検索結果が0件です');
+                return ErrorTextWidget(text: localizations.noSearchResults);
               }
 
               final List<ApiResponse> repositories = snapshot.data!;
