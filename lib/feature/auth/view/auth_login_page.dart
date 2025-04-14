@@ -78,9 +78,7 @@ class AuthLoginPage extends ConsumerWidget {
                     ),
                   ),
                   onPressed: () async {
-                    showLoadingDialog(localizations.connecting);
                     await _signInWithGitHub(ref, localizations);
-                    hideLoadingDialog();
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -112,11 +110,11 @@ class AuthLoginPage extends ConsumerWidget {
     WidgetRef ref,
     AppLocalizations localizations,
   ) async {
+    showLoadingDialog(localizations.connecting);
     final UserCredential? credentail =
         await ref.read(authControllerProvider.notifier).signInWithGitHub();
     if (credentail != null) {
       // 認証成功
-      showToast(localizations.connectionSuccess);
       if (((credentail.credential?.accessToken) != null)) {
         await ref
             .read(secureStorageControllerProvider.notifier)
@@ -124,12 +122,16 @@ class AuthLoginPage extends ConsumerWidget {
               key: SecureStorageKey.githubAccessToken,
               value: credentail.credential?.accessToken ?? '',
             );
+        hideLoadingDialog();
+        showToast(localizations.connectionSuccess);
       } else {
         // アクセストークンが取得できなかった場合
+        hideLoadingDialog();
         showToast(localizations.tokenFailure);
       }
     } else {
       // 認証失敗
+      hideLoadingDialog();
       showToast(localizations.connectionFailure);
     }
   }
