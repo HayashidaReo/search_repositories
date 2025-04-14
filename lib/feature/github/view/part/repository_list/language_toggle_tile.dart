@@ -7,10 +7,13 @@ class LanguageToggleTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final localizations = AppLocalizations.of(context);
-
+    /*
+    多言語対応
+    */
+    final AppLocalizations? localizations = AppLocalizations.of(context);
+    // AppLocalizations が取得できていない場合はローディングを表示
     if (localizations == null) {
-      return const SizedBox.shrink();
+      return const Scaffold(body: Center(child: LoadingWidget()));
     }
 
     return ExpansionTile(

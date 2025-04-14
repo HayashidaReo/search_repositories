@@ -11,7 +11,7 @@ class DrawerWidget extends ConsumerWidget {
 
     // localizationsがnullの場合はエラー防止のためローディング表示
     if (localizations == null) {
-      return const Drawer(child: Center(child: CircularProgressIndicator()));
+      return const Drawer(child: LoadingWidget());
     }
 
     return Drawer(
@@ -42,6 +42,7 @@ class DrawerWidget extends ConsumerWidget {
           ),
           // 言語設定ボタン
           LanguageToggleTile(currentLocale: currentLocale),
+          HeightMargin.normal,
           // ログアウト
           ListTile(
             title: Text(localizations.logout),
@@ -61,6 +62,7 @@ class DrawerWidget extends ConsumerWidget {
     );
   }
 
+  /// ログアウト
   void _logout(
     BuildContext context,
     WidgetRef ref,
@@ -79,6 +81,7 @@ class DrawerWidget extends ConsumerWidget {
     );
   }
 
+  /// アカウント削除
   void _deleteAccount(
     BuildContext context,
     WidgetRef ref,
