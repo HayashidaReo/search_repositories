@@ -60,7 +60,11 @@ class RepositoryListPage extends HookConsumerWidget {
         body: SafeArea(
           // データを取得する
           child: FutureBuilder(
-            future: searchGitHubController(submittedKeyword.value, ref),
+            future: searchGitHubController(
+              submittedKeyword.value,
+              ref,
+              context,
+            ),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const LoadingWidget();
