@@ -68,7 +68,7 @@ class RepositoryListPage extends HookConsumerWidget {
                 // エラーが発生した場合
                 return ErrorTextWidget(text: snapshot.error.toString());
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                // データがない０件の場合
+                // 取得したデータが０件の場合
                 return ErrorTextWidget(text: localizations.noSearchResults);
               }
 
