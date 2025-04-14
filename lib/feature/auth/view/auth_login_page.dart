@@ -7,6 +7,7 @@ import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/common_widget/toast/show_toast.dart';
 import 'package:search_repositories/config/key/secure_storage_key.dart';
 import 'package:search_repositories/config/locale/controller/locale_provider.dart';
+import 'package:search_repositories/config/util/app_assets.dart';
 import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
@@ -86,8 +87,7 @@ class AuthLoginPage extends ConsumerWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        // TODO: クラスで管理
-                        'assets/github_icon/github-mark.png',
+                        AppAssets.githubIcon,
                         width: 34,
                         height: 34,
                         color: Theme.of(context).colorScheme.primary,
