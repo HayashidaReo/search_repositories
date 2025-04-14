@@ -7,6 +7,7 @@ import 'package:search_repositories/config/util/height_margin.dart';
 
 void showLoadingDialog(String message) {
   showDialog(
+    // await 後でも安全に閉じられるように、rootNavigator を指定
     context: rootNavigatorKey.currentContext!,
     barrierDismissible: false,
     builder: (context) {
