@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class WidthMargin {
+  /// プライベートコンストラクタで外部からのインスタンス化を防止
+  WidthMargin._();
+
   static const SizedBox mini = SizedBox(width: 4);
   static const SizedBox small = SizedBox(width: 8);
   static const SizedBox normal = SizedBox(width: 16);

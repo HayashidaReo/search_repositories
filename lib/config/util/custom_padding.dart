@@ -1,4 +1,7 @@
 class CustomPadding {
+  /// プライベートコンストラクタで外部からのインスタンス化を防止
+  CustomPadding._();
+
   static const double smallest = 3;
   static const double mini = 8;
   static const double small = 14;
