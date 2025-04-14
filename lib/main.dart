@@ -34,13 +34,21 @@ class MyApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale('en'),
-        Locale('ja'),
-        Locale('ko'),
-        Locale('zh'),
-      ],
-      locale: null,
+      supportedLocales: AppLocalizations.supportedLocales,
+
+      locale: const Locale('en'), //初期言語
+
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (locale == null) {
+          return const Locale('en'); // デフォルトを日本語に設定
+        }
+        for (final supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode) {
+            return supportedLocale;
+          }
+        }
+        return const Locale('en'); // どの言語もマッチしない場合、日本語を適用
+      },
     );
   }
 }
