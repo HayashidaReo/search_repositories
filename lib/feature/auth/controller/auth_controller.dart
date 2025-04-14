@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:search_repositories/config/key/secure_storage_key.dart';
 import 'package:search_repositories/feature/auth/controller/secure_storage_controller.dart';
@@ -14,8 +14,8 @@ class AuthController extends _$AuthController {
   }
 
   /// githubアカウントでアカウントを作成 or サインイン
-  Future<UserCredential?> signInWithGitHub() async {
-    return await ref.read(authRepoProvider.notifier).signInWithGitHub();
+  Future<void> signInWithGitHub(AppLocalizations localizations) async {
+    await ref.read(authRepoProvider.notifier).signInWithGitHub(localizations);
   }
 
   /// サインアウト

@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -12,20 +14,40 @@ import 'package:search_repositories/feature/github/view/repository_list_page.dar
 part 'app_router.g.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+
+// authRepoProviderの状態変化を監視するためのStreamController
+final _authStateController = StreamController<User?>.broadcast();
+
+// アプリ終了時にStreamControllerをクローズするための関数
+void disposeAuthStateController() {
+  _authStateController.close();
+}
+
 @riverpod
 GoRouter appRouter(ref) {
+  // authRepoProviderの状態変化を監視
+  ref.listen(authRepoProvider, (previous, next) {
+    if (_authStateController.isClosed) return;
+    _authStateController.add(next);
+  });
+  // dispose時の処理
+  ref.onDispose(() {
+    if (!_authStateController.isClosed) {
+      _authStateController.close();
+    }
+  });
+
   return GoRouter(
     initialLocation: AppRoute.auth.path,
     navigatorKey: rootNavigatorKey,
     debugLogDiagnostics: true,
 
     // 状態が変わるたびにリダイレクトを実行
-    refreshListenable: GoRouterRefreshStream(
-      ref.watch(authRepoProvider.notifier).authStateChange(),
-    ),
-
+    refreshListenable: GoRouterRefreshStream(_authStateController.stream),
     // 認証状態に応じてリダイレクト処理を実装
+    // アカウントにログインした後にあるトークンの保存処理まで完了してからリダイレクトする必要があるため、複雑なリダイレクト処理になっている
     redirect: (BuildContext context, GoRouterState state) {
+      print('リダイレクト');
       final bool loggedIn = ref.read(authRepoProvider) != null;
       final bool onAuthPage = state.uri.toString().startsWith(
         AppRoute.auth.path,
