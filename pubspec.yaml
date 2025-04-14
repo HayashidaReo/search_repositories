@@ -28,7 +28,8 @@ dependencies:
   fluttertoast: ^8.2.12
   shared_preferences: ^2.5.3
   intl:
-  flutter_localization: ^0.3.2
+  flutter_localizations:
+    sdk: flutter
   
 
 dev_dependencies:
