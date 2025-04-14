@@ -34,10 +34,6 @@ class RepositoryListPage extends HookConsumerWidget {
     final TextEditingController searchTextController =
         useTextEditingController();
     final ValueNotifier<String> keyword = useState<String>('');
-    final ValueNotifier<Future<List<ApiResponse>>?> futureRepositories =
-        useState<Future<List<ApiResponse>>?>(null);
-    final ValueNotifier<bool> isLoading = useState<bool>(true);
-    final ValueNotifier<String?> errorMessage = useState<String?>(null);
 
     /*
     多言語対応
@@ -47,21 +43,6 @@ class RepositoryListPage extends HookConsumerWidget {
     if (localizations == null) {
       return const Scaffold(body: Center(child: LoadingWidget()));
     }
-
-    // 初回ロード時とキーワード変更時にデータを取得
-    useEffect(() {
-      // 少し遅延してからデータを取得（認証が完了するまでの時間を確保）
-      Future.delayed(const Duration(milliseconds: 300), () {
-        _fetchRepositories(
-          keyword.value,
-          ref,
-          futureRepositories,
-          isLoading,
-          errorMessage,
-        );
-      });
-      return null;
-    }, [keyword.value]);
 
     return UnFocusKeyBoardWidget(
       child: Scaffold(
@@ -94,125 +75,36 @@ class RepositoryListPage extends HookConsumerWidget {
           ),
         ),
         body: SafeArea(
-          child:
-              isLoading.value
-                  ? const Center(child: LoadingWidget())
-                  : errorMessage.value != null
-                  ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ErrorTextWidget(text: errorMessage.value!),
-                        const SizedBox(height: 16),
-                        ElevatedButton(
-                          onPressed: () {
-                            isLoading.value = true;
-                            errorMessage.value = null;
-                            _fetchRepositories(
-                              keyword.value,
-                              ref,
-                              futureRepositories,
-                              isLoading,
-                              errorMessage,
-                            );
-                          },
-                          child: const Text('再読み込み'),
-                        ),
-                      ],
-                    ),
-                  )
-                  : FutureBuilder(
-                    future: futureRepositories.value,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const LoadingWidget();
-                      } else if (snapshot.hasError) {
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ErrorTextWidget(text: snapshot.error.toString()),
-                              const SizedBox(height: 16),
-                              ElevatedButton(
-                                onPressed: () {
-                                  isLoading.value = true;
-                                  errorMessage.value = null;
-                                  _fetchRepositories(
-                                    keyword.value,
-                                    ref,
-                                    futureRepositories,
-                                    isLoading,
-                                    errorMessage,
-                                  );
-                                },
-                                child: const Text('再読み込み'),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                        return const ErrorTextWidget(text: 'データが見つかりませんでした');
-                      }
+          child: FutureBuilder(
+            future: searchGitHubController(keyword.value, ref),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const LoadingWidget();
+              } else if (snapshot.hasError) {
+                return ErrorTextWidget(text: snapshot.error.toString());
+              } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return const ErrorTextWidget(text: 'データが見つかりませんでした');
+              }
 
-                      final List<ApiResponse> repositories = snapshot.data!;
-                      return ListView.separated(
-                        separatorBuilder:
-                            (context, index) => const Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: CustomPadding.normal,
-                              ),
-                              child: Divider(),
-                            ),
-                        itemCount: repositories.length,
-                        itemBuilder: (context, index) {
-                          final repo = repositories[index];
-                          return RepositoryListTile(repo: repo);
-                        },
-                      );
-                    },
-                  ),
+              final List<ApiResponse> repositories = snapshot.data!;
+              return ListView.separated(
+                separatorBuilder:
+                    (context, index) => const Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: CustomPadding.normal,
+                      ),
+                      child: Divider(),
+                    ),
+                itemCount: repositories.length,
+                itemBuilder: (context, index) {
+                  final repo = repositories[index];
+                  return RepositoryListTile(repo: repo);
+                },
+              );
+            },
+          ),
         ),
       ),
     );
-  }
-
-  // リポジトリ取得メソッド
-  void _fetchRepositories(
-    String keyword,
-    WidgetRef ref,
-    ValueNotifier<Future<List<ApiResponse>>?> futureRepositories,
-    ValueNotifier<bool> isLoading,
-    ValueNotifier<String?> errorMessage,
-  ) {
-    try {
-      futureRepositories.value = searchGitHubController(keyword, ref);
-      futureRepositories.value!
-          .then((_) {
-            isLoading.value = false;
-          })
-          .catchError((error) {
-            isLoading.value = false;
-            errorMessage.value = "データの取得に失敗しました: ${error.toString()}";
-
-            // 1秒後に自動的に再試行する
-            Future.delayed(const Duration(seconds: 1), () {
-              if (errorMessage.value != null) {
-                // まだエラー状態なら
-                isLoading.value = true;
-                errorMessage.value = null;
-                _fetchRepositories(
-                  keyword,
-                  ref,
-                  futureRepositories,
-                  isLoading,
-                  errorMessage,
-                );
-              }
-            });
-          });
-    } catch (e) {
-      isLoading.value = false;
-      errorMessage.value = "予期せぬエラーが発生しました: ${e.toString()}";
-    }
   }
 }
