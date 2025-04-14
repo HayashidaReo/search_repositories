@@ -24,6 +24,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'part/repository_list_tile.dart';
 part 'part/drawer_widget.dart';
+part 'part/language_toggle_tile.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
