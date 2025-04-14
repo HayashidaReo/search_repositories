@@ -62,7 +62,7 @@ class CustomButton extends StatelessWidget {
                             ? Theme.of(context).colorScheme.onPrimary
                             : Theme.of(context).colorScheme.onSecondary,
                     fontWeight: (!isColorReversed) ? FontWeight.bold : null,
-                    fontSize: CustomFontSize.normal,
+                    fontSize: CustomFontSize.medium,
                   ),
                 ),
               ),
