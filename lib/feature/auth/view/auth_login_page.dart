@@ -78,11 +78,13 @@ class AuthLoginPage extends ConsumerWidget {
                     ),
                   ),
                   onPressed: () async {
+                    // GitHubでアカウント作成 or サインイン
                     await _signInWithGitHub(ref, localizations);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      // GitHubアイコン
                       Image.asset(
                         AppAssets.githubIcon,
                         width: 34,
@@ -90,6 +92,7 @@ class AuthLoginPage extends ConsumerWidget {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       WidthMargin.normal,
+                      // 「GitHubでサインイン」テキスト
                       Text(
                         localizations.signInGitHub,
                         style: const TextStyle(fontSize: CustomFontSize.medium),
