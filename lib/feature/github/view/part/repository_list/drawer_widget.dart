@@ -1,4 +1,4 @@
-part of '../repository_list_page.dart';
+part of '../../repository_list_page.dart';
 
 class DrawerWidget extends ConsumerWidget {
   const DrawerWidget({super.key});
@@ -11,7 +11,7 @@ class DrawerWidget extends ConsumerWidget {
 
     // localizationsがnullの場合はエラー防止のためローディング表示
     if (localizations == null) {
-      return const Drawer(child: Center(child: CircularProgressIndicator()));
+      return const Drawer(child: LoadingWidget());
     }
 
     return Drawer(
@@ -26,10 +26,22 @@ class DrawerWidget extends ConsumerWidget {
           ),
           // ダークモードの切り替え
           ListTile(
-            title: Text(
-              (ref.watch(themeControllerProvider) == ThemeMode.dark)
-                  ? localizations.darkMode
-                  : localizations.lightMode,
+            title: Expanded(
+              child: Row(
+                children: [
+                  Text(
+                    (ref.watch(themeControllerProvider) == ThemeMode.dark)
+                        ? localizations.darkMode
+                        : localizations.lightMode,
+                  ),
+                  WidthMargin.small,
+                  Icon(
+                    (ref.watch(themeControllerProvider) == ThemeMode.dark)
+                        ? Icons.dark_mode
+                        : Icons.light_mode,
+                  ),
+                ],
+              ),
             ),
             trailing: Switch(
               value: ref.watch(themeControllerProvider) == ThemeMode.dark,
@@ -42,6 +54,7 @@ class DrawerWidget extends ConsumerWidget {
           ),
           // 言語設定ボタン
           LanguageToggleTile(currentLocale: currentLocale),
+          HeightMargin.normal,
           // ログアウト
           ListTile(
             title: Text(localizations.logout),
@@ -61,6 +74,7 @@ class DrawerWidget extends ConsumerWidget {
     );
   }
 
+  /// ログアウト
   void _logout(
     BuildContext context,
     WidgetRef ref,
@@ -79,6 +93,7 @@ class DrawerWidget extends ConsumerWidget {
     );
   }
 
+  /// アカウント削除
   void _deleteAccount(
     BuildContext context,
     WidgetRef ref,

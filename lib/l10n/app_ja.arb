@@ -13,6 +13,7 @@
   "loggedOut": "ログアウトしました",
   "deleting": "削除中...",
   "accountDeleted": "アカウントを削除しました",
+  "noSearchResults": "検索結果が0件です",
   
   "developer": "開発者",
   "language": "開発言語",

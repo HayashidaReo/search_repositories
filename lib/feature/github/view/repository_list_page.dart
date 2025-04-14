@@ -1,39 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter/material.dart';
 import 'package:search_repositories/common_widget/dialog/confirm_dialog.dart';
 import 'package:search_repositories/common_widget/dialog/loading_dialog.dart';
 import 'package:search_repositories/common_widget/error_text_widget.dart';
+import 'package:search_repositories/common_widget/icon_info_widget.dart';
 import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/common_widget/toast/show_toast.dart';
 import 'package:search_repositories/common_widget/un_focus_keyboard_widget.dart';
 import 'package:search_repositories/config/enum/router_enum.dart';
+import 'package:search_repositories/config/locale/controller/locale_provider.dart';
+import 'package:search_repositories/config/locale/language_config.dart';
 import 'package:search_repositories/config/theme/theme_controller.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/none_border_text_field_decoration.dart';
+import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/auth/controller/auth_controller.dart';
 import 'package:search_repositories/feature/github/controller/github_controller.dart';
 import 'package:search_repositories/feature/github/model/api_response.dart';
-import 'package:search_repositories/common_widget/icon_info_widget.dart';
-import 'package:search_repositories/config/locale/controller/locale_provider.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-part 'part/repository_list_tile.dart';
-part 'part/drawer_widget.dart';
-part 'part/language_toggle_tile.dart';
+part 'part/repository_list/drawer_widget.dart';
+part 'part/repository_list/language_toggle_tile.dart';
+part 'part/repository_list/repository_list_tile.dart';
+part 'part/repository_list/search_text_field.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final TextEditingController searchTextController =
-        useTextEditingController();
-    final ValueNotifier<String> keyword = useState<String>('');
+    // キーワードの状態を管理
+    final ValueNotifier<String> submittedKeyword = useState<String>('');
 
     /*
     多言語対応
@@ -48,42 +49,27 @@ class RepositoryListPage extends HookConsumerWidget {
       child: Scaffold(
         drawer: const DrawerWidget(),
         appBar: AppBar(
-          title: TextField(
-            controller: searchTextController,
-            decoration: noneBorderTextFieldDecoration(
-              label: localizations.searchTextFieldLabel,
-              prefixIconOnPressed: null,
-              prefixIcon: const SizedBox.shrink(),
-              suffixIconOnPressed:
-                  (keyword.value.isNotEmpty)
-                      ? () {
-                        keyword.value = '';
-                        searchTextController.clear();
-                      }
-                      : null,
-
-              suffixIcon: Icon(
-                (keyword.value.isEmpty)
-                    ? Icons.search
-                    : Icons.keyboard_backspace,
-              ),
-              context: context,
-            ),
-            onChanged: (text) {
-              keyword.value = text;
+          // 検索バー
+          title: SearchTextField(
+            localizations: localizations,
+            onSearch: (keyword) {
+              submittedKeyword.value = keyword;
             },
           ),
         ),
         body: SafeArea(
+          // データを取得する
           child: FutureBuilder(
-            future: searchGitHubController(keyword.value, ref),
+            future: searchGitHubController(submittedKeyword.value, ref),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const LoadingWidget();
               } else if (snapshot.hasError) {
+                // エラーが発生した場合
                 return ErrorTextWidget(text: snapshot.error.toString());
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return const ErrorTextWidget(text: 'データが見つかりませんでした');
+                // 取得したデータが０件の場合
+                return ErrorTextWidget(text: localizations.noSearchResults);
               }
 
               final List<ApiResponse> repositories = snapshot.data!;

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories/config/firebase/firebase_options.dart';
 import 'package:search_repositories/config/locale/controller/locale_provider.dart';
+import 'package:search_repositories/config/locale/language_config.dart';
 import 'package:search_repositories/config/routing/app_router.dart';
 import 'package:search_repositories/config/theme/app_theme.dart';
 import 'package:search_repositories/config/theme/theme_controller.dart';
@@ -35,18 +36,18 @@ class MyApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: AppLocalizations.supportedLocales,
+      supportedLocales: LanguageConfig.supportedLocales,
       locale: ref.watch(localeNotifierProvider), //初期言語
       localeResolutionCallback: (locale, supportedLocales) {
         if (locale == null) {
-          return const Locale('en'); // デフォルトを日本語に設定
+          return const Locale('en'); // デフォルトを英語に設定
         }
         for (final supportedLocale in supportedLocales) {
           if (supportedLocale.languageCode == locale.languageCode) {
             return supportedLocale;
           }
         }
-        return const Locale('en'); // どの言語もマッチしない場合、日本語を適用
+        return const Locale('en'); // どの言語もマッチしない場合、英語を適用
       },
     );
   }

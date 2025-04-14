@@ -14,7 +14,7 @@ import 'package:search_repositories/function/launch_url.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-part 'part/icon_image.dart';
+part 'part/repository_detail/icon_image.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
   const RepositoryDetailPage({super.key, required this.repository});

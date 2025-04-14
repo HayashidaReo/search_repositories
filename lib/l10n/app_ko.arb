@@ -13,6 +13,7 @@
   "loggedOut": "로그아웃 되었습니다",
   "deleting": "삭제 중...",
   "accountDeleted": "계정이 삭제되었습니다",
+  "noSearchResults": "검색 결과가 없습니다",
   
   "developer": "개발자",
   "language": "개발 언어",

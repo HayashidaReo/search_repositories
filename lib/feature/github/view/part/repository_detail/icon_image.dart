@@ -1,4 +1,4 @@
-part of '../repository_detail_page.dart';
+part of '../../repository_detail_page.dart';
 
 class IconImage extends StatelessWidget {
   const IconImage({super.key, required this.imageUrl, required this.iconSize});

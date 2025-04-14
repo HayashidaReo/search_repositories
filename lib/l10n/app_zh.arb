@@ -13,6 +13,7 @@
   "loggedOut": "已登出",
   "deleting": "正在删除...",
   "accountDeleted": "账户已删除",
+  "noSearchResults": "没有搜索结果",
   
   "developer": "开发者",
   "language": "开发语言",
