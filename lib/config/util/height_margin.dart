@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class HeightMargin {
+  /// プライベートコンストラクタで外部からのインスタンス化を防止
+  HeightMargin._();
+
   static const SizedBox mini = SizedBox(height: 2);
   static const SizedBox small = SizedBox(height: 8);
   static const SizedBox normal = SizedBox(height: 16);

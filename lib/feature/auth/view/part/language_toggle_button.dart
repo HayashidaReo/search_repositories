@@ -21,6 +21,7 @@ class LanguageToggleButton extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: CustomPadding.normal),
         child: Row(
           children: [
+            // 言語テキスト
             Text(
               localizations!.languageSettings,
               style: const TextStyle(
@@ -29,6 +30,7 @@ class LanguageToggleButton extends ConsumerWidget {
               ),
             ),
             WidthMargin.small,
+            // 地球儀アイコン
             const Icon(Icons.language, color: ColorStyle.blueAccent),
           ],
         ),
@@ -71,7 +73,10 @@ class LanguageToggleButton extends ConsumerWidget {
           if (currentLocale.languageCode == languageCode)
             const Icon(Icons.check, size: 18),
           WidthMargin.small,
-          Text(languageName),
+          Text(
+            languageName,
+            style: const TextStyle(fontSize: CustomFontSize.small),
+          ),
         ],
       ),
     );

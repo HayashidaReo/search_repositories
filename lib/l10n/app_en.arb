@@ -27,6 +27,7 @@
   "connectionSuccess": "Connection successful",
   "tokenFailure": "Failed to get token",
   "connectionFailure": "Connection failed",
+  "connecting": "Connecting...",
   
   "confirmTitle": "Confirm",
   "yes": "Yes",

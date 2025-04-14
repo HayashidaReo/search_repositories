@@ -27,6 +27,7 @@
   "connectionSuccess": "연결 성공",
   "tokenFailure": "토큰 가져오기 실패",
   "connectionFailure": "연결 실패",
+  "connecting": "연결 중...",
   
   "confirmTitle": "확인",
   "yes": "예",

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ColorStyle {
+  /// プライベートコンストラクタで外部からのインスタンス化を防止
+  ColorStyle._();
+
   // モノトーン系
   static const white = Color.fromARGB(255, 255, 255, 255);
   static const darkBlack = Color.fromARGB(255, 16, 16, 16);
