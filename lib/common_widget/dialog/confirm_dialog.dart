@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:search_repositories/common_widget/custom_button.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
+import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+/// はい or いいえの確認ダイアログを表示する
 void showConfirmDialog({
   required BuildContext context,
   required String text,
@@ -34,51 +36,54 @@ class ConfirmDialog extends StatelessWidget {
     final String yesText = localizations?.yes ?? 'はい';
     final String noText = localizations?.no ?? 'いいえ';
 
-    return AlertDialog(
-      title: Text(
-        confirmTitle,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          fontSize: CustomFontSize.large,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            text,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: CustomFontSize.normal),
+    return Padding(
+      padding: const EdgeInsets.all(CustomPadding.normal),
+      child: AlertDialog(
+        title: Text(
+          confirmTitle,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: CustomFontSize.large,
+            fontWeight: FontWeight.bold,
           ),
-          HeightMargin.small,
-        ],
-      ),
-      actions: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Expanded(
-              child: CustomButton(
-                onPressed: () {
-                  context.pop();
-                },
-                text: noText,
-                isColorReversed: true,
-              ),
+            Text(
+              text,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: CustomFontSize.normal),
             ),
-            WidthMargin.small,
-            Expanded(
-              child: CustomButton(
-                onPressed: () {
-                  onPressed();
-                },
-                text: yesText,
-              ),
-            ),
+            HeightMargin.small,
           ],
         ),
-      ],
+        actions: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: CustomButton(
+                  onPressed: () {
+                    context.pop();
+                  },
+                  text: noText,
+                  isColorReversed: true,
+                ),
+              ),
+              WidthMargin.normal,
+              Expanded(
+                child: CustomButton(
+                  onPressed: () {
+                    onPressed();
+                  },
+                  text: yesText,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

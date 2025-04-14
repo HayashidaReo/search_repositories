@@ -6,8 +6,8 @@ String formatStars(int stars) {
     return stars.toString();
   }
 
-  String suffix;
-  double value;
+  late String suffix;
+  late double value;
 
   // 1000〜999,999の場合はK表記
   if (stars < 1000000) {

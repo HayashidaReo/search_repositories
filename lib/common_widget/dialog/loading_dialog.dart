@@ -5,8 +5,10 @@ import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 
+/// ローディングダイアログを表示する
 void showLoadingDialog(String message) {
   showDialog(
+    // await 後でも安全に閉じられるように、rootNavigator を指定
     context: rootNavigatorKey.currentContext!,
     barrierDismissible: false,
     builder: (context) {
