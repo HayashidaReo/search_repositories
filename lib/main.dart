@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories/config/firebase/firebase_options.dart';
@@ -8,8 +10,6 @@ import 'package:search_repositories/config/locale/language_config.dart';
 import 'package:search_repositories/config/routing/app_router.dart';
 import 'package:search_repositories/config/theme/app_theme.dart';
 import 'package:search_repositories/config/theme/theme_controller.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
