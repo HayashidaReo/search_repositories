@@ -40,12 +40,10 @@ class AuthRepo extends _$AuthRepo {
         showToast(localizations.tokenFailure);
       }
     } on FirebaseAuthException {
-      // 認証失敗
       hideLoadingDialog();
       showToast(localizations.connectionFailure);
     } catch (e) {
       // その他の予期しないエラー
-      // 認証失敗
       hideLoadingDialog();
       showToast(localizations.connectionFailure);
     }
