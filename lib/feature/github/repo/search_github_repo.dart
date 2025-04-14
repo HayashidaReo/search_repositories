@@ -1,12 +1,17 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:http/http.dart' as http;
+import 'package:search_repositories/config/util/github_api_error.dart';
 import 'package:search_repositories/feature/github/model/api_response.dart';
 
 Future<List<ApiResponse>> searchGitHubRepo(
   String keyword,
   Uri url,
   Map<String, String> headers,
+  BuildContext context,
 ) async {
+  final AppLocalizations l10n = AppLocalizations.of(context)!;
   final response = await http.get(url, headers: headers);
   if (response.statusCode == 200) {
     // 成功
@@ -18,19 +23,32 @@ Future<List<ApiResponse>> searchGitHubRepo(
         .toList();
   } else if (response.statusCode == 401) {
     // 認証エラー
-    throw Exception(
-      '認証に失敗しました。一度ログアウトし、githubアカウントに接続し直してください。: ${response.statusCode}',
+    throw GitHubApiError(
+      message: l10n.authError,
+      statusCode: response.statusCode,
     );
   } else if (response.statusCode == 403) {
     // アクセス制限
-    throw Exception('アクセス制限がかかりました。時間をおいてお試しください。: ${response.statusCode}');
+    throw GitHubApiError(
+      message: l10n.rateLimitError,
+      statusCode: response.statusCode,
+    );
   } else if (response.statusCode == 404) {
     // リソースが見つからない
-    throw Exception('見つかりませんでした。: ${response.statusCode}');
+    throw GitHubApiError(
+      message: l10n.notFoundError,
+      statusCode: response.statusCode,
+    );
   } else if (response.statusCode == 500) {
     // サーバーエラー
-    throw Exception('サーバーに問題があります。: ${response.statusCode}');
+    throw GitHubApiError(
+      message: l10n.serverError,
+      statusCode: response.statusCode,
+    );
   } else {
-    throw Exception('予期せぬエラーが発生しました。: ${response.statusCode}');
+    throw GitHubApiError(
+      message: l10n.unexpectedError,
+      statusCode: response.statusCode,
+    );
   }
 }

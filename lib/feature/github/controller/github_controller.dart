@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories/config/key/secure_storage_key.dart';
 import 'package:search_repositories/feature/auth/controller/secure_storage_controller.dart';
@@ -7,6 +8,7 @@ import 'package:search_repositories/feature/github/repo/search_github_repo.dart'
 Future<List<ApiResponse>> searchGitHubController(
   String keyword,
   WidgetRef ref,
+  BuildContext context,
 ) async {
   const String defaultQuery = 'stars:>10000';
   final String query = keyword.trim().isEmpty ? defaultQuery : keyword;
@@ -23,5 +25,9 @@ Future<List<ApiResponse>> searchGitHubController(
     'Authorization': 'Bearer ${accessToken ?? ''}',
   };
 
-  return searchGitHubRepo(keyword, url, headers);
+  if (context.mounted) {
+    return searchGitHubRepo(keyword, url, headers, context);
+  } else {
+    return [];
+  }
 }
