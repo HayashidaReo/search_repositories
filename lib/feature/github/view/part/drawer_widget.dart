@@ -7,7 +7,6 @@ class DrawerWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // 現在の言語を取得
     final currentLocale = ref.watch(localeNotifierProvider);
-    final localizations = AppLocalizations.of(context);
 
     return Drawer(
       child: ListView(
@@ -40,23 +39,19 @@ class DrawerWidget extends ConsumerWidget {
             title: const Text('言語設定'),
             children: [
               RadioListTile<Locale>(
-                title: const Text('English'),
-                value: const Locale('en'),
-                groupValue: currentLocale,
-                onChanged: (Locale? value) {
-                  if (value != null) {
-                    ref.read(localeNotifierProvider.notifier).setLocale(value);
-                  }
-                },
-              ),
-              RadioListTile<Locale>(
                 title: const Text('日本語'),
                 value: const Locale('ja'),
                 groupValue: currentLocale,
                 onChanged: (Locale? value) {
-                  if (value != null) {
-                    ref.read(localeNotifierProvider.notifier).setLocale(value);
-                  }
+                  _setLocale(value, ref);
+                },
+              ),
+              RadioListTile<Locale>(
+                title: const Text('English'),
+                value: const Locale('en'),
+                groupValue: currentLocale,
+                onChanged: (Locale? value) {
+                  _setLocale(value, ref);
                 },
               ),
               RadioListTile<Locale>(
@@ -64,9 +59,7 @@ class DrawerWidget extends ConsumerWidget {
                 value: const Locale('ko'),
                 groupValue: currentLocale,
                 onChanged: (Locale? value) {
-                  if (value != null) {
-                    ref.read(localeNotifierProvider.notifier).setLocale(value);
-                  }
+                  _setLocale(value, ref);
                 },
               ),
               RadioListTile<Locale>(
@@ -74,9 +67,7 @@ class DrawerWidget extends ConsumerWidget {
                 value: const Locale('zh'),
                 groupValue: currentLocale,
                 onChanged: (Locale? value) {
-                  if (value != null) {
-                    ref.read(localeNotifierProvider.notifier).setLocale(value);
-                  }
+                  _setLocale(value, ref);
                 },
               ),
             ],
@@ -96,6 +87,12 @@ class DrawerWidget extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  void _setLocale(Locale? value, WidgetRef ref) {
+    if (value != null) {
+      ref.read(localeNotifierProvider.notifier).setLocale(value);
+    }
   }
 
   void _logout(BuildContext context, WidgetRef ref) {
