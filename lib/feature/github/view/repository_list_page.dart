@@ -18,6 +18,7 @@ import 'package:search_repositories/feature/auth/controller/auth_controller.dart
 import 'package:search_repositories/feature/github/controller/github_controller.dart';
 import 'package:search_repositories/feature/github/model/api_response.dart';
 import 'package:search_repositories/common_widget/icon_info_widget.dart';
+import 'package:search_repositories/config/locale/controller/locale_provider.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

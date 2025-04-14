@@ -5,6 +5,10 @@ class DrawerWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // 現在の言語を取得
+    final currentLocale = ref.watch(localeNotifierProvider);
+    final localizations = AppLocalizations.of(context);
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -30,6 +34,52 @@ class DrawerWidget extends ConsumerWidget {
                     .setThemeMode(value ? ThemeMode.dark : ThemeMode.light);
               },
             ),
+          ),
+          // 言語設定ボタン
+          ExpansionTile(
+            title: const Text('言語設定'),
+            children: [
+              RadioListTile<Locale>(
+                title: const Text('English'),
+                value: const Locale('en'),
+                groupValue: currentLocale,
+                onChanged: (Locale? value) {
+                  if (value != null) {
+                    ref.read(localeNotifierProvider.notifier).setLocale(value);
+                  }
+                },
+              ),
+              RadioListTile<Locale>(
+                title: const Text('日本語'),
+                value: const Locale('ja'),
+                groupValue: currentLocale,
+                onChanged: (Locale? value) {
+                  if (value != null) {
+                    ref.read(localeNotifierProvider.notifier).setLocale(value);
+                  }
+                },
+              ),
+              RadioListTile<Locale>(
+                title: const Text('한국어'),
+                value: const Locale('ko'),
+                groupValue: currentLocale,
+                onChanged: (Locale? value) {
+                  if (value != null) {
+                    ref.read(localeNotifierProvider.notifier).setLocale(value);
+                  }
+                },
+              ),
+              RadioListTile<Locale>(
+                title: const Text('中文'),
+                value: const Locale('zh'),
+                groupValue: currentLocale,
+                onChanged: (Locale? value) {
+                  if (value != null) {
+                    ref.read(localeNotifierProvider.notifier).setLocale(value);
+                  }
+                },
+              ),
+            ],
           ),
           ListTile(
             title: const Text('ログアウト'),
