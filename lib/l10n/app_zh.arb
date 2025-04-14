@@ -1,0 +1,34 @@
+{
+  "@@locale":"zh",
+  "searchTextFieldLabel":"搜索仓库",
+  "appTitle": "GitHub仓库搜索",
+  "darkMode": "深色模式",
+  "lightMode": "浅色模式",
+  "languageSettings": "语言设置",
+  "logout": "登出",
+  "deleteAccount": "删除账户",
+  "logoutConfirmation": "确定要登出吗？",
+  "deleteConfirmation": "确定要删除账户吗？",
+  "loggingOut": "正在登出...",
+  "loggedOut": "已登出",
+  "deleting": "正在删除...",
+  "accountDeleted": "账户已删除",
+  
+  "developer": "开发者",
+  "language": "开发语言",
+  "unknown": "未知",
+  "noDescription": "没有描述",
+  "showMore": " 显示更多",
+  "showLess": " 收起",
+  
+  "welcome": "欢迎！",
+  "appDescription": "这个应用可以搜索GitHub仓库。使用此功能需要GitHub集成。",
+  "signInGitHub": "登录GitHub",
+  "connectionSuccess": "连接成功",
+  "tokenFailure": "获取令牌失败",
+  "connectionFailure": "连接失败",
+  
+  "confirmTitle": "确认",
+  "yes": "是",
+  "no": "否"
+}

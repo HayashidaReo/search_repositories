@@ -1,0 +1,34 @@
+{
+  "@@locale":"en",
+  "searchTextFieldLabel":"Search repositories",
+  "appTitle": "GitHub Repository Search",
+  "darkMode": "Dark Mode",
+  "lightMode": "Light Mode",
+  "languageSettings": "Language Settings",
+  "logout": "Logout",
+  "deleteAccount": "Delete Account",
+  "logoutConfirmation": "Are you sure you want to log out?",
+  "deleteConfirmation": "Are you sure you want to delete your account?",
+  "loggingOut": "Logging out...",
+  "loggedOut": "Logged out",
+  "deleting": "Deleting...",
+  "accountDeleted": "Account deleted",
+  
+  "developer": "Developer",
+  "language": "Language",
+  "unknown": "Unknown",
+  "noDescription": "No description available",
+  "showMore": " Show more",
+  "showLess": " Show less",
+  
+  "welcome": "Welcome!",
+  "appDescription": "This app allows you to search GitHub repositories. GitHub integration is required to use this feature.",
+  "signInGitHub": "Sign in to GitHub",
+  "connectionSuccess": "Connection successful",
+  "tokenFailure": "Failed to get token",
+  "connectionFailure": "Connection failed",
+  
+  "confirmTitle": "Confirm",
+  "yes": "Yes",
+  "no": "No"
+}

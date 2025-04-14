@@ -18,9 +18,13 @@ import 'package:search_repositories/feature/auth/controller/auth_controller.dart
 import 'package:search_repositories/feature/github/controller/github_controller.dart';
 import 'package:search_repositories/feature/github/model/api_response.dart';
 import 'package:search_repositories/common_widget/icon_info_widget.dart';
+import 'package:search_repositories/config/locale/controller/locale_provider.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part 'part/repository_list_tile.dart';
 part 'part/drawer_widget.dart';
+part 'part/language_toggle_tile.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
@@ -30,6 +34,16 @@ class RepositoryListPage extends HookConsumerWidget {
     final TextEditingController searchTextController =
         useTextEditingController();
     final ValueNotifier<String> keyword = useState<String>('');
+
+    /*
+    多言語対応
+    */
+    final AppLocalizations? localizations = AppLocalizations.of(context);
+    // AppLocalizations が取得できていない場合はローディングを表示
+    if (localizations == null) {
+      return const Scaffold(body: Center(child: LoadingWidget()));
+    }
+
     return UnFocusKeyBoardWidget(
       child: Scaffold(
         drawer: const DrawerWidget(),
@@ -37,7 +51,7 @@ class RepositoryListPage extends HookConsumerWidget {
           title: TextField(
             controller: searchTextController,
             decoration: noneBorderTextFieldDecoration(
-              label: 'レポジトリを検索',
+              label: localizations.searchTextFieldLabel,
               prefixIconOnPressed: null,
               prefixIcon: const SizedBox.shrink(),
               suffixIconOnPressed:

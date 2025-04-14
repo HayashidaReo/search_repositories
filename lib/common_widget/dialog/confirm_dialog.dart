@@ -4,6 +4,7 @@ import 'package:search_repositories/common_widget/custom_button.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void showConfirmDialog({
   required BuildContext context,
@@ -26,11 +27,18 @@ class ConfirmDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final localizations = AppLocalizations.of(context);
+
+    // null対策
+    final String confirmTitle = localizations?.confirmTitle ?? '確認';
+    final String yesText = localizations?.yes ?? 'はい';
+    final String noText = localizations?.no ?? 'いいえ';
+
     return AlertDialog(
-      title: const Text(
-        '確認',
+      title: Text(
+        confirmTitle,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: CustomFontSize.large,
           fontWeight: FontWeight.bold,
         ),
@@ -55,7 +63,7 @@ class ConfirmDialog extends StatelessWidget {
                 onPressed: () {
                   context.pop();
                 },
-                text: 'いいえ',
+                text: noText,
                 isColorReversed: true,
               ),
             ),
@@ -65,7 +73,7 @@ class ConfirmDialog extends StatelessWidget {
                 onPressed: () {
                   onPressed();
                 },
-                text: 'はい',
+                text: yesText,
               ),
             ),
           ],

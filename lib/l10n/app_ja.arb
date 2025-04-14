@@ -1,0 +1,34 @@
+{
+  "@@locale":"ja",
+  "searchTextFieldLabel":"レポジトリを検索",
+  "appTitle": "GitHubリポジトリ検索",
+  "darkMode": "ダークモード",
+  "lightMode": "ライトモード",
+  "languageSettings": "言語設定",
+  "logout": "ログアウト",
+  "deleteAccount": "アカウント削除",
+  "logoutConfirmation": "ログアウトしますか？",
+  "deleteConfirmation": "本当にアカウントを削除しますか？",
+  "loggingOut": "ログアウト中...",
+  "loggedOut": "ログアウトしました",
+  "deleting": "削除中...",
+  "accountDeleted": "アカウントを削除しました",
+  
+  "developer": "開発者",
+  "language": "開発言語",
+  "unknown": "不明",
+  "noDescription": "詳細がありません",
+  "showMore": " さらに表示",
+  "showLess": " 折りたたむ",
+  
+  "welcome": "ようこそ！",
+  "appDescription": "このアプリではGitHubのリポジトリを検索できます。機能を使うにはGitHub連携が必要です。",
+  "signInGitHub": "GitHubでログイン",
+  "connectionSuccess": "接続成功",
+  "tokenFailure": "トークン取得に失敗",
+  "connectionFailure": "接続に失敗",
+  
+  "confirmTitle": "確認",
+  "yes": "はい",
+  "no": "いいえ"
+}
