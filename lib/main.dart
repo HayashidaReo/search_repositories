@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories/config/firebase/firebase_options.dart';
@@ -8,8 +10,6 @@ import 'package:search_repositories/config/locale/language_config.dart';
 import 'package:search_repositories/config/routing/app_router.dart';
 import 'package:search_repositories/config/theme/app_theme.dart';
 import 'package:search_repositories/config/theme/theme_controller.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +23,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final GoRouter appRouter = ref.watch(appRouterProvider);
-    final themeMode = ref.watch(themeControllerProvider);
+    final ThemeMode themeMode = ref.watch(themeControllerProvider);
     return MaterialApp.router(
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
@@ -37,17 +37,17 @@ class MyApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: LanguageConfig.supportedLocales,
-      locale: ref.watch(localeNotifierProvider), //初期言語
+      locale: ref.watch(localeNotifierProvider), // 初期言語
       localeResolutionCallback: (locale, supportedLocales) {
         if (locale == null) {
-          return const Locale('en'); // デフォルトを英語に設定
+          return const Locale('ja'); // デフォルトを日本語に設定
         }
         for (final supportedLocale in supportedLocales) {
           if (supportedLocale.languageCode == locale.languageCode) {
             return supportedLocale;
           }
         }
-        return const Locale('en'); // どの言語もマッチしない場合、英語を適用
+        return const Locale('ja'); // どの言語もマッチしない場合、日本語を適用
       },
     );
   }
