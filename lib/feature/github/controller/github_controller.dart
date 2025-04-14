@@ -22,7 +22,7 @@ Future<List<ApiResponse>> searchGitHubController(
       .getValue(key: SecureStorageKey.githubAccessToken);
   final Map<String, String> headers = {
     'Accept': 'application/vnd.github.v3+json',
-    'Authorization': 'Bearer a${accessToken ?? ''}',
+    'Authorization': 'Bearer ${accessToken ?? ''}',
   };
 
   if (context.mounted) {
