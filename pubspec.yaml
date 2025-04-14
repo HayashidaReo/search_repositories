@@ -12,7 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_hooks:
-  flutter_localizations:
   hooks_riverpod:
   flutter_riverpod:
   riverpod_annotation:
@@ -28,7 +27,8 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   fluttertoast: ^8.2.12
   shared_preferences: ^2.5.3
-  intl: ^0.18.1
+  intl:
+  flutter_localization: ^0.3.2
   
 
 dev_dependencies:
@@ -42,6 +42,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   assets:
     - assets/github_icon/github-mark.png
