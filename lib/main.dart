@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:search_repositories/config/firebase/firebase_options.dart';
+import 'package:search_repositories/config/locale/controller/locale_provider.dart';
 import 'package:search_repositories/config/routing/app_router.dart';
 import 'package:search_repositories/config/theme/app_theme.dart';
 import 'package:search_repositories/config/theme/theme_controller.dart';
@@ -35,9 +36,7 @@ class MyApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-
-      locale: const Locale('en'), //初期言語
-
+      locale: ref.watch(localeNotifierProvider), //初期言語
       localeResolutionCallback: (locale, supportedLocales) {
         if (locale == null) {
           return const Locale('en'); // デフォルトを日本語に設定
