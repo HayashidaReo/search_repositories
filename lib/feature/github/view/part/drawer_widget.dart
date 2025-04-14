@@ -42,12 +42,14 @@ class DrawerWidget extends ConsumerWidget {
           ),
           // 言語設定ボタン
           LanguageToggleTile(currentLocale: currentLocale),
+          // ログアウト
           ListTile(
             title: Text(localizations.logout),
             onTap: () async {
               _logout(context, ref, localizations);
             },
           ),
+          // アカウント削除
           ListTile(
             title: Text(localizations.deleteAccount),
             onTap: () async {
