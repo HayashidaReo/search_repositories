@@ -15,7 +15,6 @@ final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
 @riverpod
 GoRouter appRouter(ref) {
   return GoRouter(
-    // initialLocation: AppRoute.repositoryList.path,
     initialLocation: AppRoute.auth.path,
     navigatorKey: rootNavigatorKey,
     debugLogDiagnostics: true,
