@@ -35,6 +35,19 @@ class RepositoryListPage extends HookConsumerWidget {
         useTextEditingController();
     // キーワードの状態を管理
     final ValueNotifier<String> keyword = useState<String>('');
+    // 入力テキストの状態を管理（再描画のため）
+    final ValueNotifier<String> inputText = useState<String>('');
+
+    // テキスト変更を監視
+    useEffect(() {
+      void listener() {
+        inputText.value = searchTextController.text;
+      }
+
+      searchTextController.addListener(listener);
+      return null;
+      // ignore: require_trailing_commas
+    }, [searchTextController]);
 
     /*
     多言語対応
@@ -56,22 +69,28 @@ class RepositoryListPage extends HookConsumerWidget {
               label: localizations.searchTextFieldLabel,
               prefixIconOnPressed: null,
               prefixIcon: const SizedBox.shrink(),
-              suffixIconOnPressed: () {
-                if (keyword.value.isNotEmpty) {
-                  // 検索テキストをクリア
-                  searchTextController.clear();
-                  keyword.value = '';
-                } else {
-                  // 検索実行
-                  keyword.value = searchTextController.text.trim();
-                }
-              },
-
-              suffixIcon: Icon(
-                (keyword.value.isNotEmpty)
-                    ? Icons.keyboard_backspace
-                    : Icons.search,
-              ),
+              suffixIconOnPressed:
+                  (searchTextController.text.isNotEmpty)
+                      ? () {
+                        if (searchTextController.text.trim() == keyword.value) {
+                          // 検索テキストをクリア
+                          searchTextController.clear();
+                          keyword.value = '';
+                        } else {
+                          // 検索実行
+                          keyword.value = searchTextController.text.trim();
+                        }
+                      }
+                      : null,
+              suffixIcon:
+                  searchTextController.text.isEmpty
+                      // 入力がない場合はアイコンを表示しない
+                      ? const SizedBox.shrink()
+                      : Icon(
+                        (searchTextController.text.trim() == keyword.value)
+                            ? Icons.keyboard_backspace
+                            : Icons.search,
+                      ),
               context: context,
             ),
             onSubmitted: (text) {
