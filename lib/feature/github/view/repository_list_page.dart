@@ -34,7 +34,7 @@ class RepositoryListPage extends HookConsumerWidget {
     final TextEditingController searchTextController =
         useTextEditingController();
     // キーワードの状態を管理
-    final ValueNotifier<String> keyword = useState<String>('');
+    final ValueNotifier<String> submitedKeyword = useState<String>('');
     // 入力テキストの状態を管理（再描画のため）
     final ValueNotifier<String> inputText = useState<String>('');
 
@@ -72,13 +72,15 @@ class RepositoryListPage extends HookConsumerWidget {
               suffixIconOnPressed:
                   (searchTextController.text.isNotEmpty)
                       ? () {
-                        if (searchTextController.text.trim() == keyword.value) {
+                        if (searchTextController.text.trim() ==
+                            submitedKeyword.value) {
                           // 検索テキストをクリア
                           searchTextController.clear();
-                          keyword.value = '';
+                          submitedKeyword.value = '';
                         } else {
                           // 検索実行
-                          keyword.value = searchTextController.text.trim();
+                          submitedKeyword.value =
+                              searchTextController.text.trim();
                         }
                       }
                       : null,
@@ -87,7 +89,8 @@ class RepositoryListPage extends HookConsumerWidget {
                       // 入力がない場合はアイコンを表示しない
                       ? const SizedBox.shrink()
                       : Icon(
-                        (searchTextController.text.trim() == keyword.value)
+                        (searchTextController.text.trim() ==
+                                submitedKeyword.value)
                             ? Icons.keyboard_backspace
                             : Icons.search,
                       ),
@@ -95,14 +98,14 @@ class RepositoryListPage extends HookConsumerWidget {
             ),
             onSubmitted: (text) {
               // 検索実行
-              keyword.value = text.trim();
+              submitedKeyword.value = text.trim();
             },
           ),
         ),
         body: SafeArea(
           // データを取得する
           child: FutureBuilder(
-            future: searchGitHubController(keyword.value, ref),
+            future: searchGitHubController(submitedKeyword.value, ref),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const LoadingWidget();
