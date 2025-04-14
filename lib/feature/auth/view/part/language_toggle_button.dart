@@ -36,28 +36,16 @@ class LanguageToggleButton extends ConsumerWidget {
         ),
       ),
       itemBuilder:
-          (BuildContext context) => <PopupMenuEntry<Locale>>[
-            _languagePopupMenuItem(
-              currentLocale: currentLocale,
-              languageCode: 'ja',
-              languageName: '日本語',
-            ),
-            _languagePopupMenuItem(
-              currentLocale: currentLocale,
-              languageCode: 'en',
-              languageName: 'English',
-            ),
-            _languagePopupMenuItem(
-              currentLocale: currentLocale,
-              languageCode: 'ko',
-              languageName: '한국어',
-            ),
-            _languagePopupMenuItem(
-              currentLocale: currentLocale,
-              languageCode: 'zh',
-              languageName: '中文',
-            ),
-          ],
+          (BuildContext context) =>
+              LanguageConfig.supportedLocales.map((locale) {
+                return _languagePopupMenuItem(
+                  currentLocale: currentLocale,
+                  languageCode: locale.languageCode,
+                  languageName: LanguageConfig.getLanguageName(
+                    locale.languageCode,
+                  ),
+                );
+              }).toList(),
     );
   }
 

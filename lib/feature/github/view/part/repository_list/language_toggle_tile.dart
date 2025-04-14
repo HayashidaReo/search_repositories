@@ -15,40 +15,17 @@ class LanguageToggleTile extends ConsumerWidget {
 
     return ExpansionTile(
       title: Text(localizations.languageSettings),
-      children: [
-        RadioListTile<Locale>(
-          title: const Text('日本語'),
-          value: const Locale('ja'),
-          groupValue: currentLocale,
-          onChanged: (Locale? value) {
-            _setLocale(value, ref);
-          },
-        ),
-        RadioListTile<Locale>(
-          title: const Text('English'),
-          value: const Locale('en'),
-          groupValue: currentLocale,
-          onChanged: (Locale? value) {
-            _setLocale(value, ref);
-          },
-        ),
-        RadioListTile<Locale>(
-          title: const Text('한국어'),
-          value: const Locale('ko'),
-          groupValue: currentLocale,
-          onChanged: (Locale? value) {
-            _setLocale(value, ref);
-          },
-        ),
-        RadioListTile<Locale>(
-          title: const Text('中文'),
-          value: const Locale('zh'),
-          groupValue: currentLocale,
-          onChanged: (Locale? value) {
-            _setLocale(value, ref);
-          },
-        ),
-      ],
+      children:
+          LanguageConfig.supportedLocales.map((locale) {
+            return RadioListTile<Locale>(
+              title: Text(LanguageConfig.getLanguageName(locale.languageCode)),
+              value: locale,
+              groupValue: currentLocale,
+              onChanged: (Locale? value) {
+                _setLocale(value, ref);
+              },
+            );
+          }).toList(),
     );
   }
 
