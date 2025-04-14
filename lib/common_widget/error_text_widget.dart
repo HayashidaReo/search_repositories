@@ -31,7 +31,6 @@ class ErrorTextWidget extends ConsumerWidget {
               color: Theme.of(context).colorScheme.error,
             ),
             HeightMargin.normal,
-
             // エラーメッセージ
             Text(
               text,
