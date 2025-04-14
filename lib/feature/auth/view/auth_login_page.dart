@@ -1,8 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:search_repositories/common_widget/loading_widget.dart';
 import 'package:search_repositories/common_widget/toast/show_toast.dart';
 import 'package:search_repositories/config/key/secure_storage_key.dart';
+import 'package:search_repositories/config/locale/controller/locale_provider.dart';
 import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
@@ -10,10 +13,6 @@ import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/auth/controller/auth_controller.dart';
 import 'package:search_repositories/feature/auth/controller/secure_storage_controller.dart';
-import 'package:search_repositories/common_widget/loading_widget.dart';
-import 'package:search_repositories/config/locale/controller/locale_provider.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 part './part/language_toggle_button.dart';
 
