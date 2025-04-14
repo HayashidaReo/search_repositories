@@ -21,10 +21,10 @@ import 'package:search_repositories/feature/auth/controller/auth_controller.dart
 import 'package:search_repositories/feature/github/controller/github_controller.dart';
 import 'package:search_repositories/feature/github/model/api_response.dart';
 
-part 'part/drawer_widget.dart';
-part 'part/language_toggle_tile.dart';
-part 'part/repository_list_tile.dart';
-part 'part/search_text_field.dart';
+part 'part/repository_list/drawer_widget.dart';
+part 'part/repository_list/language_toggle_tile.dart';
+part 'part/repository_list/repository_list_tile.dart';
+part 'part/repository_list/search_text_field.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});

@@ -1,4 +1,4 @@
-part of '../repository_list_page.dart';
+part of '../../repository_list_page.dart';
 
 class DrawerWidget extends ConsumerWidget {
   const DrawerWidget({super.key});

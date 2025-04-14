@@ -1,4 +1,4 @@
-part of '../repository_list_page.dart';
+part of '../../repository_list_page.dart';
 
 class RepositoryListTile extends StatelessWidget {
   const RepositoryListTile({super.key, required this.repo});

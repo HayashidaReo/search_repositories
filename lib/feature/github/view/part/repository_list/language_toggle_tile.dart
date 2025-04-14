@@ -1,4 +1,4 @@
-part of '../repository_list_page.dart';
+part of '../../repository_list_page.dart';
 
 class LanguageToggleTile extends ConsumerWidget {
   const LanguageToggleTile({super.key, required this.currentLocale});

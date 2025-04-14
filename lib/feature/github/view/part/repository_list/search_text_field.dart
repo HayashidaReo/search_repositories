@@ -1,4 +1,4 @@
-part of '../repository_list_page.dart';
+part of '../../repository_list_page.dart';
 
 class SearchTextField extends HookWidget {
   final AppLocalizations localizations;
