@@ -27,6 +27,7 @@
   "connectionSuccess": "连接成功",
   "tokenFailure": "获取令牌失败",
   "connectionFailure": "连接失败",
+  "connecting": "连接中...",
   
   "confirmTitle": "确认",
   "yes": "是",

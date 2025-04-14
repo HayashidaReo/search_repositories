@@ -78,7 +78,7 @@ class AuthLoginPage extends ConsumerWidget {
                     shadowColor: Theme.of(context).colorScheme.tertiary,
                   ),
                   onPressed: () async {
-                    showLoadingDialog('接続中...');
+                    showLoadingDialog(localizations.connecting);
                     await _signInWithGitHub(ref, localizations);
                     hideLoadingDialog();
                   },
