@@ -26,22 +26,20 @@ class DrawerWidget extends ConsumerWidget {
           ),
           // ダークモードの切り替え
           ListTile(
-            title: Expanded(
-              child: Row(
-                children: [
-                  Text(
-                    (ref.watch(themeControllerProvider) == ThemeMode.dark)
-                        ? localizations.darkMode
-                        : localizations.lightMode,
-                  ),
-                  WidthMargin.small,
-                  Icon(
-                    (ref.watch(themeControllerProvider) == ThemeMode.dark)
-                        ? Icons.dark_mode
-                        : Icons.light_mode,
-                  ),
-                ],
-              ),
+            title: Row(
+              children: [
+                Text(
+                  (ref.watch(themeControllerProvider) == ThemeMode.dark)
+                      ? localizations.darkMode
+                      : localizations.lightMode,
+                ),
+                WidthMargin.small,
+                Icon(
+                  (ref.watch(themeControllerProvider) == ThemeMode.dark)
+                      ? Icons.dark_mode
+                      : Icons.light_mode,
+                ),
+              ],
             ),
             trailing: Switch(
               value: ref.watch(themeControllerProvider) == ThemeMode.dark,
