@@ -18,7 +18,6 @@ Future<List<ApiResponse>> searchGitHubController(
   final String? accessToken = await ref
       .read(secureStorageControllerProvider.notifier)
       .getValue(key: SecureStorageKey.githubAccessToken);
-  print('accessToken: $accessToken');
   final Map<String, String> headers = {
     'Accept': 'application/vnd.github.v3+json',
     'Authorization': 'Bearer ${accessToken ?? ''}',
