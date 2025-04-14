@@ -18,6 +18,7 @@ import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/none_border_text_field_decoration.dart';
+import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/auth/controller/auth_controller.dart';
 import 'package:search_repositories/feature/github/controller/github_controller.dart';
 import 'package:search_repositories/feature/github/model/api_response.dart';
