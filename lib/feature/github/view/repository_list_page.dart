@@ -30,6 +30,7 @@ class RepositoryListPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // 検索テキスト
     final TextEditingController searchTextController =
         useTextEditingController();
     // キーワードの状態を管理
@@ -55,22 +56,27 @@ class RepositoryListPage extends HookConsumerWidget {
               label: localizations.searchTextFieldLabel,
               prefixIconOnPressed: null,
               prefixIcon: const SizedBox.shrink(),
-              suffixIconOnPressed:
-                  (keyword.value.isNotEmpty)
-                      ? () {
-                        keyword.value = '';
-                        searchTextController.clear();
-                      }
-                      : null,
+              suffixIconOnPressed: () {
+                if (keyword.value.isNotEmpty) {
+                  // 検索テキストをクリア
+                  searchTextController.clear();
+                  keyword.value = '';
+                } else {
+                  // 検索実行
+                  keyword.value = searchTextController.text.trim();
+                }
+              },
+
               suffixIcon: Icon(
-                (keyword.value.isEmpty)
-                    ? Icons.search
-                    : Icons.keyboard_backspace,
+                (keyword.value.isNotEmpty)
+                    ? Icons.keyboard_backspace
+                    : Icons.search,
               ),
               context: context,
             ),
-            onChanged: (text) {
-              keyword.value = text;
+            onSubmitted: (text) {
+              // 検索実行
+              keyword.value = text.trim();
             },
           ),
         ),
