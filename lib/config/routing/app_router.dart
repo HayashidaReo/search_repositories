@@ -69,6 +69,15 @@ GoRouter appRouter(ref) {
           return const NoTransitionPage(child: AuthLoginPage());
         },
       ),
+      // 外部認証からリダイレクト
+      GoRoute(
+        path: AppRoute.link.path,
+        name: AppRoute.link.name,
+        redirect: (_, __) {
+          // リダイレクトされた場合は、認証ページにリダイレクト
+          return AppRoute.auth.path;
+        },
+      ),
       GoRoute(
         path: AppRoute.repositoryList.path,
         name: AppRoute.repositoryList.name,

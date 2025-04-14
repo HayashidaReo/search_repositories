@@ -20,17 +20,19 @@ class AuthController extends _$AuthController {
 
   /// サインアウト
   Future<void> signOut() async {
-    await ref.read(authRepoProvider.notifier).signOut();
+    // 先にトークンを削除
     await ref
         .read(secureStorageControllerProvider.notifier)
         .deleteValue(key: SecureStorageKey.githubAccessToken);
+    await ref.read(authRepoProvider.notifier).signOut();
   }
 
   /// アカウントを削除
   Future<void> delete() async {
-    await ref.read(authRepoProvider.notifier).delete();
+    // 先にトークンを削除
     await ref
         .read(secureStorageControllerProvider.notifier)
         .deleteValue(key: SecureStorageKey.githubAccessToken);
+    await ref.read(authRepoProvider.notifier).delete();
   }
 }
