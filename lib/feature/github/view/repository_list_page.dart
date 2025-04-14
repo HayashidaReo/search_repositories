@@ -32,6 +32,7 @@ class RepositoryListPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final TextEditingController searchTextController =
         useTextEditingController();
+    // キーワードの状態を管理
     final ValueNotifier<String> keyword = useState<String>('');
 
     /*
@@ -47,6 +48,7 @@ class RepositoryListPage extends HookConsumerWidget {
       child: Scaffold(
         drawer: const DrawerWidget(),
         appBar: AppBar(
+          // 検索バー
           title: TextField(
             controller: searchTextController,
             decoration: noneBorderTextFieldDecoration(
@@ -60,7 +62,6 @@ class RepositoryListPage extends HookConsumerWidget {
                         searchTextController.clear();
                       }
                       : null,
-
               suffixIcon: Icon(
                 (keyword.value.isEmpty)
                     ? Icons.search
@@ -74,6 +75,7 @@ class RepositoryListPage extends HookConsumerWidget {
           ),
         ),
         body: SafeArea(
+          // データを取得する
           child: FutureBuilder(
             future: searchGitHubController(keyword.value, ref),
             builder: (context, snapshot) {
@@ -82,7 +84,7 @@ class RepositoryListPage extends HookConsumerWidget {
               } else if (snapshot.hasError) {
                 return ErrorTextWidget(text: snapshot.error.toString());
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return const ErrorTextWidget(text: 'データが見つかりませんでした');
+                return const ErrorTextWidget(text: '検索結果が0件です');
               }
 
               final List<ApiResponse> repositories = snapshot.data!;
