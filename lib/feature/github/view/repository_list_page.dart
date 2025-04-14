@@ -24,30 +24,15 @@ import 'package:search_repositories/feature/github/model/api_response.dart';
 part 'part/drawer_widget.dart';
 part 'part/language_toggle_tile.dart';
 part 'part/repository_list_tile.dart';
+part 'part/search_text_field.dart';
 
 class RepositoryListPage extends HookConsumerWidget {
   const RepositoryListPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // 検索テキスト
-    final TextEditingController searchTextController =
-        useTextEditingController();
     // キーワードの状態を管理
-    final ValueNotifier<String> submitedKeyword = useState<String>('');
-    // 入力テキストの状態を管理（再描画のため）
-    final ValueNotifier<String> inputText = useState<String>('');
-
-    // テキスト変更を監視
-    useEffect(() {
-      void listener() {
-        inputText.value = searchTextController.text;
-      }
-
-      searchTextController.addListener(listener);
-      return null;
-      // ignore: require_trailing_commas
-    }, [searchTextController]);
+    final ValueNotifier<String> submittedKeyword = useState<String>('');
 
     /*
     多言語対応
@@ -63,57 +48,24 @@ class RepositoryListPage extends HookConsumerWidget {
         drawer: const DrawerWidget(),
         appBar: AppBar(
           // 検索バー
-          // TODO: 検索中に新しい入力があったらおかしくなる
-          title: TextField(
-            controller: searchTextController,
-            decoration: noneBorderTextFieldDecoration(
-              label: localizations.searchTextFieldLabel,
-              prefixIconOnPressed: null,
-              prefixIcon: const SizedBox.shrink(),
-              suffixIconOnPressed:
-                  (searchTextController.text.isNotEmpty)
-                      ? () {
-                        if (searchTextController.text.trim() ==
-                            submitedKeyword.value) {
-                          // 検索テキストをクリア
-                          searchTextController.clear();
-                          submitedKeyword.value = '';
-                        } else {
-                          // 検索実行
-                          submitedKeyword.value =
-                              searchTextController.text.trim();
-                        }
-                      }
-                      : null,
-              suffixIcon:
-                  searchTextController.text.isEmpty
-                      // 入力がない場合はアイコンを表示しない
-                      ? const SizedBox.shrink()
-                      : Icon(
-                        (searchTextController.text.trim() ==
-                                submitedKeyword.value)
-                            ? Icons.keyboard_backspace
-                            : Icons.search,
-                      ),
-              context: context,
-            ),
-            onSubmitted: (text) {
-              // 検索実行
-              submitedKeyword.value = text.trim();
+          title: SearchTextField(
+            localizations: localizations,
+            onSearch: (keyword) {
+              submittedKeyword.value = keyword;
             },
           ),
         ),
         body: SafeArea(
           // データを取得する
           child: FutureBuilder(
-            future: searchGitHubController(submitedKeyword.value, ref),
+            future: searchGitHubController(submittedKeyword.value, ref),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const LoadingWidget();
               } else if (snapshot.hasError) {
                 return ErrorTextWidget(text: snapshot.error.toString());
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                return ErrorTextWidget(text: localizations.noSearchResults);
+                return const ErrorTextWidget(text: '検索結果が0件です');
               }
 
               final List<ApiResponse> repositories = snapshot.data!;
