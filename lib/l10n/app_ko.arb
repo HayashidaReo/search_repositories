@@ -26,5 +26,9 @@
   "signInGitHub": "GitHub로 로그인",
   "connectionSuccess": "연결 성공",
   "tokenFailure": "토큰 가져오기 실패",
-  "connectionFailure": "연결 실패"
+  "connectionFailure": "연결 실패",
+  
+  "confirmTitle": "확인",
+  "yes": "예",
+  "no": "아니오"
 }

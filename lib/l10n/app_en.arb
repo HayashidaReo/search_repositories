@@ -26,5 +26,9 @@
   "signInGitHub": "Sign in to GitHub",
   "connectionSuccess": "Connection successful",
   "tokenFailure": "Failed to get token",
-  "connectionFailure": "Connection failed"
+  "connectionFailure": "Connection failed",
+  
+  "confirmTitle": "Confirm",
+  "yes": "Yes",
+  "no": "No"
 }

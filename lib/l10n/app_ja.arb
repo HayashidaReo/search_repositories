@@ -26,5 +26,9 @@
   "signInGitHub": "GitHubでログイン",
   "connectionSuccess": "接続成功",
   "tokenFailure": "トークン取得に失敗",
-  "connectionFailure": "接続に失敗"
+  "connectionFailure": "接続に失敗",
+  
+  "confirmTitle": "確認",
+  "yes": "はい",
+  "no": "いいえ"
 }
