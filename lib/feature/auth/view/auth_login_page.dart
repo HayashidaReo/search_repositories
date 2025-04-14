@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:search_repositories/common_widget/toast/show_toast.dart';
 import 'package:search_repositories/config/key/secure_storage_key.dart';
+import 'package:search_repositories/config/util/color_style.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
@@ -10,6 +11,7 @@ import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/auth/controller/auth_controller.dart';
 import 'package:search_repositories/feature/auth/controller/secure_storage_controller.dart';
 import 'package:search_repositories/common_widget/loading_widget.dart';
+import 'package:search_repositories/config/locale/controller/locale_provider.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -20,12 +22,93 @@ class AuthLoginPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // 多言語対応
     final AppLocalizations? localizations = AppLocalizations.of(context);
+    // 現在の言語を取得
+    final currentLocale = ref.watch(localeNotifierProvider);
+
     // AppLocalizations が取得できていない場合はローディングを表示
     if (localizations == null) {
       return const Scaffold(body: Center(child: LoadingWidget()));
     }
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        actions: [
+          // 言語切り替えボタン
+          PopupMenuButton<Locale>(
+            tooltip: localizations.languageSettings,
+            onSelected: (Locale locale) {
+              ref.read(localeNotifierProvider.notifier).setLocale(locale);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: CustomPadding.normal,
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    localizations.languageSettings,
+                    style: const TextStyle(
+                      color: ColorStyle.blueAccent,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  WidthMargin.small,
+                  const Icon(Icons.language, color: ColorStyle.blueAccent),
+                ],
+              ),
+            ),
+            itemBuilder:
+                (BuildContext context) => <PopupMenuEntry<Locale>>[
+                  PopupMenuItem<Locale>(
+                    value: const Locale('en'),
+                    child: Row(
+                      children: [
+                        if (currentLocale.languageCode == 'en')
+                          const Icon(Icons.check, size: 18),
+                        WidthMargin.small,
+                        const Text('English'),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<Locale>(
+                    value: const Locale('ja'),
+                    child: Row(
+                      children: [
+                        if (currentLocale.languageCode == 'ja')
+                          const Icon(Icons.check, size: 18),
+                        WidthMargin.small,
+                        const Text('日本語'),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<Locale>(
+                    value: const Locale('ko'),
+                    child: Row(
+                      children: [
+                        if (currentLocale.languageCode == 'ko')
+                          const Icon(Icons.check, size: 18),
+                        WidthMargin.small,
+                        const Text('한국어'),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<Locale>(
+                    value: const Locale('zh'),
+                    child: Row(
+                      children: [
+                        if (currentLocale.languageCode == 'zh')
+                          const Icon(Icons.check, size: 18),
+                        WidthMargin.small,
+                        const Text('中文'),
+                      ],
+                    ),
+                  ),
+                ],
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(CustomPadding.large),
