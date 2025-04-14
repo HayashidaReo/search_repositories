@@ -9,12 +9,22 @@ import 'package:search_repositories/config/util/height_margin.dart';
 import 'package:search_repositories/config/util/width_margin.dart';
 import 'package:search_repositories/feature/auth/controller/auth_controller.dart';
 import 'package:search_repositories/feature/auth/controller/secure_storage_controller.dart';
+import 'package:search_repositories/common_widget/loading_widget.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AuthLoginPage extends ConsumerWidget {
   const AuthLoginPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // 多言語対応
+    final AppLocalizations? localizations = AppLocalizations.of(context);
+    // AppLocalizations が取得できていない場合はローディングを表示
+    if (localizations == null) {
+      return const Scaffold(body: Center(child: LoadingWidget()));
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -22,19 +32,19 @@ class AuthLoginPage extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const Column(
+              Column(
                 children: [
                   Text(
-                    'ようこそ！',
-                    style: TextStyle(
+                    localizations.welcome,
+                    style: const TextStyle(
                       fontSize: CustomFontSize.largest,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   HeightMargin.large,
                   Text(
-                    'このアプリではGitHubのリポジトリを検索できます。機能を使うにはGitHub連携が必要です。',
-                    style: TextStyle(fontSize: CustomFontSize.medium),
+                    localizations.appDescription,
+                    style: const TextStyle(fontSize: CustomFontSize.medium),
                   ),
                 ],
               ),
@@ -52,7 +62,7 @@ class AuthLoginPage extends ConsumerWidget {
                   ),
                   onPressed: () async {
                     //TODO: ローディングダイアログの表示
-                    await _signInWithGitHub(ref);
+                    await _signInWithGitHub(ref, localizations);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -65,9 +75,9 @@ class AuthLoginPage extends ConsumerWidget {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       WidthMargin.normal,
-                      const Text(
-                        'Sign in to GitHub',
-                        style: TextStyle(fontSize: CustomFontSize.medium),
+                      Text(
+                        localizations.signInGitHub,
+                        style: const TextStyle(fontSize: CustomFontSize.medium),
                       ),
                     ],
                   ),
@@ -81,12 +91,15 @@ class AuthLoginPage extends ConsumerWidget {
     );
   }
 
-  Future<void> _signInWithGitHub(WidgetRef ref) async {
+  Future<void> _signInWithGitHub(
+    WidgetRef ref,
+    AppLocalizations localizations,
+  ) async {
     final UserCredential? credentail =
         await ref.read(authControllerProvider.notifier).signInWithGitHub();
     if (credentail != null) {
       // 認証成功
-      showToast('接続成功');
+      showToast(localizations.connectionSuccess);
       if (((credentail.credential?.accessToken) != null)) {
         await ref
             .read(secureStorageControllerProvider.notifier)
@@ -95,11 +108,11 @@ class AuthLoginPage extends ConsumerWidget {
               value: credentail.credential?.accessToken ?? '',
             );
       } else {
-        showToast('トークン取得に失敗');
+        showToast(localizations.tokenFailure);
       }
     } else {
       // 認証失敗
-      showToast('接続に失敗');
+      showToast(localizations.connectionFailure);
     }
   }
 }

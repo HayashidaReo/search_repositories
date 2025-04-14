@@ -19,5 +19,12 @@
   "unknown": "Unknown",
   "noDescription": "No description available",
   "showMore": " Show more",
-  "showLess": " Show less"
+  "showLess": " Show less",
+  
+  "welcome": "Welcome!",
+  "appDescription": "This app allows you to search GitHub repositories. GitHub integration is required to use this feature.",
+  "signInGitHub": "Sign in to GitHub",
+  "connectionSuccess": "Connection successful",
+  "tokenFailure": "Failed to get token",
+  "connectionFailure": "Connection failed"
 }

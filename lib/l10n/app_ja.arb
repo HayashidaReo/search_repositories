@@ -19,5 +19,12 @@
   "unknown": "不明",
   "noDescription": "詳細がありません",
   "showMore": " さらに表示",
-  "showLess": " 折りたたむ"
+  "showLess": " 折りたたむ",
+  
+  "welcome": "ようこそ！",
+  "appDescription": "このアプリではGitHubのリポジトリを検索できます。機能を使うにはGitHub連携が必要です。",
+  "signInGitHub": "GitHubでログイン",
+  "connectionSuccess": "接続成功",
+  "tokenFailure": "トークン取得に失敗",
+  "connectionFailure": "接続に失敗"
 }

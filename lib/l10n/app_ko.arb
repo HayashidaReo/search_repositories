@@ -19,5 +19,12 @@
   "unknown": "알 수 없음",
   "noDescription": "설명이 없습니다",
   "showMore": " 더 보기",
-  "showLess": " 접기"
+  "showLess": " 접기",
+  
+  "welcome": "환영합니다!",
+  "appDescription": "이 앱에서는 GitHub 레포지토리를 검색할 수 있습니다. 이 기능을 사용하려면 GitHub 연동이 필요합니다.",
+  "signInGitHub": "GitHub로 로그인",
+  "connectionSuccess": "연결 성공",
+  "tokenFailure": "토큰 가져오기 실패",
+  "connectionFailure": "연결 실패"
 }
