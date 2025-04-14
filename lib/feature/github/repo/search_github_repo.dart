@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:search_repositories/config/util/github_api_error.dart';
 import 'package:search_repositories/feature/github/model/api_response.dart';
-import 'package:search_repositories/feature/github/model/github_api_error.dart';
 
 Future<List<ApiResponse>> searchGitHubRepo(
   String keyword,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:search_repositories/common_widget/custom_button.dart';
 import 'package:search_repositories/config/util/custom_font_size.dart';
 import 'package:search_repositories/config/util/custom_padding.dart';
 import 'package:search_repositories/config/util/height_margin.dart';
-import 'package:search_repositories/common_widget/custom_button.dart';
 
 class ErrorTextWidget extends ConsumerWidget {
   const ErrorTextWidget({
