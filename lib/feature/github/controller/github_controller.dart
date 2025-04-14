@@ -14,7 +14,7 @@ Future<List<ApiResponse>> searchGitHubController(
     'https://api.github.com/search/repositories?q=$query&sort=stars&order=desc',
   );
 
-  // TODO: 文字が変わるたびに検索していたら瞬間的に何回もapi叩くから制限かかっちゃう
+  // githubのアクセストークンを取得
   final String? accessToken = await ref
       .read(secureStorageControllerProvider.notifier)
       .getValue(key: SecureStorageKey.githubAccessToken);
