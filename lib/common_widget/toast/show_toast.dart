@@ -6,7 +6,7 @@ void showToast(String msg) {
   Fluttertoast.showToast(
     msg: msg,
     toastLength: Toast.LENGTH_SHORT,
-    gravity: ToastGravity.TOP,
+    gravity: ToastGravity.SNACKBAR,
     backgroundColor: ColorStyle.darkGrey,
     textColor: ColorStyle.white,
     fontSize: CustomFontSize.normal,
