@@ -38,7 +38,7 @@ class RepositoryDetailPage extends ConsumerWidget {
           IconButton(
             onPressed: () {
               // レポジトリへ遷移
-              launchInExternalBrowser(repository.url);
+              launchInExternalBrowser(repository.url, context);
             },
             icon: const Icon(Icons.open_in_new),
           ),
