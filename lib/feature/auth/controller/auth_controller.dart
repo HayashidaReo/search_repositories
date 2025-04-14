@@ -20,6 +20,7 @@ class AuthController extends _$AuthController {
 
   /// サインアウト
   Future<void> signOut() async {
+    // 先にトークンを削除
     await ref
         .read(secureStorageControllerProvider.notifier)
         .deleteValue(key: SecureStorageKey.githubAccessToken);
@@ -28,6 +29,7 @@ class AuthController extends _$AuthController {
 
   /// アカウントを削除
   Future<void> delete() async {
+    // 先にトークンを削除
     await ref
         .read(secureStorageControllerProvider.notifier)
         .deleteValue(key: SecureStorageKey.githubAccessToken);

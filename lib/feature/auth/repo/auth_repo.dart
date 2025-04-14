@@ -60,14 +60,12 @@ class AuthRepo extends _$AuthRepo {
   Future<void> delete() async {
     // アカウント削除のために再度サインイン
     final GithubAuthProvider githubProvider = GithubAuthProvider();
-    print('開始');
     await ref
         .read(firebaseAuthInstanceProvider)
         .signInWithProvider(githubProvider);
-    print('サインイン');
+    // 削除を実行
     await ref.read(firebaseAuthInstanceProvider).currentUser?.delete();
-    print('アカウント削除');
+    // 状態を更新
     state = ref.read(firebaseAuthInstanceProvider).currentUser;
-    print('state: $state');
   }
 }
