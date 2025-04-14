@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:search_repositories/feature/github/model/api_response.dart';
+import 'package:search_repositories/feature/github/model/github_api_error.dart';
 
 Future<List<ApiResponse>> searchGitHubRepo(
   String keyword,
@@ -18,19 +19,32 @@ Future<List<ApiResponse>> searchGitHubRepo(
         .toList();
   } else if (response.statusCode == 401) {
     // 認証エラー
-    throw Exception(
-      '認証に失敗しました。一度ログアウトし、githubアカウントに接続し直してください。: ${response.statusCode}',
+    throw GitHubApiError(
+      message: '認証に失敗しました。一度ログアウトし、GitHubアカウントに接続し直してください。',
+      statusCode: response.statusCode,
     );
   } else if (response.statusCode == 403) {
     // アクセス制限
-    throw Exception('アクセス制限がかかりました。時間をおいてお試しください。: ${response.statusCode}');
+    throw GitHubApiError(
+      message: 'アクセス制限がかかりました。時間をおいてお試しください。',
+      statusCode: response.statusCode,
+    );
   } else if (response.statusCode == 404) {
     // リソースが見つからない
-    throw Exception('見つかりませんでした。: ${response.statusCode}');
+    throw GitHubApiError(
+      message: '見つかりませんでした。',
+      statusCode: response.statusCode,
+    );
   } else if (response.statusCode == 500) {
     // サーバーエラー
-    throw Exception('サーバーに問題があります。: ${response.statusCode}');
+    throw GitHubApiError(
+      message: 'サーバーに問題があります。しばらく経ってから再度お試しください。',
+      statusCode: response.statusCode,
+    );
   } else {
-    throw Exception('予期せぬエラーが発生しました。: ${response.statusCode}');
+    throw GitHubApiError(
+      message: '予期せぬエラーが発生しました。',
+      statusCode: response.statusCode,
+    );
   }
 }
