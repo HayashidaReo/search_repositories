@@ -8,7 +8,7 @@
   "logout": "登出",
   "deleteAccount": "删除账户",
   "logoutConfirmation": "确定要登出吗？",
-  "deleteConfirmation": "确定要删除账户吗？",
+  "deleteConfirmation": "您确定要删除账户吗？\n点击「是」后将开始删除，操作无法撤销。",
   "loggingOut": "正在登出...",
   "loggedOut": "已登出",
   "deleting": "正在删除...",

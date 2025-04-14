@@ -8,7 +8,7 @@
   "logout": "Logout",
   "deleteAccount": "Delete Account",
   "logoutConfirmation": "Are you sure you want to log out?",
-  "deleteConfirmation": "Are you sure you want to delete your account?",
+  "deleteConfirmation": "Are you sure you want to delete your account?\nOnce you press 「Yes」, the process will begin and cannot be undone.",
   "loggingOut": "Logging out...",
   "loggedOut": "Logged out",
   "deleting": "Deleting...",
