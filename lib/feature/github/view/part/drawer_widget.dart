@@ -7,23 +7,29 @@ class DrawerWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // 現在の言語を取得
     final currentLocale = ref.watch(localeNotifierProvider);
+    final localizations = AppLocalizations.of(context);
+
+    // localizationsがnullの場合はエラー防止のためローディング表示
+    if (localizations == null) {
+      return const Drawer(child: Center(child: CircularProgressIndicator()));
+    }
 
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const DrawerHeader(
+          DrawerHeader(
             child: Text(
-              'GitHubリポジトリ検索',
-              style: TextStyle(fontSize: CustomFontSize.large),
+              localizations.appTitle,
+              style: const TextStyle(fontSize: CustomFontSize.large),
             ),
           ),
           // ダークモードの切り替え
           ListTile(
             title: Text(
               (ref.watch(themeControllerProvider) == ThemeMode.dark)
-                  ? 'ダークモード'
-                  : 'ライトモード',
+                  ? localizations.darkMode
+                  : localizations.lightMode,
             ),
             trailing: Switch(
               value: ref.watch(themeControllerProvider) == ThemeMode.dark,
@@ -37,15 +43,15 @@ class DrawerWidget extends ConsumerWidget {
           // 言語設定ボタン
           LanguageToggleTile(currentLocale: currentLocale),
           ListTile(
-            title: const Text('ログアウト'),
+            title: Text(localizations.logout),
             onTap: () async {
-              _logout(context, ref);
+              _logout(context, ref, localizations);
             },
           ),
           ListTile(
-            title: const Text('削除'),
+            title: Text(localizations.deleteAccount),
             onTap: () async {
-              _deleteAccount(context, ref);
+              _deleteAccount(context, ref, localizations);
             },
           ),
         ],
@@ -53,30 +59,38 @@ class DrawerWidget extends ConsumerWidget {
     );
   }
 
-  void _logout(BuildContext context, WidgetRef ref) {
+  void _logout(
+    BuildContext context,
+    WidgetRef ref,
+    AppLocalizations localizations,
+  ) {
     return showConfirmDialog(
       context: context,
-      text: 'ログアウトしますか？',
+      text: localizations.logoutConfirmation,
       onPressed: () async {
         context.pop();
-        showLoadingDialog('ログアウト中...');
+        showLoadingDialog(localizations.loggingOut);
         await ref.read(authControllerProvider.notifier).signOut();
         hideLoadingDialog();
-        showToast('ログアウトしました');
+        showToast(localizations.loggedOut);
       },
     );
   }
 
-  void _deleteAccount(BuildContext context, WidgetRef ref) {
+  void _deleteAccount(
+    BuildContext context,
+    WidgetRef ref,
+    AppLocalizations localizations,
+  ) {
     return showConfirmDialog(
       context: context,
-      text: '本当にアカウントを削除しますか？',
+      text: localizations.deleteConfirmation,
       onPressed: () async {
         context.pop();
-        showLoadingDialog('削除中...');
+        showLoadingDialog(localizations.deleting);
         await ref.read(authControllerProvider.notifier).delete();
         hideLoadingDialog();
-        showToast('アカウントを削除しました');
+        showToast(localizations.accountDeleted);
       },
     );
   }

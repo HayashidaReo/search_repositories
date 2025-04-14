@@ -1,4 +1,16 @@
 {
   "@@locale":"ja",
-  "searchTextFieldLabel":"レポジトリを検索"
+  "searchTextFieldLabel":"レポジトリを検索",
+  "appTitle": "GitHubリポジトリ検索",
+  "darkMode": "ダークモード",
+  "lightMode": "ライトモード",
+  "languageSettings": "言語設定",
+  "logout": "ログアウト",
+  "deleteAccount": "アカウント削除",
+  "logoutConfirmation": "ログアウトしますか？",
+  "deleteConfirmation": "本当にアカウントを削除しますか？",
+  "loggingOut": "ログアウト中...",
+  "loggedOut": "ログアウトしました",
+  "deleting": "削除中...",
+  "accountDeleted": "アカウントを削除しました"
 }

@@ -12,6 +12,8 @@ import 'package:search_repositories/common_widget/icon_info_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:search_repositories/function/launch_url.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 part 'part/icon_image.dart';
 
 class RepositoryDetailPage extends ConsumerWidget {
@@ -22,6 +24,16 @@ class RepositoryDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const double iconSize = 36;
+
+    /*
+    多言語対応
+    */
+    final AppLocalizations? localizations = AppLocalizations.of(context);
+    // AppLocalizations が取得できていない場合はローディングを表示
+    if (localizations == null) {
+      return const Scaffold(body: Center(child: LoadingWidget()));
+    }
+
     return Scaffold(
       appBar: AppBar(
         actions: [

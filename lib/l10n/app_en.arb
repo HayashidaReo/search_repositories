@@ -1,4 +1,16 @@
 {
   "@@locale":"en",
-  "searchTextFieldLabel":"Search repositories"
+  "searchTextFieldLabel":"Search repositories",
+  "appTitle": "GitHub Repository Search",
+  "darkMode": "Dark Mode",
+  "lightMode": "Light Mode",
+  "languageSettings": "Language Settings",
+  "logout": "Logout",
+  "deleteAccount": "Delete Account",
+  "logoutConfirmation": "Are you sure you want to log out?",
+  "deleteConfirmation": "Are you sure you want to delete your account?",
+  "loggingOut": "Logging out...",
+  "loggedOut": "Logged out",
+  "deleting": "Deleting...",
+  "accountDeleted": "Account deleted"
 }

@@ -7,8 +7,14 @@ class LanguageToggleTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final localizations = AppLocalizations.of(context);
+
+    if (localizations == null) {
+      return const SizedBox.shrink();
+    }
+
     return ExpansionTile(
-      title: const Text('言語設定'),
+      title: Text(localizations.languageSettings),
       children: [
         RadioListTile<Locale>(
           title: const Text('日本語'),

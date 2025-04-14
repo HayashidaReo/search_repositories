@@ -38,7 +38,6 @@ class RepositoryListPage extends HookConsumerWidget {
     /*
     多言語対応
     */
-    // AppLocalizations が取得できていない場合はローディングを表示
     final AppLocalizations? localizations = AppLocalizations.of(context);
     // AppLocalizations が取得できていない場合はローディングを表示
     if (localizations == null) {
