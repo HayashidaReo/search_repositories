@@ -21,7 +21,8 @@ class AuthRepo extends _$AuthRepo {
     try {
       final GithubAuthProvider githubProvider = GithubAuthProvider();
 
-      final UserCredential credentail = await FirebaseAuth.instance
+      final UserCredential credentail = await ref
+          .read(firebaseAuthInstanceProvider)
           .signInWithProvider(githubProvider);
       // 認証成功
       if (((credentail.credential?.accessToken) != null)) {
@@ -57,6 +58,16 @@ class AuthRepo extends _$AuthRepo {
 
   /// アカウント削除処理
   Future<void> delete() async {
-    await ref.read(authRepoProvider.notifier).delete();
+    // アカウント削除のために再度サインイン
+    final GithubAuthProvider githubProvider = GithubAuthProvider();
+    print('開始');
+    await ref
+        .read(firebaseAuthInstanceProvider)
+        .signInWithProvider(githubProvider);
+    print('サインイン');
+    await ref.read(firebaseAuthInstanceProvider).currentUser?.delete();
+    print('アカウント削除');
+    state = ref.read(firebaseAuthInstanceProvider).currentUser;
+    print('state: $state');
   }
 }
