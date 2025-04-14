@@ -63,6 +63,7 @@ class RepositoryListPage extends HookConsumerWidget {
         drawer: const DrawerWidget(),
         appBar: AppBar(
           // 検索バー
+          // TODO: 検索中に新しい入力があったらおかしくなる
           title: TextField(
             controller: searchTextController,
             decoration: noneBorderTextFieldDecoration(
