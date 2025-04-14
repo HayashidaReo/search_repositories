@@ -30,7 +30,6 @@ Future<List<ApiResponse>> searchGitHubRepo(
       );
     }
   } catch (e) {
-    print('GitHub API error: $e');
     throw Exception('Failed to fetch repositories: $e');
   }
 }
