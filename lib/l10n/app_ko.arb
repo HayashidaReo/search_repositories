@@ -8,7 +8,7 @@
   "logout": "로그아웃",
   "deleteAccount": "계정 삭제",
   "logoutConfirmation": "로그아웃 하시겠습니까?",
-  "deleteConfirmation": "정말로 계정을 삭제하시겠습니까?",
+  "deleteConfirmation": "정말로 계정을 삭제하시겠습니까?\n「예」를 누르면 삭제가 시작되며, 되돌릴 수 없습니다.",
   "loggingOut": "로그아웃 중...",
   "loggedOut": "로그아웃 되었습니다",
   "deleting": "삭제 중...",

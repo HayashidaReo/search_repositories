@@ -8,7 +8,7 @@
   "logout": "ログアウト",
   "deleteAccount": "アカウント削除",
   "logoutConfirmation": "ログアウトしますか？",
-  "deleteConfirmation": "本当にアカウントを削除しますか？",
+  "deleteConfirmation": "本当にアカウントを削除してもよろしいですか？\n「はい」を押すと削除処理が開始され、元に戻すことはできません。",
   "loggingOut": "ログアウト中...",
   "loggedOut": "ログアウトしました",
   "deleting": "削除中...",
