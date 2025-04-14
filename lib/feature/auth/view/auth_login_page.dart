@@ -52,6 +52,7 @@ class AuthLoginPage extends ConsumerWidget {
             children: [
               Column(
                 children: [
+                  // ようこそテキスト
                   Text(
                     localizations.welcome,
                     style: const TextStyle(
@@ -60,6 +61,7 @@ class AuthLoginPage extends ConsumerWidget {
                     ),
                   ),
                   HeightMargin.large,
+                  // 説明テキスト
                   Text(
                     localizations.appDescription,
                     style: const TextStyle(fontSize: CustomFontSize.medium),
@@ -68,15 +70,12 @@ class AuthLoginPage extends ConsumerWidget {
               ),
               SizedBox(
                 height: 60,
+                // 言語切り替えボタン
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        Theme.of(context).colorScheme.primaryContainer,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    elevation: 1,
-                    shadowColor: Theme.of(context).colorScheme.tertiary,
                   ),
                   onPressed: () async {
                     showLoadingDialog(localizations.connecting);
@@ -126,6 +125,7 @@ class AuthLoginPage extends ConsumerWidget {
               value: credentail.credential?.accessToken ?? '',
             );
       } else {
+        // アクセストークンが取得できなかった場合
         showToast(localizations.tokenFailure);
       }
     } else {
