@@ -14,6 +14,14 @@ Flutter を使用して開発した GitHub リポジトリ検索アプリケー�
 ## スクリーンショット
 
 <!-- アプリのスクリーンショットを追加 -->
+<p align="left">
+   <img src="screenshot/auth.png" alt="認証" width="300" style="margin-right: 20px;">
+   <img src="screenshot/list_page.png" alt="一覧画面" width="300" style="margin-right: 20px;">
+   <img src="screenshot/detail_page.png" alt="詳細画面" width="300" style="margin-right: 20px;">
+   <img src="screenshot/hamburger.png" alt="ハンバーガーメニュー" width="300" style="margin-right: 20px;">
+   <img src="screenshot/dark_mode.png" alt="ダークモード" width="300" style="margin-right: 20px;">
+   <img src="screenshot/language.png" alt="言語設定" width="300" style="margin-right: 20px;">
+</p>
 
 ## 開発環境
 
@@ -124,7 +132,7 @@ Riverpodを使用して、アプリケーションの状態を管理していま
 
 1. リポジトリをクローン
 ```
-git clone https://github.com/yourusername/search_repositories.git
+git clone https://github.com/hayashidareo/search_repositories.git
 ```
 
 2. 依存関係のインストール
@@ -151,7 +159,7 @@ flutter test
 
 ## アピールポイント
 
-本アプリケーションでは、以下のような技術的な工夫を行っています。
+#### 本アプリケーションでは、以下のような技術的な工夫を行っています。
 
 アーキテクチャ面では、MVCパターンに近い構造を採用し、ビュー・ロジック・データの責務を明確に分離しました。これにより、コードの可読性が向上し、機能追加や修正が容易になっています。また、ハードコーディングを避け、定数やスタイルをクラスとして管理することで、一貫性のあるUIと保守性の高いコードベースを実現しています。
 
