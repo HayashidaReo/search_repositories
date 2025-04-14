@@ -15,12 +15,12 @@ Flutter を使用して開発した GitHub リポジトリ検索アプリケー�
 
 <!-- アプリのスクリーンショットを追加 -->
 <p align="left">
-   <img src="screenshot/auth.png" alt="認証" width="300" style="margin-right: 20px;">
-   <img src="screenshot/list_page.png" alt="一覧画面" width="300" style="margin-right: 20px;">
-   <img src="screenshot/detail_page.png" alt="詳細画面" width="300" style="margin-right: 20px;">
-   <img src="screenshot/hamburger.png" alt="ハンバーガーメニュー" width="300" style="margin-right: 20px;">
-   <img src="screenshot/dark_mode.png" alt="ダークモード" width="300" style="margin-right: 20px;">
-   <img src="screenshot/language.png" alt="言語設定" width="300" style="margin-right: 20px;">
+   <img src="screenshot/auth.png" alt="認証" width="250" style="margin-right: 20px;">
+   <img src="screenshot/list_page.png" alt="一覧画面" width="250" style="margin-right: 20px;">
+   <img src="screenshot/detail_page.png" alt="詳細画面" width="250" style="margin-right: 20px;">
+   <img src="screenshot/hamburger.png" alt="ハンバーガーメニュー" width="250" style="margin-right: 20px;">
+   <img src="screenshot/dark_mode.png" alt="ダークモード" width="250" style="margin-right: 20px;">
+   <img src="screenshot/language.png" alt="言語設定" width="250" style="margin-right: 20px;">
 </p>
 
 ## 開発環境
