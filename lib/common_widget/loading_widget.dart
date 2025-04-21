@@ -12,7 +12,6 @@ class LoadingWidget extends ConsumerWidget {
       child: Transform.scale(
         scale: 1.2,
         child: ColorFiltered(
-          //todo: 色変更
           colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
           child: const CupertinoActivityIndicator(),
         ),
