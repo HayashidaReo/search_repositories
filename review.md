@@ -81,7 +81,7 @@
 - [] `GithubApiError`のmessage部分はいくつかのパターンに分けられると思います。従って、`enum GithubApiErrorReason`等を定義しUI側で具体的なメッセージへ出し分けする方が良いと思います。
 - [x] `String fomratStars`は1箇所のUIからしか参照されていないため Widget側に実装を移すほうが良いと思いました。
   - `lib/function/`配下に関数を雑多に作成していってしまうと いつの間にかぐちゃぐちゃになってしまいます
-- [] freezed, json_serializableでJSONパースをさせるモデル(Ex. ApiResponse)でsnake_caseなフィールド名を`@JsonKey(name: ...)`で指定していますが、`@JsonSerializable(fieldRename: FieldRename.snake)`で指定すると フィールド名を自動でsnake_caseに変換してくれるので こちらを使う方が良いと思います
+- [x] freezed, json_serializableでJSONパースをさせるモデル(Ex. ApiResponse)でsnake_caseなフィールド名を`@JsonKey(name: ...)`で指定していますが、`@JsonSerializable(fieldRename: FieldRename.snake)`で指定すると フィールド名を自動でsnake_caseに変換してくれるので こちらを使う方が良いと思います
   - `build.yaml`の`targets.$default.builders.json_serializable.options.field_rename = snake`に設定すると デフォルトですべてのフィールドをsnake_caseに変換してくれます
 
 ## まとめ
