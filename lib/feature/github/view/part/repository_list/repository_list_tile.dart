@@ -49,10 +49,16 @@ class RepositoryListTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconInfoWidget(icon: Icons.star, value: repo.stars),
-              IconInfoWidget(icon: Icons.remove_red_eye, value: repo.watchers),
-              IconInfoWidget(icon: Icons.call_split, value: repo.forks),
-              IconInfoWidget(icon: Icons.bug_report, value: repo.issues),
+              IconInfoWidget(icon: Icons.star, value: repo.stargazersCount),
+              IconInfoWidget(
+                icon: Icons.remove_red_eye,
+                value: repo.watchersCount,
+              ),
+              IconInfoWidget(icon: Icons.call_split, value: repo.forksCount),
+              IconInfoWidget(
+                icon: Icons.bug_report,
+                value: repo.openIssuesCount,
+              ),
             ],
           ),
         ],

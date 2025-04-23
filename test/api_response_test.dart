@@ -34,11 +34,11 @@ void main() {
         'Flutter makes it easy and fast to build beautiful apps for mobile and beyond.',
       );
       expect(apiResponse.language, 'Dart');
-      expect(apiResponse.stars, 148000);
-      expect(apiResponse.watchers, 148000);
-      expect(apiResponse.forks, 24000);
-      expect(apiResponse.issues, 11000);
-      expect(apiResponse.url, 'https://github.com/flutter/flutter');
+      expect(apiResponse.stargazersCount, 148000);
+      expect(apiResponse.watchersCount, 148000);
+      expect(apiResponse.forksCount, 24000);
+      expect(apiResponse.openIssuesCount, 11000);
+      expect(apiResponse.htmlUrl, 'https://github.com/flutter/flutter');
 
       // ownerのフィールドも検証
       expect(apiResponse.owner.login, 'flutter');
@@ -60,11 +60,11 @@ void main() {
         name: 'test-repo',
         description: 'テスト用リポジトリ',
         language: 'Dart',
-        stars: 100,
-        watchers: 50,
-        forks: 25,
-        issues: 10,
-        url: 'https://github.com/test/test-repo',
+        stargazersCount: 100,
+        watchersCount: 50,
+        forksCount: 25,
+        openIssuesCount: 10,
+        htmlUrl: 'https://github.com/test/test-repo',
         owner: owner,
       );
 
@@ -72,11 +72,11 @@ void main() {
       expect(apiResponse.name, 'test-repo');
       expect(apiResponse.description, 'テスト用リポジトリ');
       expect(apiResponse.language, 'Dart');
-      expect(apiResponse.stars, 100);
-      expect(apiResponse.watchers, 50);
-      expect(apiResponse.forks, 25);
-      expect(apiResponse.issues, 10);
-      expect(apiResponse.url, 'https://github.com/test/test-repo');
+      expect(apiResponse.stargazersCount, 100);
+      expect(apiResponse.watchersCount, 50);
+      expect(apiResponse.forksCount, 25);
+      expect(apiResponse.openIssuesCount, 10);
+      expect(apiResponse.htmlUrl, 'https://github.com/test/test-repo');
 
       // ownerオブジェクトも検証
       expect(apiResponse.owner.login, 'test-user');
@@ -107,7 +107,7 @@ void main() {
 
       // 他のフィールドは正常に変換されているか
       expect(apiResponse.name, 'minimal-repo');
-      expect(apiResponse.stars, 10);
+      expect(apiResponse.stargazersCount, 10);
     });
   });
 }

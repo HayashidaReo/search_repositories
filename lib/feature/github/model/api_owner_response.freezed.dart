@@ -13,14 +13,10 @@ part of 'api_owner_response.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$ApiOwnerResponse {
 
-@JsonKey(name: 'avatar_url') String get avatarUrl => throw _privateConstructorUsedError; String get login => throw _privateConstructorUsedError;
+ String get avatarUrl; String get login;
 /// Create a copy of ApiOwnerResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,7 +24,7 @@ mixin _$ApiOwnerResponse {
 $ApiOwnerResponseCopyWith<ApiOwnerResponse> get copyWith => _$ApiOwnerResponseCopyWithImpl<ApiOwnerResponse>(this as ApiOwnerResponse, _$identity);
 
   /// Serializes this ApiOwnerResponse to a JSON map.
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -53,7 +49,7 @@ abstract mixin class $ApiOwnerResponseCopyWith<$Res>  {
   factory $ApiOwnerResponseCopyWith(ApiOwnerResponse value, $Res Function(ApiOwnerResponse) _then) = _$ApiOwnerResponseCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'avatar_url') String avatarUrl, String login
+ String avatarUrl, String login
 });
 
 
@@ -82,13 +78,13 @@ as String,
 
 
 /// @nodoc
-@JsonSerializable()
 
+@JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _ApiOwnerResponse implements ApiOwnerResponse {
-   _ApiOwnerResponse({@JsonKey(name: 'avatar_url') required this.avatarUrl, required this.login});
+   _ApiOwnerResponse({required this.avatarUrl, required this.login});
   factory _ApiOwnerResponse.fromJson(Map<String, dynamic> json) => _$ApiOwnerResponseFromJson(json);
 
-@override@JsonKey(name: 'avatar_url') final  String avatarUrl;
+@override final  String avatarUrl;
 @override final  String login;
 
 /// Create a copy of ApiOwnerResponse
@@ -124,7 +120,7 @@ abstract mixin class _$ApiOwnerResponseCopyWith<$Res> implements $ApiOwnerRespon
   factory _$ApiOwnerResponseCopyWith(_ApiOwnerResponse value, $Res Function(_ApiOwnerResponse) _then) = __$ApiOwnerResponseCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'avatar_url') String avatarUrl, String login
+ String avatarUrl, String login
 });
 
 

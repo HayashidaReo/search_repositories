@@ -38,7 +38,7 @@ class RepositoryDetailPage extends ConsumerWidget {
           IconButton(
             onPressed: () {
               // レポジトリへ遷移
-              launchInExternalBrowser(repository.url, context);
+              launchInExternalBrowser(repository.htmlUrl, context);
             },
             icon: const Icon(Icons.open_in_new),
           ),
@@ -139,18 +139,21 @@ class RepositoryDetailPage extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  IconInfoWidget(icon: Icons.star, value: repository.stars),
+                  IconInfoWidget(
+                    icon: Icons.star,
+                    value: repository.stargazersCount,
+                  ),
                   IconInfoWidget(
                     icon: Icons.remove_red_eye,
-                    value: repository.watchers,
+                    value: repository.watchersCount,
                   ),
                   IconInfoWidget(
                     icon: Icons.call_split,
-                    value: repository.forks,
+                    value: repository.forksCount,
                   ),
                   IconInfoWidget(
                     icon: Icons.bug_report,
-                    value: repository.issues,
+                    value: repository.openIssuesCount,
                   ),
                 ],
               ),

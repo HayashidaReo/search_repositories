@@ -5,17 +5,19 @@ part 'api_response.freezed.dart';
 part 'api_response.g.dart';
 
 @freezed
-class ApiResponse with _$ApiResponse {
-  factory ApiResponse({
+abstract class ApiResponse with _$ApiResponse {
+  // snake_caseのJSONをcamelCaseのDartに変換するために、fieldRenameを指定
+  @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
+  const factory ApiResponse({
     required String name,
     String? description,
     String? language,
-    @JsonKey(name: 'stargazers_count') required int stars,
-    @JsonKey(name: 'watchers_count') required int watchers,
-    @JsonKey(name: 'forks_count') required int forks,
-    @JsonKey(name: 'open_issues_count') required int issues,
-    @JsonKey(name: 'html_url') required String url,
-    @JsonKey(name: 'owner') required ApiOwnerResponse owner,
+    required int stargazersCount,
+    required int watchersCount,
+    required int forksCount,
+    required int openIssuesCount,
+    required String htmlUrl,
+    required ApiOwnerResponse owner,
   }) = _ApiResponse;
 
   factory ApiResponse.fromJson(Map<String, dynamic> json) =>
