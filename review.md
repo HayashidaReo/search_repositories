@@ -21,7 +21,7 @@
 - [x] CachedNetworkImageを使用する際は、Semanticsウィジェットでラップし、適切なラベルを付けるようにするとアクセシビリティの観点でよいと思います
   - https://zenn.dev/mjhd/articles/88c32b1610ca95 
 - [x] test/custom_button_test.dart内の「色が反転するオプションが機能する」テストが失敗しています
-- [] クエリの長さに制限があるため、バリデーションを追加するのがよいと思います
+- [x] クエリの長さに制限があるため、バリデーションを追加するのがよいと思います
   - https://docs.github.com/ja/rest/search/search?apiVersion=2022-11-28#limitations-on-query-length
 
 

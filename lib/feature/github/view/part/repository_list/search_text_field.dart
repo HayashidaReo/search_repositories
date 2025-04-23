@@ -50,9 +50,11 @@ class SearchTextField extends HookWidget {
                     onSearch('');
                   } else {
                     // 検索実行
-                    final keyword = searchTextController.text.trim();
-                    currentKeyword.value = keyword;
-                    onSearch(keyword);
+                    _search(
+                      searchTextController.text,
+                      currentKeyword,
+                      searchTextController,
+                    );
                   }
                 }
                 : null,
@@ -69,10 +71,26 @@ class SearchTextField extends HookWidget {
       ),
       onSubmitted: (text) {
         // 検索実行
-        final keyword = text.trim();
-        currentKeyword.value = keyword;
-        onSearch(keyword);
+        _search(text, currentKeyword, searchTextController);
       },
     );
+  }
+
+  void _search(
+    String text,
+    ValueNotifier<String> currentKeyword,
+    TextEditingController searchTextController,
+  ) {
+    // 検索実行
+    if (text.trim().length >= 236) {
+      // 236文字以上は切り捨て
+      currentKeyword.value = text.trim().substring(0, 236);
+      searchTextController.text = text.trim().substring(0, 236);
+      showToast('検索文字は236文字までです');
+    } else {
+      currentKeyword.value = text.trim();
+    }
+    // 検索実行
+    onSearch(currentKeyword.value);
   }
 }
