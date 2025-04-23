@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:search_repositories/config/shared_preference/shared_preference_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'locale_provider.g.dart';
@@ -17,7 +18,9 @@ class LocaleNotifier extends _$LocaleNotifier {
   }
 
   Future<void> _loadLocale() async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await ref.watch(
+      sharedPreferencesProvider.future,
+    );
     final languageCode = prefs.getString(_kLanguageCode);
     final scriptCode = prefs.getString(_kScriptCode);
     final countryCode = prefs.getString(_kCountryCode);
@@ -32,7 +35,9 @@ class LocaleNotifier extends _$LocaleNotifier {
   }
 
   Future<void> setLocale(Locale locale) async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await ref.watch(
+      sharedPreferencesProvider.future,
+    );
     await prefs.setString(_kLanguageCode, locale.languageCode);
 
     if (locale.scriptCode != null) {

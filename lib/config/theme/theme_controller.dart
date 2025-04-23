@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:search_repositories/config/key/theme_pref_key.dart';
+import 'package:search_repositories/config/shared_preference/shared_preference_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'theme_controller.g.dart';
@@ -14,7 +15,9 @@ class ThemeController extends _$ThemeController {
   }
 
   Future<void> _loadSavedThemeMode() async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await ref.watch(
+      sharedPreferencesProvider.future,
+    );
     final savedMode = prefs.getString(ThemePrefKey.themeMode);
 
     if (savedMode != null) {
@@ -31,8 +34,9 @@ class ThemeController extends _$ThemeController {
 
   Future<void> setThemeMode(ThemeMode mode) async {
     state = mode;
-
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await ref.watch(
+      sharedPreferencesProvider.future,
+    );
     await prefs.setString(ThemePrefKey.themeMode, _themeModeToString(mode));
   }
 

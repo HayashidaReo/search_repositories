@@ -6,20 +6,21 @@ part of 'locale_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$localeNotifierHash() => r'3b75b1f23c095ff321864a5647531939518fdb62';
+String _$localeNotifierHash() => r'9238929403b2e1e557a6da42f8696ad9655a8926';
 
 /// See also [LocaleNotifier].
 @ProviderFor(LocaleNotifier)
 final localeNotifierProvider =
     AutoDisposeNotifierProvider<LocaleNotifier, Locale>.internal(
-  LocaleNotifier.new,
-  name: r'localeNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$localeNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      LocaleNotifier.new,
+      name: r'localeNotifierProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$localeNotifierHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$LocaleNotifier = AutoDisposeNotifier<Locale>;
 // ignore_for_file: type=lint
