@@ -21,16 +21,16 @@ class AuthRepo extends _$AuthRepo {
     try {
       final GithubAuthProvider githubProvider = GithubAuthProvider();
 
-      final UserCredential credentail = await ref
+      final UserCredential credential = await ref
           .read(firebaseAuthInstanceProvider)
           .signInWithProvider(githubProvider);
       // 認証成功
-      if (((credentail.credential?.accessToken) != null)) {
+      if (((credential.credential?.accessToken) != null)) {
         await ref
             .read(secureStorageControllerProvider.notifier)
             .setValue(
               key: SecureStorageKey.githubAccessToken,
-              value: credentail.credential?.accessToken ?? '',
+              value: credential.credential?.accessToken ?? '',
             );
         hideLoadingDialog();
         showToast(localizations.connectionSuccess);

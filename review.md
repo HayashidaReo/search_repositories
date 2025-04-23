@@ -54,7 +54,7 @@
 ## NEXT
 - [x] `pubspec.yaml`において、バージョンを指定しているものとしていないものに分かれているのが少し気になりました。
   - `pubspec.lock`を見ればどのバージョンを使っているか定まりますが、`pubspec.yaml`にもバージョン指定をしておくと 意図しないバージョン(例えば、とても古いバージョンになっていた など)になることを防ぐことにもつながると思います。
-- [x] `LocaleNotifier`等で`SharedPreferences`を使う時に 毎回`SharedPreferenfces.getInstance()`を呼び出していますが、Riverpodでキャッシュしても良いと思います。
+- [x] `LocaleNotifier`等で`SharedPreferences`を使う時に 毎回`SharedPreferences.getInstance()`を呼び出していますが、Riverpodでキャッシュしても良いと思います。
   - 個人的には、getInstanceするFutureProviderと、それをキャッシュしたProviderを用意してあげる構成が好きです
     ```dart
     // main.dart からのみアクセスする前提
@@ -80,7 +80,7 @@
 - [] `searchGitHubController`だけグローバルの非同期関数として定義し、UI側 FutureBuilderで表示するようにしたのかが気になりました
   - RiverpodのFamilyFutureProviderを使えば、キャッシュできるようになると思います
 - [] `GithubApiError`のmessage部分はいくつかのパターンに分けられると思います。従って、`enum GithubApiErrorReason`等を定義しUI側で具体的なメッセージへ出し分けする方が良いと思います。
-- [x] `String fomratStars`は1箇所のUIからしか参照されていないため Widget側に実装を移すほうが良いと思いました。
+- [x] `String formatStars`は1箇所のUIからしか参照されていないため Widget側に実装を移すほうが良いと思いました。
   - `lib/function/`配下に関数を雑多に作成していってしまうと いつの間にかぐちゃぐちゃになってしまいます
 - [x] freezed, json_serializableでJSONパースをさせるモデル(Ex. ApiResponse)でsnake_caseなフィールド名を`@JsonKey(name: ...)`で指定していますが、`@JsonSerializable(fieldRename: FieldRename.snake)`で指定すると フィールド名を自動でsnake_caseに変換してくれるので こちらを使う方が良いと思います
   - `build.yaml`の`targets.$default.builders.json_serializable.options.field_rename = snake`に設定すると デフォルトですべてのフィールドをsnake_caseに変換してくれます
