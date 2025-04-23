@@ -14,7 +14,7 @@
 - [] 改善点にも記載していただいていますが、GitHub Actionsなどでテストやリント、フォーマットが問題ないかを確認できるとよいと思います
 - [] Cursorを活用されているとのことでしたが、.cursor/rulesや.mdcファイル（非推奨ではありますが、.cursorrulesファイルなど）がありませんでした
   - このあたりを整理すると、記載いただいた課題の改善に繋がるのかなと思いました
-- [] Pull requestsの機能は用いられているため、Pull requestsに対応するIssueが作成されていると、対応するタスクが明確にでき、かつ後から見直した時になぜこの対応を行ったのかが明確になると思います
+- [x] Pull requestsの機能は用いられているため、Pull requestsに対応するIssueが作成されていると、対応するタスクが明確にでき、かつ後から見直した時になぜこの対応を行ったのかが明確になると思います
   - PULL_REQUEST_TEMPLATEに背景など、対応した理由なども記入するような構成になっていれば、Pull requestsのみでも問題ないとは思います
 - [] .vscode/settings.jsonではcSpellの設定を記入しているため、.vscode/extensions.jsonを作成し、Code Spell Checkerを追加しているとなおよいと思います
 - [] fvm等、Flutterのバージョン管理ツールを導入しているとなおよいと思います
