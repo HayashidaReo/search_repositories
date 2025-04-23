@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:search_repositories/function/format_stars.dart';
+import 'package:search_repositories/common_widget/icon_info_widget.dart';
 
 void main() {
   group('formatStars関数のテスト', () {
