@@ -50,15 +50,20 @@ void main() {
         ),
       );
 
-      // 背景色が黒で、テキストが白であることを確認
+      // テーマから期待される色を取得
+      final BuildContext context = tester.element(find.text('通常ボタン'));
+      final expectedBgColor = Theme.of(context).colorScheme.primary;
+      final expectedTextColor = Theme.of(context).colorScheme.onPrimary;
+
+      // 背景色とテキスト色をテーマの値と比較
       final button1 = tester.widget<ElevatedButton>(
         find.byType(ElevatedButton),
       );
       final buttonStyle1 = button1.style as ButtonStyle;
-      expect(buttonStyle1.backgroundColor?.resolve({}), ColorStyle.darkBlack);
+      expect(buttonStyle1.backgroundColor?.resolve({}), expectedBgColor);
 
       final textWidget1 = tester.widget<Text>(find.text('通常ボタン'));
-      expect(textWidget1.style?.color, ColorStyle.white);
+      expect(textWidget1.style?.color, expectedTextColor);
 
       // 色が反転したボタンを作成
       await tester.pumpWidget(
@@ -74,15 +79,25 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      // 背景色が白で、テキストが黒であることを確認
+      // テーマから期待される色を取得（反転時）
+      final BuildContext reversedContext = tester.element(find.text('反転ボタン'));
+      final expectedReversedBgColor =
+          Theme.of(reversedContext).colorScheme.secondary;
+      final expectedReversedTextColor =
+          Theme.of(reversedContext).colorScheme.onSecondary;
+
+      // 反転時の背景色とテキスト色をテーマの値と比較
       final button2 = tester.widget<ElevatedButton>(
         find.byType(ElevatedButton),
       );
       final buttonStyle2 = button2.style as ButtonStyle;
-      expect(buttonStyle2.backgroundColor?.resolve({}), ColorStyle.white);
+      expect(
+        buttonStyle2.backgroundColor?.resolve({}),
+        expectedReversedBgColor,
+      );
 
       final textWidget2 = tester.widget<Text>(find.text('反転ボタン'));
-      expect(textWidget2.style?.color, ColorStyle.black);
+      expect(textWidget2.style?.color, expectedReversedTextColor);
     });
 
     testWidgets('左側のアイコンが表示される', (WidgetTester tester) async {

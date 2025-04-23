@@ -16,10 +16,11 @@
   - このあたりを整理すると、記載いただいた課題の改善に繋がるのかなと思いました
 - [x] Pull requestsの機能は用いられているため、Pull requestsに対応するIssueが作成されていると、対応するタスクが明確にでき、かつ後から見直した時になぜこの対応を行ったのかが明確になると思います
   - PULL_REQUEST_TEMPLATEに背景など、対応した理由なども記入するような構成になっていれば、Pull requestsのみでも問題ないとは思います
-- [] .vscode/settings.jsonではcSpellの設定を記入しているため、.vscode/extensions.jsonを作成し、Code Spell Checkerを追加しているとなおよいと思います
+- [x] .vscode/settings.jsonではcSpellの設定を記入しているため、.vscode/extensions.jsonを作成し、Code Spell Checkerを追加しているとなおよいと思います
 - [] fvm等、Flutterのバージョン管理ツールを導入しているとなおよいと思います
 - [] CachedNetworkImageを使用する際は、Semanticsウィジェットでラップし、適切なラベルを付けるようにするとアクセシビリティの観点でよいと思います
-- [] test/custom_button_test.dart内の「色が反転するオプションが機能する」テストが失敗しています
+  - https://zenn.dev/mjhd/articles/88c32b1610ca95 
+- [x] test/custom_button_test.dart内の「色が反転するオプションが機能する」テストが失敗しています
 - [] クエリの長さに制限があるため、バリデーションを追加するのがよいと思います
   - https://docs.github.com/ja/rest/search/search?apiVersion=2022-11-28#limitations-on-query-length
 
