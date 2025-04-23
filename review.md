@@ -74,8 +74,9 @@
     ```
 
 - [] fvmやasdf, miseといったツールのバージョン管理ツールを使うと 単一PCで複数プロジェクトを行う時や 他のPCでも同じバージョンを使うようにできるので おすすめです
-- [] `AuthRepo`のbuild関数で`ref.read(firebaseAuthInstanceProvider).currentUser`を行い、`signInWithGitHub`関数等の最後で状態を更新していますが `ref.watch(firebaseAuthInstanceProvider.select((value) => value.currentUser))`で監視できるので こちらを使う方が良いと思いました
+- ~~[] `AuthRepo`のbuild関数で`ref.read(firebaseAuthInstanceProvider).currentUser`を行い、`signInWithGitHub`関数等の最後で状態を更新していますが `ref.watch(firebaseAuthInstanceProvider.select((value) => value.currentUser))`で監視できるので こちらを使う方が良いと思いました~~
   - Riverpodの仕組みに乗っかれるところは乗っかったほうがバグを減らせると思います
+    - 変更してみたが、状態が変わっても状態が更新されなかった。
 - [] `searchGitHubController`だけグローバルの非同期関数として定義し、UI側 FutureBuilderで表示するようにしたのかが気になりました
   - RiverpodのFamilyFutureProviderを使えば、キャッシュできるようになると思います
 - [] `GithubApiError`のmessage部分はいくつかのパターンに分けられると思います。従って、`enum GithubApiErrorReason`等を定義しUI側で具体的なメッセージへ出し分けする方が良いと思います。
