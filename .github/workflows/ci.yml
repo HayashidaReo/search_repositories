@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. リポジトリをチェックアウト
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Flutter をセットアップ
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: stable
+
+      # 3. 依存パッケージを取得
+      - name: Install dependencies
+        run: flutter pub get
+
+      # 4. Lint（静的解析）
+      - name: Analyze
+        run: flutter analyze .
+
+      # 5. フォーマットチェック
+      - name: Check formatting
+        # フォーマットが崩れているファイルがあれば exit code != 0 になる
+        run: flutter format --set-exit-if-changed .
+
+      # 6. テスト実行
+      - name: Run tests
+        run: flutter test --coverage
