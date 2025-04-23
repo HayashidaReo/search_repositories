@@ -18,7 +18,7 @@
   - PULL_REQUEST_TEMPLATEに背景など、対応した理由なども記入するような構成になっていれば、Pull requestsのみでも問題ないとは思います
 - [x] .vscode/settings.jsonではcSpellの設定を記入しているため、.vscode/extensions.jsonを作成し、Code Spell Checkerを追加しているとなおよいと思います
 - [] fvm等、Flutterのバージョン管理ツールを導入しているとなおよいと思います
-- [] CachedNetworkImageを使用する際は、Semanticsウィジェットでラップし、適切なラベルを付けるようにするとアクセシビリティの観点でよいと思います
+- [x] CachedNetworkImageを使用する際は、Semanticsウィジェットでラップし、適切なラベルを付けるようにするとアクセシビリティの観点でよいと思います
   - https://zenn.dev/mjhd/articles/88c32b1610ca95 
 - [x] test/custom_button_test.dart内の「色が反転するオプションが機能する」テストが失敗しています
 - [] クエリの長さに制限があるため、バリデーションを追加するのがよいと思います

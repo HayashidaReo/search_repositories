@@ -8,29 +8,33 @@ class IconImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: imageUrl,
-      imageBuilder:
-          (context, imageProvider) => ClipOval(
-            child: Image(
-              image: imageProvider,
+    return Semantics(
+      label: 'IconImage',
+      container: true,
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
+        imageBuilder:
+            (context, imageProvider) => ClipOval(
+              child: Image(
+                image: imageProvider,
+                width: iconSize * 2,
+                height: iconSize * 2,
+                fit: BoxFit.cover,
+              ),
+            ),
+        progressIndicatorBuilder:
+            (context, url, downloadProgress) => SizedBox(
               width: iconSize * 2,
               height: iconSize * 2,
-              fit: BoxFit.cover,
+              child: const LoadingWidget(),
             ),
-          ),
-      progressIndicatorBuilder:
-          (context, url, downloadProgress) => SizedBox(
-            width: iconSize * 2,
-            height: iconSize * 2,
-            child: const LoadingWidget(),
-          ),
-      errorWidget:
-          (context, url, error) => SizedBox(
-            width: iconSize * 2,
-            height: iconSize * 2,
-            child: const Icon(Icons.image_not_supported_rounded),
-          ),
+        errorWidget:
+            (context, url, error) => SizedBox(
+              width: iconSize * 2,
+              height: iconSize * 2,
+              child: const Icon(Icons.image_not_supported_rounded),
+            ),
+      ),
     );
   }
 }
