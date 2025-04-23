@@ -52,7 +52,7 @@
   - こちらも、`flutter_gen`パッケージを使うと コード生成できるのでおすすめです
 
 ## NEXT
-- [] `pubspec.yaml`において、バージョンを指定しているものとしていないものに分かれているのが少し気になりました。
+- [x] `pubspec.yaml`において、バージョンを指定しているものとしていないものに分かれているのが少し気になりました。
   - `pubspec.lock`を見ればどのバージョンを使っているか定まりますが、`pubspec.yaml`にもバージョン指定をしておくと 意図しないバージョン(例えば、とても古いバージョンになっていた など)になることを防ぐことにもつながると思います。
 - [] `LocaleNotifier`等で`SharedPreferences`を使う時に 毎回`SharedPreferenfces.getInstance()`を呼び出していますが、Riverpodでキャッシュしても良いと思います。
   - 個人的には、getInstanceするFutureProviderと、それをキャッシュしたProviderを用意してあげる構成が好きです
